@@ -16,6 +16,23 @@ public class Character {
 	private int damage;
 	private ArrayList<Character> characters = new ArrayList();
 	
+	
+	public Character(CharacterType charType, FaceDirectionType faceDirection, int startX, int startY, int width,
+			int height, int health, int rateOfFire, int speed, int speedOfBullet, int damage) {
+		super();
+		this.charType = charType;
+		this.faceDirection = faceDirection;
+		this.startX = startX;
+		this.startY = startY;
+		this.width = width;
+		this.height = height;
+		this.health = health;
+		this.rateOfFire = rateOfFire;
+		this.speed = speed;
+		this.speedOfBullet = speedOfBullet;
+		this.damage = damage;
+	}
+
 	public CharacterType getType() {
 		return charType;
 	}
@@ -83,7 +100,34 @@ public class Character {
 		this.faceDirection = faceDirection;
 	}
 	
+	public void move(int moveInX, int moveInY) {
+		switch(moveInX) {
+			case -1: this.setStartX(this.getStartX() - this.getSpeed());
+			case 0: this.setStartX(this.getStartX());	
+			case 1: this.setStartX(this.getStartX() + this.getSpeed());
+		}
+		switch(moveInY) {
+			case -1: this.setStartY(this.getStartY() - this.getSpeed());
+			case 0: this.setStartY(this.getStartY());
+			case 1: this.setStartY(this.getStartY() + this.getSpeed());
+		}
+	}
 	
 	
+	@Override
+	public String toString() {
+		return "Character [charType=" + charType + ", faceDirection=" + faceDirection + ", startX=" + startX
+				+ ", startY=" + startY + ", width=" + width + ", height=" + height + ", health=" + health
+				+ ", rateOfFire=" + rateOfFire + ", speed=" + speed + ", speedOfBullet=" + speedOfBullet + ", damage="
+				+ damage + "]";
+	}
+
+	public static void main(String[] args) {
+		Character player = new Character(CharacterType.PLAYER, FaceDirectionType.RIGHT, 0, 0, 1000,
+				1000, 100, 60, 500, 750, 25);
+		System.out.println(player);
+		player.move(1, 1);
+		System.out.println(player);
+	}
 	
 }
