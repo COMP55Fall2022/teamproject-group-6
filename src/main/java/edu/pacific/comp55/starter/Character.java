@@ -3,7 +3,8 @@ package edu.pacific.comp55.starter;
 import java.util.ArrayList;
 
 public class Character {
-	private CharacterType type;
+	private CharacterType charType;
+	private FaceDirectionType faceDirection;
 	private int startX;
 	private int startY;
 	private int width;
@@ -16,10 +17,10 @@ public class Character {
 	private ArrayList<Character> characters = new ArrayList();
 	
 	public CharacterType getType() {
-		return type;
+		return charType;
 	}
-	public void setType(CharacterType type) {
-		this.type = type;
+	public void setType(CharacterType charType) {
+		this.charType = charType;
 	}
 	public int getStartX() {
 		return startX;
@@ -75,6 +76,13 @@ public class Character {
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
+	public FaceDirectionType getFaceDirection() {
+		return faceDirection;
+	}
+	public void setFaceDirection(FaceDirectionType faceDirection) {
+		this.faceDirection = faceDirection;
+	}
+	
 	
 	
 	
