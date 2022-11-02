@@ -15,5 +15,67 @@ public class Character {
 	private int damage;
 	private ArrayList<Character> characters = new ArrayList();
 	
+	public CharacterType getType() {
+		return type;
+	}
+	public void setType(CharacterType type) {
+		this.type = type;
+	}
+	public int getStartX() {
+		return startX;
+	}
+	public void setStartX(int startX) {
+		this.startX = startX;
+	}
+	public int getStartY() {
+		return startY;
+	}
+	public void setStartY(int startY) {
+		this.startY = startY;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public int getHealth() {
+		return health;
+	}
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	public int getRateOfFire() {
+		return rateOfFire;
+	}
+	public void setRateOfFire(int rateOfFire) {
+		this.rateOfFire = rateOfFire;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	public int getSpeedOfBullet() {
+		return speedOfBullet;
+	}
+	public void setSpeedOfBullet(int speedOfBullet) {
+		this.speedOfBullet = speedOfBullet;
+	}
+	public int getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
+	
 	
 }
