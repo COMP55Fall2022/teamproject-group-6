@@ -14,7 +14,7 @@ public class Character {
 	private int speedOfBullet;
 	private int damage;
 	private ArrayList<Character> characters = new ArrayList();
-	private Point[] collisionDetectionPoints = new Point[9];
+	private Point[] collisionDetectionPoints = new Point[8];
 	
 	
 	public Character(CharacterType charType, FaceDirectionType faceDirection, int startX, int startY, int width,
@@ -30,6 +30,7 @@ public class Character {
 		this.speed = speed;
 		this.speedOfBullet = speedOfBullet;
 		this.damage = damage;
+		this.updateCollisionDetectionPoints();
 	}
 
 	public CharacterType getType() {
@@ -110,6 +111,7 @@ public class Character {
 			case 0: this.setStartY(this.getStartY());
 			case 1: this.setStartY(this.getStartY() + this.getSpeed());
 		}
+		this.updateCollisionDetectionPoints();
 	}
 	
 	public boolean isDead() {
@@ -120,8 +122,18 @@ public class Character {
 	}
 	
 	public void updateCollisionDetectionPoints() {
-		collisionDetectionPoints[0] = this.startPoint;
-		
+		collisionDetectionPoints[0] = this.startPoint;	// botLeft
+		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	//midLeft
+		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	//upLeft
+		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	//upMid
+		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);	//upRight
+		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); //midRight
+		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());	//botRight
+		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());	//botMid
+	}
+	
+	public Point[] getCollisionDetectionPoints() {
+		return collisionDetectionPoints;
 	}
 	
 	@Override
