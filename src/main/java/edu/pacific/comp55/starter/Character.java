@@ -14,6 +14,7 @@ public class Character {
 	private int speedOfBullet;
 	private int damage;
 	private ArrayList<Character> characters = new ArrayList();
+	private Point[] collisionDetectionPoints = new Point[9];
 	
 	
 	public Character(CharacterType charType, FaceDirectionType faceDirection, int startX, int startY, int width,
@@ -118,7 +119,10 @@ public class Character {
 		return false;
 	}
 	
-	
+	public void updateCollisionDetectionPoints() {
+		collisionDetectionPoints[0] = this.startPoint;
+		
+	}
 	
 	@Override
 	public String toString() {
