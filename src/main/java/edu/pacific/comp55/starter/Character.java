@@ -30,6 +30,9 @@ public class Character {
 		this.speed = speed;
 		this.speedOfBullet = speedOfBullet;
 		this.damage = damage;
+		for (int i = 0; i < 8; ++i) {
+			collisionDetectionPoints[i] = new Point(0, 0);
+		}
 		this.updateCollisionDetectionPoints();
 	}
 
@@ -148,9 +151,17 @@ public class Character {
 		Character player = new Character(CharacterType.PLAYER, FaceDirectionType.RIGHT, 0, 0, 1000,
 				1000, 100, 60, 500, 750, 25);
 		System.out.println(player);
+		Point[] points = player.getCollisionDetectionPoints();
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}
 		player.move(1, 1);
 		System.out.println(player.isDead());
 		System.out.println(player);
+		points = player.getCollisionDetectionPoints();
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}
 	}
 	
 }
