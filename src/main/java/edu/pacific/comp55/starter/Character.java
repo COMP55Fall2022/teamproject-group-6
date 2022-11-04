@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Character {
 	private CharacterType charType;
 	private FaceDirectionType faceDirection;
-	private int startX;
-	private int startY;
+	private Point startPoint;
 	private int width;
 	private int height;
 	private int health;
@@ -22,8 +21,7 @@ public class Character {
 		super();
 		this.charType = charType;
 		this.faceDirection = faceDirection;
-		this.startX = startX;
-		this.startY = startY;
+		this.startPoint = new Point(startX, startY);
 		this.width = width;
 		this.height = height;
 		this.health = health;
@@ -40,16 +38,16 @@ public class Character {
 		this.charType = charType;
 	}
 	public int getStartX() {
-		return startX;
+		return startPoint.getX();
 	}
 	public void setStartX(int startX) {
-		this.startX = startX;
+		this.startPoint.setX(startX);
 	}
 	public int getStartY() {
-		return startY;
+		return startPoint.getY();
 	}
 	public void setStartY(int startY) {
-		this.startY = startY;
+		this.startPoint.setY(startY);
 	}
 	public int getWidth() {
 		return width;
@@ -121,10 +119,11 @@ public class Character {
 	}
 	
 	
+	
 	@Override
 	public String toString() {
-		return "Character [charType=" + charType + ", faceDirection=" + faceDirection + ", startX=" + startX
-				+ ", startY=" + startY + ", width=" + width + ", height=" + height + ", health=" + health
+		return "Character [charType=" + charType + ", faceDirection=" + faceDirection + ", startX=" + startPoint.getX()
+				+ ", startY=" + startPoint.getY() + ", width=" + width + ", height=" + height + ", health=" + health
 				+ ", rateOfFire=" + rateOfFire + ", speed=" + speed + ", speedOfBullet=" + speedOfBullet + ", damage="
 				+ damage + "]";
 	}
