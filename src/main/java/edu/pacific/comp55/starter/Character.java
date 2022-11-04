@@ -113,6 +113,13 @@ public class Character {
 		}
 	}
 	
+	public boolean isDead() {
+		if (this.health <= 0) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	@Override
 	public String toString() {
@@ -127,6 +134,7 @@ public class Character {
 				1000, 100, 60, 500, 750, 25);
 		System.out.println(player);
 		player.move(1, 1);
+		System.out.println(player.isDead());
 		System.out.println(player);
 	}
 	
