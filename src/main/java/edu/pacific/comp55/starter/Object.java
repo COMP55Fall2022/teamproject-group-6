@@ -1,11 +1,26 @@
 package edu.pacific.comp55.starter;
 
 public class Object {
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	protected int x;
+	protected int y;
+	protected int width;
+	protected int height;
+	protected boolean visible;
 	
+	public Object(int x, int y) {
+		this.x = x;
+		this.y = y;
+		visible = true;
+	}
+	
+	public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+    
 	public int getWidth() {
 		return width;
 	}
