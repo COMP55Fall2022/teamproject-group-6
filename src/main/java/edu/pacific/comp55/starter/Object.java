@@ -37,4 +37,8 @@ public class Object {
 		this.height = height;
 	}
 	
+	public boolean isVisible() {
+        return visible;
+    }
+	
 }
