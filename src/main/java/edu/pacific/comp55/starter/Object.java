@@ -8,8 +8,9 @@ public class Object {
 	private int width;
 	private int height;
 	private int health;
-	private ArrayList<Character> characters = new ArrayList();
 	private Point[] collisionDetectionPoints = new Point[8];
+	private boolean showImage;
+	
     
     public Object(int startX, int startY, int width, int height, int health) {
 		super();
