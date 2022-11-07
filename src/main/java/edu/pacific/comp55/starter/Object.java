@@ -62,5 +62,18 @@ public class Object {
 		this.health = health;
 	}
 	
-
+	public void updateCollisionDetectionPoints() {
+		collisionDetectionPoints[0] = this.startPoint;	
+		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	
+		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	
+		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	
+		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);
+		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); 
+		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());
+		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());
+	}
+    
+    public Point[] getCollisionDetectionPoints() {
+		return collisionDetectionPoints;
+	}
 }
