@@ -14,6 +14,7 @@ public class Character {
 	private int speedOfBullet;
 	private int damage;
 	private ArrayList<Character> characters = new ArrayList();
+	private Point[] collisionDetectionPoints = new Point[8];
 	
 	
 	public Character(CharacterType charType, FaceDirectionType faceDirection, int startX, int startY, int width,
@@ -29,6 +30,10 @@ public class Character {
 		this.speed = speed;
 		this.speedOfBullet = speedOfBullet;
 		this.damage = damage;
+		for (int i = 0; i < 8; ++i) {
+			collisionDetectionPoints[i] = new Point(0, 0);
+		}
+		this.updateCollisionDetectionPoints();
 	}
 
 	public CharacterType getType() {
@@ -98,6 +103,7 @@ public class Character {
 		this.faceDirection = faceDirection;
 	}
 	
+	// Meaning -1: move in negative direction, 1: positive direction, 0: not moving
 	public void move(int moveInX, int moveInY) {
 		switch(moveInX) {
 			case -1: this.setStartX(this.getStartX() - this.getSpeed());
@@ -109,6 +115,7 @@ public class Character {
 			case 0: this.setStartY(this.getStartY());
 			case 1: this.setStartY(this.getStartY() + this.getSpeed());
 		}
+		this.updateCollisionDetectionPoints();
 	}
 	
 	public boolean isDead() {
@@ -118,7 +125,21 @@ public class Character {
 		return false;
 	}
 	
+	//Use 8 points to detect collision for all moving things
+	public void updateCollisionDetectionPoints() {
+		collisionDetectionPoints[0] = this.startPoint;	// botLeft
+		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	//midLeft
+		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	//upLeft
+		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	//upMid
+		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);	//upRight
+		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); //midRight
+		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());	//botRight
+		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());	//botMid
+	}
 	
+	public Point[] getCollisionDetectionPoints() {
+		return collisionDetectionPoints;
+	}
 	
 	@Override
 	public String toString() {
@@ -128,13 +149,22 @@ public class Character {
 				+ damage + "]";
 	}
 
+	//Tests
 	public static void main(String[] args) {
 		Character player = new Character(CharacterType.PLAYER, FaceDirectionType.RIGHT, 0, 0, 1000,
 				1000, 100, 60, 500, 750, 25);
 		System.out.println(player);
+		Point[] points = player.getCollisionDetectionPoints();
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}
 		player.move(1, 1);
 		System.out.println(player.isDead());
 		System.out.println(player);
+		points = player.getCollisionDetectionPoints();
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}
 	}
 	
 }
