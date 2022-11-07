@@ -103,6 +103,7 @@ public class Character {
 		this.faceDirection = faceDirection;
 	}
 	
+	// Meaning -1: move in negative direction, 1: positive direction, 0: not moving
 	public void move(int moveInX, int moveInY) {
 		switch(moveInX) {
 			case -1: this.setStartX(this.getStartX() - this.getSpeed());
@@ -124,6 +125,7 @@ public class Character {
 		return false;
 	}
 	
+	//Use 8 points to detect collision for all moving things
 	public void updateCollisionDetectionPoints() {
 		collisionDetectionPoints[0] = this.startPoint;	// botLeft
 		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	//midLeft
@@ -147,6 +149,7 @@ public class Character {
 				+ damage + "]";
 	}
 
+	//Tests
 	public static void main(String[] args) {
 		Character player = new Character(CharacterType.PLAYER, FaceDirectionType.RIGHT, 0, 0, 1000,
 				1000, 100, 60, 500, 750, 25);
