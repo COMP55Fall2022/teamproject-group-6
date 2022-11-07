@@ -22,4 +22,45 @@ public class Object {
 		this.updateCollisionDetectionPoints();
 	}
     
+    public int getStartX() {
+		return startPoint.getX();
+	}
+    
+	public void setStartX(int startX) {
+		this.startPoint.setX(startX);
+	}
+	
+	public int getStartY() {
+		return startPoint.getY();
+	}
+	
+	public void setStartY(int startY) {
+		this.startPoint.setY(startY);
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	
+
 }
