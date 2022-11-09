@@ -2,6 +2,7 @@ package edu.pacific.comp55.starter;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
 public class Room {
 	
@@ -28,4 +29,5 @@ public class Room {
 			// TODO
 		}
 	}
+	
 }
