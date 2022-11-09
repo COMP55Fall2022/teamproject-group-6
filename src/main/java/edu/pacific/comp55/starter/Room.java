@@ -21,6 +21,9 @@ public class Room {
 	}
 	
 	public void characterAbilities(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_Q) {
+			// TODO
+		}
 		
 	}
 }
