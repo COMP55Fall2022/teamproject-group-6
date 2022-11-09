@@ -15,5 +15,8 @@ public class Room {
 		if (e.getKeyCode() == KeyEvent.VK_S) {
 			// TODO
 		}
+		if (e.getKeyCode() == KeyEvent.VK_D) {
+			// TODO
+		}
 	}
 }
