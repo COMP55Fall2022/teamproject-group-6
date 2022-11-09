@@ -30,5 +30,10 @@ public class Room {
 			// TODO
 		}
 	}
+	
+	public void quitGame(KeyEvent e1, MouseEvent e2) {
+		//TODO
+		//no more than 3 mouse clicks or key presses
+	}
 
 }
