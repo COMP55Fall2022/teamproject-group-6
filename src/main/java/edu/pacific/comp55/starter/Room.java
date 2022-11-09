@@ -19,4 +19,8 @@ public class Room {
 			// TODO
 		}
 	}
+	
+	public void characterAbilities(KeyEvent e) {
+		
+	}
 }
