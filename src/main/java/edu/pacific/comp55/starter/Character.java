@@ -2,7 +2,7 @@ package edu.pacific.comp55.starter;
 
 public class Character {
 	private CharacterType charType;
-	private FaceDirectionType faceDirection;
+	private DirectionType faceDirection;
 	private Point startPoint;
 	private int width;
 	private int height;
@@ -14,7 +14,7 @@ public class Character {
 	private Point[] collisionDetectionPoints = new Point[8];
 	
 	
-	public Character(CharacterType charType, FaceDirectionType faceDirection, int startX, int startY, int width,
+	public Character(CharacterType charType, DirectionType faceDirection, int startX, int startY, int width,
 			int height, int health, int rateOfFire, int speed, int speedOfBullet, int damage) {
 		super();
 		this.charType = charType;
@@ -94,10 +94,10 @@ public class Character {
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
-	public FaceDirectionType getFaceDirection() {
+	public DirectionType getFaceDirection() {
 		return faceDirection;
 	}
-	public void setFaceDirection(FaceDirectionType faceDirection) {
+	public void setFaceDirection(DirectionType faceDirection) {
 		this.faceDirection = faceDirection;
 	}
 	

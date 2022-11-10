@@ -1,6 +1,6 @@
 package edu.pacific.comp55.starter;
 
-public enum FaceDirectionType {
+public enum DirectionType {
 	UP, DOWN, LEFT, RIGHT;
 	
 	public String toString() {
