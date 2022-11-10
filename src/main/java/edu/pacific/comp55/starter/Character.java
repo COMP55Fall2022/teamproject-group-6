@@ -1,7 +1,5 @@
 package edu.pacific.comp55.starter;
 
-import java.util.ArrayList;
-
 public class Character {
 	private CharacterType charType;
 	private FaceDirectionType faceDirection;
@@ -13,7 +11,6 @@ public class Character {
 	private int speed;
 	private int speedOfBullet;
 	private int damage;
-	private ArrayList<Character> characters = new ArrayList();
 	private Point[] collisionDetectionPoints = new Point[8];
 	
 	
@@ -34,6 +31,7 @@ public class Character {
 			collisionDetectionPoints[i] = new Point(0, 0);
 		}
 		this.updateCollisionDetectionPoints();
+		
 	}
 
 	public CharacterType getType() {
@@ -140,6 +138,8 @@ public class Character {
 	public Point[] getCollisionDetectionPoints() {
 		return collisionDetectionPoints;
 	}
+	
+	
 	
 	@Override
 	public String toString() {
