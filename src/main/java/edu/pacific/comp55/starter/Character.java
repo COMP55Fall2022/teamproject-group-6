@@ -113,6 +113,7 @@ public class Character {
 			case 0: this.setStartY(this.getStartY());
 			case 1: this.setStartY(this.getStartY() + this.getSpeed());
 		}
+		//perfect it if have time, works fine now
 		this.updateCollisionDetectionPoints();
 	}
 	
@@ -151,7 +152,7 @@ public class Character {
 
 	//Tests
 	public static void main(String[] args) {
-		Character player = new Character(CharacterType.PLAYER, FaceDirectionType.RIGHT, 0, 0, 1000,
+		Character player = new Character(CharacterType.PLAYER, DirectionType.RIGHT, 0, 0, 1000,
 				1000, 100, 60, 500, 750, 25);
 		System.out.println(player);
 		Point[] points = player.getCollisionDetectionPoints();
