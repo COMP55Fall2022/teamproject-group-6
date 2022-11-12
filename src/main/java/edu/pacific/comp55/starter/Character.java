@@ -140,6 +140,36 @@ public class Character {
 		return collisionDetectionPoints;
 	}
 	
+	public Bullet shoot(DirectionType direction) {
+		this.faceDirection = direction;
+		Bullet bullet = null;
+		if (direction == DirectionType.UP) {
+			bullet = new Bullet(collisionDetectionPoints[3].getX(), 
+								collisionDetectionPoints[3].getY(), 
+								speedOfBullet, 
+								direction);
+		}
+		else if (direction == DirectionType.DOWN) {
+			bullet = new Bullet(collisionDetectionPoints[7].getX(), 
+					collisionDetectionPoints[7].getY(), 
+					speedOfBullet, 
+					direction);
+		}
+		else if (direction == DirectionType.LEFT) {
+			bullet = new Bullet(collisionDetectionPoints[1].getX(), 
+					collisionDetectionPoints[1].getY(), 
+					speedOfBullet, 
+					direction);
+		}
+		else if (direction == DirectionType.RIGHT) {
+			bullet = new Bullet(collisionDetectionPoints[5].getX(), 
+					collisionDetectionPoints[5].getY(), 
+					speedOfBullet, 
+					direction);
+		}
+		return bullet;
+	}
+	
 	
 	
 	@Override
@@ -154,7 +184,7 @@ public class Character {
 	public static void main(String[] args) {
 		Character player = new Character(CharacterType.PLAYER, DirectionType.RIGHT, 0, 0, 1000,
 				1000, 100, 60, 500, 750, 25);
-		System.out.println(player);
+		/*System.out.println(player);
 		Point[] points = player.getCollisionDetectionPoints();
 		for (int i = 0; i < 8; ++i) {
 			System.out.println(points[i]);
@@ -163,6 +193,12 @@ public class Character {
 		System.out.println(player.isDead());
 		System.out.println(player);
 		points = player.getCollisionDetectionPoints();
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}*/
+		Bullet b1 = player.shoot(DirectionType.RIGHT);
+		System.out.println(b1);
+		Point[] points = b1.getCollisionDetectionPoints();
 		for (int i = 0; i < 8; ++i) {
 			System.out.println(points[i]);
 		}
