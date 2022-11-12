@@ -5,15 +5,14 @@ public class Bullet {
 	private int width = 100;
 	private int height = 100;
 	private int speed;
-	private boolean isVertical;
+	private DirectionType direction;
 	private Point[] collisionDetectionPoints = new Point[8];
 	
-	public Bullet(int startX, int startY, int speed, boolean isVertical,
-			Point[] collisionDetectionPoints) {
+	public Bullet(int startX, int startY, int speed, DirectionType direction) {
 		super();
 		this.startPoint = new Point(startX, startY);
 		this.speed = speed;
-		this.isVertical = isVertical;
+		this.direction = direction;
 		for (int i = 0; i < 8; ++i) {
 			collisionDetectionPoints[i] = new Point(0, 0);
 		}
@@ -44,4 +43,46 @@ public class Bullet {
 		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());	//botMid
 	}
 	
+	public void move() {
+		if (direction == DirectionType.UP) {
+			this.startPoint.setY(startPoint.getY() + speed);
+		}
+		else if (direction == DirectionType.DOWN) {
+			this.startPoint.setY(startPoint.getY() - speed);
+		}
+		else if (direction == DirectionType.LEFT) {
+			this.startPoint.setX(startPoint.getX() - speed);
+		}
+		else if (direction == DirectionType.RIGHT) {
+			this.startPoint.setX(startPoint.getX() + speed);
+		}
+		this.updateCollisionDetectionPoints();
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Bullet [startPoint=" + startPoint + ", speed=" + speed + ", direction=" + direction + "]";
+	}
+
+	//Tests
+	public static void main(String[] args) {
+		Bullet b1 = new Bullet(0, 0, 800, DirectionType.RIGHT);
+		Bullet b2 = new Bullet(800, 0, 800, DirectionType.LEFT);
+		Bullet b3 = new Bullet(0, 0, 800, DirectionType.UP);
+		Bullet b4 = new Bullet(0, 800, 800, DirectionType.DOWN);
+		System.out.println(b1);
+		System.out.println(b2);
+		System.out.println(b3);
+		System.out.println(b4);
+		b1.move();
+		b2.move();
+		b3.move();
+		b4.move();
+		System.out.println(b1);
+		System.out.println(b2);
+		System.out.println(b3);
+		System.out.println(b4);
+	}
 }
