@@ -58,6 +58,9 @@ public class Bullet {
 		}
 		this.updateCollisionDetectionPoints();
 	}
+	public Point[] getCollisionDetectionPoints() {
+		return collisionDetectionPoints;
+	}
 	
 	
 	
@@ -69,7 +72,17 @@ public class Bullet {
 	//Tests
 	public static void main(String[] args) {
 		Bullet b1 = new Bullet(0, 0, 800, DirectionType.RIGHT);
-		Bullet b2 = new Bullet(800, 0, 800, DirectionType.LEFT);
+		System.out.println(b1);
+		Point[] points = b1.getCollisionDetectionPoints();
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}
+		b1.move();
+		System.out.println(b1);
+		for (int i = 0; i < 8; ++i) {
+			System.out.println(points[i]);
+		}
+		/*Bullet b2 = new Bullet(800, 0, 800, DirectionType.LEFT);
 		Bullet b3 = new Bullet(0, 0, 800, DirectionType.UP);
 		Bullet b4 = new Bullet(0, 800, 800, DirectionType.DOWN);
 		System.out.println(b1);
@@ -83,6 +96,7 @@ public class Bullet {
 		System.out.println(b1);
 		System.out.println(b2);
 		System.out.println(b3);
-		System.out.println(b4);
+		System.out.println(b4);*/
+		
 	}
 }
