@@ -7,6 +7,7 @@ public class Door {
 	private int screen;
 	private int position;
 	private int startPoint;
+
 	
 	
 
@@ -14,17 +15,29 @@ public class Door {
 		return startPoint;
 	}
 	
-
-
 	
-	public void setPosition(int setX, int setY) {
-		// TODO: how do we want to set the position of the door?
-	}
 	
 	public int getPosition() {
 		return position;
 	}
 	
+	
+	
+	private void getDoorNum(int doorNum) {
+		// TODO Auto-generated method stub
+		if(doorNum == 1) {
+			String doorLocation = "Left";
+		}
+		else if(doorNum == 2) {
+			String doorLocation = "Top";
+		}
+		else if(doorNum == 2) {
+			String doorLocation = "Right";
+		}
+		else if(doorNum == 2) {
+			String doorLocation = "Bottom";
+		}
+	}	
 }
 /*		
 	
