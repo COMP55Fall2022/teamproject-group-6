@@ -7,8 +7,9 @@ public class Door {
 	private int screen;
 	private int position;
 	private int startPoint;
-
-	
+	//private int width = 0;
+	//private int height = 0;
+	//redo height & width
 	
 
 	public int getStartPoint() {
@@ -27,12 +28,14 @@ public class Door {
 		// TODO Auto-generated method stub
 		if(doorNum == 1) {
 			String doorLocation = "Left";
+			
 		}
 		else if(doorNum == 2) {
 			String doorLocation = "Top";
 		}
 		else if(doorNum == 2) {
 			String doorLocation = "Right";
+			
 		}
 		else if(doorNum == 2) {
 			String doorLocation = "Bottom";
