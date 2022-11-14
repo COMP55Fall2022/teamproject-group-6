@@ -127,10 +127,7 @@ public class Character {
 	}
 	
 	public boolean isDead() {
-		if (this.health <= 0) {
-			return true;
-		}
-		return false;
+		return dead;
 	}
 	
 	public void isHit(int damage) {
