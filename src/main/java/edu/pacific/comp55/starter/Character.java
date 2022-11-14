@@ -131,7 +131,10 @@ public class Character {
 	}
 	
 	public void isHit(int damage) {
-		
+		this.health = this.health - damage;
+		if (this.health <= 0) {
+			this.setDead(true);
+		}
 	}
 	
 	//Use 8 points to detect collision for all moving things
@@ -194,8 +197,8 @@ public class Character {
 	public static void main(String[] args) {
 		Character player = new Character(CharacterType.PLAYER, DirectionType.RIGHT, 0, 0, 1000,
 				1000, 100, 60, 500, 750, 25);
-		/*System.out.println(player);
-		Point[] points = player.getCollisionDetectionPoints();
+		System.out.println(player);
+		/*Point[] points = player.getCollisionDetectionPoints();
 		for (int i = 0; i < 8; ++i) {
 			System.out.println(points[i]);
 		}
