@@ -11,6 +11,7 @@ public class Character {
 	private int speed;
 	private int speedOfBullet;
 	private int damage;
+	private boolean dead;
 	private Point[] collisionDetectionPoints = new Point[8];
 	
 	
@@ -27,6 +28,7 @@ public class Character {
 		this.speed = speed;
 		this.speedOfBullet = speedOfBullet;
 		this.damage = damage;
+		this.dead = false;
 		for (int i = 0; i < 8; ++i) {
 			collisionDetectionPoints[i] = new Point(0, 0);
 		}
@@ -101,6 +103,13 @@ public class Character {
 		this.faceDirection = faceDirection;
 	}
 	
+	public boolean getDead() {
+		return dead;
+	}
+	public void setDead(boolean deadOrNot) {
+		this.dead = deadOrNot;
+	}
+	
 	// Meaning -1: move in negative direction, 1: positive direction, 0: not moving
 	public void move(int moveInX, int moveInY) {
 		switch(moveInX) {
@@ -122,6 +131,10 @@ public class Character {
 			return true;
 		}
 		return false;
+	}
+	
+	public void isHit(int damage) {
+		
 	}
 	
 	//Use 8 points to detect collision for all moving things
