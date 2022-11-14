@@ -8,67 +8,40 @@ public class Door {
 	private int position;
 	private int startPoint;
 	
-	private ArrayList<Door> door = new ArrayList<Door>();
 	
-	/*
-	for (int i = 0; i < door.size(); i++) {
-		// TODO
-		// change array to coordinates where doors should be instead of doors?
-	}
-	*/
-	
+
 	public int getStartPoint() {
 		return startPoint;
 	}
 	
-	
-}
 
-	// setters
-	
-	
-	
-	
-	
-	// getters
-	
-	
-/*
-	//setScreen("Screen1");
-	
-	
-	// private ArrayList<Door> door = new ArrayList<Door>();
-		
-	for (int i = 0; i < door.size(); i++) {
-		// TODO
-	}
-	
-	// setters
+
 	
 	public void setPosition(int setX, int setY) {
 		// TODO: how do we want to set the position of the door?
 	}
 	
-		
 	public int getPosition() {
 		return position;
 	}
-		
-	public int getScreen() {
-		return screen;
-	}
 	
-	boolean isOpen = false;
-	if (isOpen = false) {
-		return isOpen;
+}
+/*		
+	
+	
+/*	
+	boolean isActive = false;
+	if (isActive = false) {
+		return isActive;
 		else {
 			break;
 		}
 	}
-
+/*
 
 
 */
+	
 /*	
 newDoor;
 
