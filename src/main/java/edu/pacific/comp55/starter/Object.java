@@ -21,7 +21,7 @@ public class Object {
 			collisionDetectionPoints[i] = new Point(0, 0);
 		}
 		this.updateCollisionDetectionPoints();
-	}
+	}//123
     
     public int getStartX() {
 		return startPoint.getX();
