@@ -3,9 +3,23 @@ package edu.pacific.comp55.starter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 
 public class Room {
+	private RoomType type;
+	private boolean isCompleted;
+	private Character player;
+	private ArrayList<Character> characters = new ArrayList<Character>();
+	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+	
+	//TODO: Constructor
+	
+	public void addPlayer(Character player) {
+		this.player = player;
+	}
+	
+	
 	
 	public void characterMovement(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
