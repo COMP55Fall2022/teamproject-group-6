@@ -10,7 +10,7 @@ public class Object {
 	private int health;
 	private Point[] collisionDetectionPoints = new Point[8];
 	private boolean showImage;
-	
+	//comment for test
     
     public Object(int startX, int startY, int width, int height, int health) {
 		super();
