@@ -1,27 +1,23 @@
 package edu.pacific.comp55.starter;
 import java.awt.*;
-import java.util.ArrayList;
-
+import java.awt.image.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Object {
 	private Point startPoint;
 	private int width;
 	private int height;
 	private int health;
-	private Point[] collisionDetectionPoints = new Point[8];
-	private boolean showImage;
+	//private JLabel label;
 	
-    
     public Object(int startX, int startY, int width, int height, int health) {
 		super();
 		this.startPoint = new Point(startX, startY);
 		this.width = width;
 		this.height = height;
-		for (int i = 0; i < 8; ++i) {
-			collisionDetectionPoints[i] = new Point(0, 0);
-		}
-		this.updateCollisionDetectionPoints();
-	}
+		this.health = health;
+	} 
     
     public int getStartX() {
 		return startPoint.getX();
@@ -63,18 +59,5 @@ public class Object {
 		this.health = health;
 	}
 	
-	public void updateCollisionDetectionPoints() {
-		collisionDetectionPoints[0] = this.startPoint;	
-		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	
-		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	
-		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	
-		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);
-		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); 
-		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());
-		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());
-	}
-    
-    public Point[] getCollisionDetectionPoints() {
-		return collisionDetectionPoints;
-	}
+	Image img = new ImageIcon(this.getClass().getResource("/crate front.png")).getImage();
 }

@@ -7,6 +7,7 @@ public class Door {
 	private int screen;
 	private int position;
 	private int startPoint;
+	public boolean isActive = false;
 	//private int width = 0;
 	//private int height = 0;
 	//redo height & width
@@ -33,41 +34,24 @@ public class Door {
 		else if(doorNum == 2) {
 			String doorLocation = "Top";
 		}
-		else if(doorNum == 2) {
+		else if(doorNum == 3) {
 			String doorLocation = "Right";
 			
 		}
-		else if(doorNum == 2) {
+		else if(doorNum == 4) {
 			String doorLocation = "Bottom";
 		}
 	}	
-}
-/*		
 	
 	
-/*	
-	boolean isActive = false;
-	if (isActive = false) {
-		return isActive;
-		else {
-			break;
-		}
+	public void setActive(boolean isActive) {
+		isActive = true;
 	}
-/*
-
-
-*/
 	
-/*	
-newDoor;
-
-// get Position in character class
-//character position
-//bool true or false
-//
-
-DoorList.getPosition() {
-
-}
-if (position =  )
-*/
+	
+	public boolean isActive() {
+		return isActive;
+	}
+	
+}	
+	
