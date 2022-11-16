@@ -17,7 +17,7 @@ public class Room {
 	
 	public void addPlayer(Character player) {
 		this.player = player;
-	}//comment
+	}
 	
 	
 	
