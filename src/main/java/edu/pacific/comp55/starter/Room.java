@@ -50,4 +50,9 @@ public class Room {
 		//no more than 3 mouse clicks or key presses
 	}
 
+	private void getDoorNum() {
+		// TODO Auto-generated method stub
+		this.getDoorNum();
+	}
+
 }
