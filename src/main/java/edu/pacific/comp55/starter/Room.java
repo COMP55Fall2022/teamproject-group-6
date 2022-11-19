@@ -19,8 +19,7 @@ public class Room {
 		this.player = player;
 	}
 	
-	
-	
+
 	public void characterMovement(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A) {
 				player.move(-1, 1);
@@ -56,6 +55,7 @@ public class Room {
 			}
 
 	}
+
 	
 	public void characterAbilities(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_Q) {
