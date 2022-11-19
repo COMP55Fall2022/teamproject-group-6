@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 
 public class Room {
+	private static final int ROOMWIDTH = 800;
+	private static final int ROOMHEIGHT = 600;
 	private RoomType type;
 	private boolean isCompleted;
+	private int width = ROOMWIDTH;
+	private int height = ROOMHEIGHT;
 	private Character player;
 	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
@@ -17,6 +21,14 @@ public class Room {
 	
 	public void addPlayer(Character player) {
 		this.player = player;
+	}
+	
+	public void addBullet(Bullet b) {
+		this.bullets.add(b);
+	}
+	
+	public void deleteBullet(Bullet b) {
+		this.bullets.remove(b);
 	}
 	
 	
@@ -63,10 +75,25 @@ public class Room {
 		//TODO
 		//no more than 3 mouse clicks or key presses
 	}
-	public void traverseMonsterArraylist(ArrayList<Monster> list) {
+	public void traverseMonsterArrayList(ArrayList<Monster> list) {
 		for(Monster m:list) {
 			if(m.isDead() == true) {
 				list.remove(m);
+			}
+		}
+	}
+	
+	public void traverseBulletsArrayList(ArrayList<Bullet> list) {
+		for(Bullet b:list) {
+			Point[] collisionDetectionPoints = new Point[8];
+			collisionDetectionPoints = b.getCollisionDetectionPoints();
+			for (Point p:collisionDetectionPoints) {
+				if (p.getX() <= 0 || p.getX() >= ROOMWIDTH) {
+					//TODO
+				}
+				if (p.getY() <= 0 || p.getY() >= ROOMHEIGHT) {
+					//TODO
+				}
 			}
 		}
 	}
