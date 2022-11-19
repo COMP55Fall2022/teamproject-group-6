@@ -31,36 +31,43 @@ public class Room {
 		this.bullets.remove(b);
 	}
 	
-	
-	
-//	public void characterMovement(KeyEvent e) {
-//		if(//if one key is pressed)	
-//			if (e.getKeyCode() == KeyEvent.VK_W) {
-//				// TODO
-//			}
-//			if (e.getKeyCode() == KeyEvent.VK_A) {
-//				// TODO
-//			}
-//			if (e.getKeyCode() == KeyEvent.VK_S) {
-//				// TODO
-//			}
-//			if (e.getKeyCode() == KeyEvent.VK_D) {
-//				// TODO
-//			}
-//		if(//if 2 keys are pressed)	
-//			if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A) {
-//				// TODO
-//			}
-//			if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S) {
-//				// TODO
-//			}
-//			if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_D) {
-//				// TODO
-//			}
-//			if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_W) {
-//				// TODO
-//			}
-//	}
+
+	public void characterMovement(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A) {
+				player.move(-1, 1);
+				System.out.println("up left");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S) {
+				player.move(-1, -1);
+				System.out.println("down left");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_D) {
+				player.move(1, -1);
+				System.out.println("down right");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_W) {
+				player.move(1, 1);
+				System.out.println("up right");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_W) {
+				player.move(0, 1);
+				System.out.println("up ");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_A) {
+				player.move(0, -1);
+				System.out.println(" left");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_S) {
+				player.move(-1, 0);
+				System.out.println("down");
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_D) {
+				player.move(1, 0);
+				System.out.println("right");
+			}
+
+	}//test
+
 	
 	public void characterAbilities(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_Q) {
@@ -102,5 +109,4 @@ public class Room {
 		// TODO Auto-generated method stub
 		this.getDoorNum();
 	}
-
 }
