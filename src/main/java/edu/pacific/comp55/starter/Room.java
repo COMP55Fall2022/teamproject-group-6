@@ -54,7 +54,7 @@ public class Room {
 				System.out.println("right");
 			}
 
-	}
+	}//test
 
 	
 	public void characterAbilities(KeyEvent e) {
