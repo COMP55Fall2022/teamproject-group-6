@@ -3,7 +3,7 @@ package edu.pacific.comp55.starter;
 public class Player {
 
 	private int selection;
-	
+	public int points;
 	//timer, save points, interaction, difficulty, upgrades
 	
 	
