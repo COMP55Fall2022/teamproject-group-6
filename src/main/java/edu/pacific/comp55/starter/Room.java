@@ -21,6 +21,7 @@ public class Room {
 	
 	
 	
+	
 //	public void characterMovement(KeyEvent e) {
 //		if(//if one key is pressed)	
 //			if (e.getKeyCode() == KeyEvent.VK_W) {

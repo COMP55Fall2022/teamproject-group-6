@@ -26,7 +26,6 @@ public class Door {
 	
 	//constructor
 	//inputs for location points x & y
-	//for door to show up at those locations???
 	public Door(int locationX, int locationY) {
 		this.locationX = locationX;
 		this.locationY = locationY;
@@ -50,36 +49,3 @@ public class Door {
 		}
 	}	
 }
-/*		
-	
-	
-/*	
-	boolean isActive = false;
-	if (isActive = false) {
-		return isActive;
-		else {
-			break;
-		}
-	}
-<<<<<<< HEAD
-}
-=======
-/*
-
-
-*/
-	
-/*	
-newDoor;
-
-// get Position in character class
-//character position
-//bool true or false
-//
-
-DoorList.getPosition() {
-
-}
-if (position =  )
-*/
-
