@@ -10,15 +10,23 @@ public class Room {
 	private static final int ROOMWIDTH = 800;
 	private static final int ROOMHEIGHT = 600;
 	private RoomType type;
-	private boolean isCompleted;
+	private boolean isCompleted = false;
 	private int width = ROOMWIDTH;
 	private int height = ROOMHEIGHT;
 	private Character player;
 	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+	private ArrayList<Object> objects = new ArrayList<Object>();
 	
-	//TODO: Constructor
 	
+	public Room(RoomType type, Character player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
+		super();
+		this.type = type;
+		this.player = player;
+		this.monsters = monsters;
+		this.objects = objects;
+	}
+
 	public void addPlayer(Character player) {
 		this.player = player;
 	}
