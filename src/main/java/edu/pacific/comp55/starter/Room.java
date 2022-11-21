@@ -66,7 +66,7 @@ public class Room {
 				System.out.println("right");
 			}
 
-	}//test
+	}
 
 	
 	public void characterAbilities(KeyEvent e) {
@@ -96,10 +96,10 @@ public class Room {
 			collisionDetectionPoints = b.getCollisionDetectionPoints();
 			for (Point p:collisionDetectionPoints) {
 				if (p.getX() <= 0 || p.getX() >= ROOMWIDTH) {
-					//TODO
+					deleteBullet(b);
 				}
 				if (p.getY() <= 0 || p.getY() >= ROOMHEIGHT) {
-					//TODO
+					deleteBullet(b);
 				}
 			}
 		}
