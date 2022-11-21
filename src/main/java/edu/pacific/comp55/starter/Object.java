@@ -1,10 +1,12 @@
 package edu.pacific.comp55.starter;
 import java.awt.*;
-import java.util.ArrayList;
-
+import java.awt.Rectangle;
+import javax.swing.ImageIcon;
 
 public class Object {
 	//private ObjectType type;
+	protected int startX;
+	protected int startY;
 	private Point startPoint;
 	private int width;
 	private int height;
@@ -34,6 +36,9 @@ public class Object {
         //image = ii.getImage();
     //}
     
+    public Image getImage() {
+        return image;
+    }
     
     public int getStartX() {
 		return startPoint.getX();
@@ -75,6 +80,16 @@ public class Object {
 		this.health = health;
 	}
 	
+	public boolean isVisible() {
+        return visible;
+    }
 	
+	public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+	
+	public Rectangle getBounds() {
+        return new Rectangle (startX, startY, width, height);
+    }
 	
 }
