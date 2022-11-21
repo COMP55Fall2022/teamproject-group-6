@@ -13,6 +13,7 @@ public class Character {
 	private int damage;
 	private boolean dead;
 	private Point[] collisionDetectionPoints = new Point[8];
+	private Object player;
 	
 	
 	public Character(CharacterType charType, DirectionType faceDirection, int startX, int startY, int width,

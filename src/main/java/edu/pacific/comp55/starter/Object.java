@@ -91,5 +91,5 @@ public class Object {
 	public Rectangle getBounds() {
         return new Rectangle (startX, startY, width, height);
     }
-	
+
 }
