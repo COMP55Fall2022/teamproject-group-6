@@ -39,6 +39,8 @@ public class Room {
 		this.bullets.remove(b);
 	}
 	
+	public void shoot()
+	
 
 	public void characterMovement(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A) {
@@ -74,6 +76,21 @@ public class Room {
 				System.out.println("right");
 			}
 
+	}
+	
+	public void characterShoot(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			player.shoot(DirectionType.UP);
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.shoot(DirectionType.DOWN);
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.shoot(DirectionType.LEFT);
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+			player.shoot(DirectionType.RIGHT);
+		}
 	}
 
 	
