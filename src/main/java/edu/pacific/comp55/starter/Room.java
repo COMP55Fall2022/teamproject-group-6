@@ -38,9 +38,6 @@ public class Room {
 	public void deleteBullet(Bullet b) {
 		this.bullets.remove(b);
 	}
-	
-	public void shoot()
-	
 
 	public void characterMovement(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A) {
