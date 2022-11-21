@@ -9,21 +9,31 @@ public class Object {
 	private int width;
 	private int height;
 	private int health;
-	private Point[] collisionDetectionPoints = new Point[8];	
+	protected boolean visible;
+    protected Image image;
     
     public Object(int startX, int startY, int width, int height, int health) {
 		//this.type = type;
     	this.startPoint = new Point(startX, startY);
 		this.width = width;
 		this.height = height;
-		for (int i = 0; i < 8; ++i) {
-			collisionDetectionPoints[i] = new Point(0, 0);
-		}
+		visible = true;
 	}
     
     //public ObjectType getObjectType() {
 		//return type;
 	//}
+    
+    protected void getImageDimensions() {
+        width = image.getWidth(null);
+        height = image.getHeight(null);
+    }
+    
+    //protected void loadImage(String imageName) {
+        //ImageIcon ii = new ImageIcon(imageName);
+        //image = ii.getImage();
+    //}
+    
     
     public int getStartX() {
 		return startPoint.getX();
@@ -64,6 +74,7 @@ public class Object {
 	public void setHealth(int health) {
 		this.health = health;
 	}
+	
 	
 	
 }
