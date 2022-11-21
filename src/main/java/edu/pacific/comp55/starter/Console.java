@@ -11,13 +11,14 @@ private Object play;
 private Object settings;
 private Object exit;
 private Object mainMenu;
-
+int selection = 0;
+private int damage;
+private int health;
 
 //	MButton play = new MButton("play");
 //	MButton settings = new MButton("settings");
 //	MButton exit = new MButton("exit");
 //	MButton mainMenu = new MButton("mainMenu");
-	
 	
 	
 	public void addButtons() {
@@ -26,4 +27,25 @@ private Object mainMenu;
 		exit.addActionListener(this);
 		mainMenu.addActionListener(this);
 	}
+	
+	public Console(int damage, int health ) {
+		if(selection == 0) {
+			this.damage = damage;
+			this.health = health;
+			
+		}
+//		if(selection == 1) {
+			
+		//remove certain upgrades
+	//	}
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
 }
