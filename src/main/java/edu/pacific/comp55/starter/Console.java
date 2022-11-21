@@ -11,4 +11,5 @@ public abstract class Console extends MainApplication implements ActionListener 
 //	MButton play = new MButton("play");
 //	MButton settings = new MButton("settings");
 //	MButton exit = new MButton("exit");
+//	MButton mainMenu = new MButton("mainMenu");
 }
