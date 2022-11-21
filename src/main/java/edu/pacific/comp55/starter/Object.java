@@ -92,4 +92,9 @@ public class Object {
         return new Rectangle (startX, startY, width, height);
     }
 
+	public void addActionListener(Console console) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
