@@ -20,5 +20,5 @@ public class Player implements Serializable {
 	int mapObjectWorldY[][];
 	String mapObjectLootName[][];
 	boolean mapObjectOpened[][];
-
+	
 }
