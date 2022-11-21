@@ -7,11 +7,10 @@ import acm.program.GraphicsProgram;
 public abstract class Console extends MainApplication implements ActionListener {
 	
 
-
 private Object play;
 private Object settings;
-
-
+private Object exit;
+private Object mainMenu;
 
 
 //	MButton play = new MButton("play");
@@ -24,5 +23,7 @@ private Object settings;
 	public void addButtons() {
 		play.addActionListener(this);
 		settings.addActionListener(this);
+		exit.addActionListener(this);
+		mainMenu.addActionListener(this);
 	}
 }
