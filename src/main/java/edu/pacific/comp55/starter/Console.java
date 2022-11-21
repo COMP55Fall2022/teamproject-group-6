@@ -34,10 +34,11 @@ private int health;
 			this.health = health;
 			
 		}
-//		if(selection == 1) {
-			
+		if(selection == 1) {
+			this.damage = damage + 1;
+			this.health = health - 1;
 		//remove certain upgrades
-	//	}
+		}
 	}
 
 	public int getDamage() {
