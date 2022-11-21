@@ -10,5 +10,5 @@ public class Player implements Serializable {
 	int exp;
 	int nextLevelExp;
 	int coin;
-	
+	//commit
 }
