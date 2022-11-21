@@ -218,5 +218,6 @@ public class Character {
 			System.out.println(points[i]);
 		}
 	}
-	
+
+
 }
