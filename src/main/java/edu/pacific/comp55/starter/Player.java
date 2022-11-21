@@ -1,5 +1,6 @@
 package edu.pacific.comp55.starter;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Player implements Serializable {
 	int level;
@@ -10,5 +11,14 @@ public class Player implements Serializable {
 	int exp;
 	int nextLevelExp;
 	int coin;
-	//commit
+	
+	ArrayList<String> itemNames = new ArrayList<>();
+	ArrayList<Integer> itemAmounts = new ArrayList<>();
+	
+	String mapObjectNames[][];
+	int mapObjectWorldX[][];
+	int mapObjectWorldY[][];
+	String mapObjectLootName[][];
+	boolean mapObjectOpened[][];
+
 }
