@@ -35,24 +35,24 @@ public class Room {
 		this.bullets.add(b);
 	}
 	
-	public void deleteBullet(Bullet b) {
+	public void deleteBullet(AnimatedObject b) {
 		this.bullets.remove(b);
 	}
 
 	public void characterMovement(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_A) {
+			if (e.getKeyCode() == KeyEvent.VK_W && e.getKeyCode() == KeyEvent.VK_A) {
 				player.move(-1, 1);
 				System.out.println("up left");
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S) {
+			else if (e.getKeyCode() == KeyEvent.VK_A && e.getKeyCode() == KeyEvent.VK_S) {
 				player.move(-1, -1);
 				System.out.println("down left");
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_D) {
+			else if (e.getKeyCode() == KeyEvent.VK_S && e.getKeyCode() == KeyEvent.VK_D) {
 				player.move(1, -1);
 				System.out.println("down right");
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_W) {
+			else if (e.getKeyCode() == KeyEvent.VK_D && e.getKeyCode() == KeyEvent.VK_W) {
 				player.move(1, 1);
 				System.out.println("up right");
 			}
@@ -113,7 +113,7 @@ public class Room {
 	}
 	
 	public void traverseBulletsArrayList(ArrayList<Bullet> list) {
-		for(Bullet b:list) {
+		for(AnimatedObject b:list) {
 			Point[] collisionDetectionPoints = new Point[8];
 			collisionDetectionPoints = b.getCollisionDetectionPoints();
 			for (Point p:collisionDetectionPoints) {

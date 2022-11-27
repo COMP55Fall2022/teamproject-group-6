@@ -12,20 +12,22 @@ public class SomePane extends GraphicsPane {
 
 	public SomePane(MainApplication app) {
 		this.program = app;
-		img = new GImage("robot head.jpg", 100, 100);
+//		img = new GImage("robot head.jpg", 100, 100);
 		para = new GParagraph("welcome\nto my\nsecret room!", 150, 300);
 		para.setFont("Arial-24");
 	}
 
 	@Override
 	public void showContents() {
-		program.add(img);
+		System.out.println("showContent SomePane");
+//		program.add(img);
 		program.add(para);
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(img);
+		System.out.println("hideContent SomePane");
+//		program.remove(img);
 		program.remove(para);
 	}
 

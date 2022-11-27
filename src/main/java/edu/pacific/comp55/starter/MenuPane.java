@@ -19,11 +19,13 @@ public class MenuPane extends GraphicsPane {
 
 	@Override
 	public void showContents() {
+		System.out.println("showContent MenuPane");
 		program.add(rect);
 	}
 
 	@Override
 	public void hideContents() {
+		System.out.println("hideContent MenuPane");
 		program.remove(rect);
 	}
 
