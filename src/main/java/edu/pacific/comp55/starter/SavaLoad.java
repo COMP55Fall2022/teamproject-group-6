@@ -1,5 +1,6 @@
 package edu.pacific.comp55.starter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
@@ -20,13 +21,17 @@ public class SavaLoad {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
 			DataStorage ds = new DataStorage(); 
 			
-			ds.level = gp.player.level;
-			ds.maxLife = gp.player.maxLife;
-			ds.life = gp.player.life;
-			ds.strength = gp.player.strength;
-			ds.exp = gp.player.exp;
-			ds.coin = gp.player.coin;
+			ds.level = gp.character.level;
+			ds.maxLife = gp.character.maxLife;
+			ds.life = gp.character.life;
+			ds.strength = gp.character.strength;
+			ds.exp = gp.character.exp;
+			ds.coin = gp.character.coin;
 			
+			for (int i = 0; i < gp.chracter.inventory.size(); i++) {
+				ds.itemNames.add(gp.character.inventory.get(i).name);
+				ds.itemAmounts.add(gp.character.inventory.get(i).amount);
+			}
 			oos.writeObject(ds);
 			
 		}
@@ -40,12 +45,12 @@ public class SavaLoad {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
 			DataStorage ds = (DataStorage)ois.readObject();
 			
-			gp.player.level = ds.level;
-			gp.player.maxLife = ds.maxLife;
-			gp.player.life = ds.life;
-			gp.player.strength = ds.strength;
-			gp.player.exp = ds.exp;
-			gp.player.coin = ds.coin;
+			gp.character.level = ds.level;
+			gp.character.maxLife = ds.maxLife;
+			gp.character.life = ds.life;
+			gp.character.strength = ds.strength;
+			gp.character.exp = ds.exp;
+			gp.character.coin = ds.coin;
 		}
 		catch(Exception e) {
 			System.out.println("Load Exception!");
