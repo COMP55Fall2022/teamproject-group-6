@@ -20,10 +20,12 @@ private int selection = 0;
 		exit.addActionListener(this);
 		mainMenu.addActionListener(this);
 	}
-	
+}
+/*
 	public void whichButton() {
 		if(selection == 1) {
 			
 		}
 	}
-}
+
+*/
