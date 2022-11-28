@@ -11,12 +11,6 @@ private Object play;
 private Object settings;
 private Object exit;
 private Object mainMenu;
-
-
-//	MButton play = new MButton("play");
-//	MButton settings = new MButton("settings");
-//	MButton exit = new MButton("exit");
-//	MButton mainMenu = new MButton("mainMenu");
 	
 	
 	public void addButtons() {
