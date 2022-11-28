@@ -13,6 +13,7 @@ private Object exit;
 private Object mainMenu;
 	
 	
+
 	public void addButtons() {
 		play.addActionListener(this);
 		settings.addActionListener(this);
@@ -20,5 +21,7 @@ private Object mainMenu;
 		mainMenu.addActionListener(this);
 	}
 	
-
+	public void whichButton() {
+		
+	}
 }
