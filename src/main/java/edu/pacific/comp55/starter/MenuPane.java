@@ -49,7 +49,7 @@ public class MenuPane extends GraphicsPane {
 			program.switchToSome();
 		}
 		else if (obj == rect2) {
-			//TODO
+			//TODO 
 		}
 		else if (obj == rect3) {
 			//TODO
