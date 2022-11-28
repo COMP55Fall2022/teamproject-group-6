@@ -11,7 +11,7 @@ private Object play;
 private Object settings;
 private Object exit;
 private Object mainMenu;
-	
+private int selection = 0;
 	
 
 	public void addButtons() {
@@ -22,6 +22,8 @@ private Object mainMenu;
 	}
 	
 	public void whichButton() {
-		
+		if(selection == 1) {
+			
+		}
 	}
 }

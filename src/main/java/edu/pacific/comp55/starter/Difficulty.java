@@ -2,7 +2,7 @@ package edu.pacific.comp55.starter;
 
 public class Difficulty {
 
-	int selection = 0;
+	private int selection = 0;
 	private int damage;
 	private int health;
 	
