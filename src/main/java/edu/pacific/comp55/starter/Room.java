@@ -19,12 +19,10 @@ public class Room {
 	private ArrayList<Object> objects = new ArrayList<Object>();
 	
 	
-	public Room(RoomType type, Character player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
+	public Room(RoomType type, Character player) {
 		super();
 		this.type = type;
 		this.player = player;
-		this.monsters = monsters;
-		this.objects = objects;
 	}
 
 	public void addPlayer(Character player) {
@@ -37,6 +35,19 @@ public class Room {
 	
 	public void deleteBullet(Bullet b) {
 		this.bullets.remove(b);
+	}
+	
+	public void addMonsters(Monster m) {
+		this.monsters.add(m);
+	}
+	public void deleteMonsters(Monster m) {
+		this.monsters.remove(m);
+	}
+	public void addObjects(Object o) {
+		this.objects.add(o);
+	}
+	public void deleteObjects(Object o) {
+		this.objects.remove(o);
 	}
 
 	public void characterMovement(KeyEvent e) {
@@ -124,6 +135,12 @@ public class Room {
 					deleteBullet(b);
 				}
 			}
+		}
+	}
+	
+	public void checkCompleted() {
+		if (monsters.size() == 0) {
+			this.isCompleted = true;
 		}
 	}
 
