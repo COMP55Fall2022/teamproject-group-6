@@ -7,7 +7,9 @@ public class PresetRoom {
 		Object PLAYER = null;
 		Object characterType = null;
 		
-		
+		if(characterType == PLAYER ) {
+			
+		}
 			
 	}
 	
