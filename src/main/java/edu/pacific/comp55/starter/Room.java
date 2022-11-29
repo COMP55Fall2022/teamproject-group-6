@@ -140,7 +140,7 @@ public class Room {
 	
 	public void checkCompleted() {
 		if (monsters.size() == 0) {
-			this.isCompleted = true;
+			this.isCompleted = true; 
 		}
 	}
 
