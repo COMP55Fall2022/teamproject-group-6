@@ -53,6 +53,7 @@ public abstract class GraphicsPane implements Interfaceable {
 	public void keyPressed(KeyEvent e) {
 		room.characterMovement(e);
 		room.characterShoot(e);
+		
 	}
 
 	@Override
