@@ -16,6 +16,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public abstract class GraphicsPane implements Interfaceable {
+	private Room room;
+	
 	@Override
 	public abstract void showContents();
 
@@ -49,7 +51,8 @@ public abstract class GraphicsPane implements Interfaceable {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		room.characterMovement(e);
+		room.characterShoot(e);
 	}
 
 	@Override
@@ -62,5 +65,7 @@ public abstract class GraphicsPane implements Interfaceable {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
+	
+	
 
 }
