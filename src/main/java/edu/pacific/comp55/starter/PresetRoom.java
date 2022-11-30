@@ -10,7 +10,7 @@ public class PresetRoom {
 	}
 	
 	private void setType(RoomType type) {
-		if(type == RoomType.COMBAT || type == RoomType.ITEM || type == RoomType.PUZZLE) {
+		if(type == RoomType.COMBAT || type == RoomType.ITEM || type == RoomType.PUZZLE || type == RoomType.EMPTY || type == RoomType.BOSS) {
 			//are private variables in Room class
 			//this.monsters.add(m);
 			//this.objects.add(o);
