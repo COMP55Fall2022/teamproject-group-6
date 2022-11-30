@@ -6,12 +6,18 @@ public class PresetRoom {
 		COMBAT, ITEM, PUZZLE, EMPTY, BOSS;
 	}
 	private RoomType type;
-/*
-	public void PresetRoom(RoomType type) {
+
+	public PresetRoom(RoomType type) {
 		this.setType(type);
 		
 	}
-
+	
+	private void setType(RoomType type) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/*
 	public RoomType getType() {
 		return type;
 	}
@@ -30,5 +36,12 @@ public class PresetRoom {
 	//add objects
 
 */
-}
+
+
+
+//	private void setType(RoomType type2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
