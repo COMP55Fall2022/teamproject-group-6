@@ -27,4 +27,15 @@ public class PresetRoom {
 		return type;
 	}
 	
+	
+	//array
+	//add mob
+	//give them points
+	
+	
+	///array to store the stuff in the rooms
+	//each room 3 lists for objects, characters, & doors for each of the rooms (8 or 9 rooms)
+	//for animating them- monsters & players are characters
+	//spawn points for doors
+	
 }	
