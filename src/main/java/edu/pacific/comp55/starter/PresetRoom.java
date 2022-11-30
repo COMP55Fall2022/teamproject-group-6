@@ -2,9 +2,6 @@ package edu.pacific.comp55.starter;
 
 public class PresetRoom {
 	
-	public enum RoomType {
-		COMBAT, ITEM, PUZZLE, EMPTY, BOSS;
-	}
 	private RoomType type;
 
 	public PresetRoom(RoomType type) {
@@ -13,19 +10,21 @@ public class PresetRoom {
 	}
 	
 	private void setType(RoomType type) {
-		// TODO Auto-generated method stub
-		
+		if(type == RoomType.COMBAT || type == RoomType.ITEM || type == RoomType.PUZZLE) {
+			//are private variables in Room class
+			//this.monsters.add(m);
+			//this.objects.add(o);
+		}
+		this.type = type;
 	}
+	
 	public RoomType getType() {
 		return type;
 	}
 	
-	/*
 	
-
-	public void setType(RoomType type) {
-		this.type = type;
-	}
+	
+	/*
 	
 	public void CombatRoom(RoomType Type) {
 		if(type == COMBAT) {
