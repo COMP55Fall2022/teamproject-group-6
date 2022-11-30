@@ -8,6 +8,7 @@ import acm.graphics.GImage;
 import acm.graphics.GRoundRect;
 
 public class Player extends Character implements Serializable {
+	public static final int MAX_VELOCITY = 100;
 //	int level;
 //	int maxLife;
 //	int strength;
@@ -29,43 +30,71 @@ public class Player extends Character implements Serializable {
 	}
 	
 	public Player(double x, double y, double width, double height) {
-		super(CharacterType.PLAYER, x, y, width, height);
+		super(CharacterType.PLAYER, "player.png",  x, y, width, height);
+		setFaceDirection(DirectionType.UP);
 		health = 100;
 		rateOfFire = 1;
 		speedOfBullet = 1;
 		damage = 25;
-		GRoundRect rect = new GRoundRect(0, 0, width, height);
-		rect.setFilled(true);
-		rect.setFillColor(Color.GREEN);
-		add(rect);
-		GImage img = new GImage("robot head.jpg", 0, 0);
-		img.setSize(width, height);
-		add(img);
 	}
 
+	public void increaseVelocity(double deltaxV, double deltayV) {
+		xVelocity = Math.max(Math.min(xVelocity + deltaxV, MAX_VELOCITY), -MAX_VELOCITY);
+		yVelocity = Math.max(Math.min(yVelocity + deltayV, MAX_VELOCITY), -MAX_VELOCITY);
+	}
 
 	public void keyPressed(KeyEvent e) {
-		System.out.println("key pressed code: " + e.getKeyCode());
-	}
-	public void keyReleased(KeyEvent e) {
-		System.out.println("key released code: " + e.getKeyCode());
-	}
-	public void keyTyped(KeyEvent e) {
-		switch (e.getKeyChar()) {
-		case 'w':
-			updateSpeedAndDirection(20, DirectionType.UP);
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			increaseVelocity(0, -10);
 			break;
-		case 'a':
-			updateSpeedAndDirection(20, DirectionType.LEFT);
+		case KeyEvent.VK_DOWN:
+			increaseVelocity(0, 10);
 			break;
-		case 's':
-			updateSpeedAndDirection(20, DirectionType.DOWN);
+		case KeyEvent.VK_LEFT:
+			increaseVelocity(-10, 0);
 			break;
-		case 'd':
-			updateSpeedAndDirection(20, DirectionType.RIGHT);
+		case KeyEvent.VK_RIGHT:
+			increaseVelocity(10, 0);
 			break;
 		}
-		System.out.println("key typed code: " + e.getKeyChar());	
+		System.out.println("key pressed code: " + e.getKeyCode());
+		System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
+	}
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			setyVelocity(0);
+			break;
+		case KeyEvent.VK_DOWN:
+			setyVelocity(0);
+			break;
+		case KeyEvent.VK_LEFT:
+			setxVelocity(0);
+			break;
+		case KeyEvent.VK_RIGHT:
+			setxVelocity(0);
+			break;
+		}
+		System.out.println("key released code: " + e.getKeyCode());
+		System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
+	}
+	public void keyTyped(KeyEvent e) {
+//		switch (e.getKeyChar()) {
+//		case 'w':
+//			updateSpeedAndDirection(20, DirectionType.UP);
+//			break;
+//		case 'a':
+//			updateSpeedAndDirection(20, DirectionType.LEFT);
+//			break;
+//		case 's':
+//			updateSpeedAndDirection(20, DirectionType.DOWN);
+//			break;
+//		case 'd':
+//			updateSpeedAndDirection(20, DirectionType.RIGHT);
+//			break;
+//		}
+//		System.out.println("key typed code: " + e.getKeyChar());	
 	}
 	
 	

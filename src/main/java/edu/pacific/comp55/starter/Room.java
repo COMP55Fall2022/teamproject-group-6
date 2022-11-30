@@ -4,31 +4,58 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
+import acm.graphics.GCompound;
+import acm.graphics.GObject;
+import acm.graphics.GRect;
+import acm.graphics.GRoundRect;
+
 import java.awt.event.MouseEvent;
 
-public class Room {
+public class Room extends GCompound {
 	private static final int ROOMWIDTH = 800;
 	private static final int ROOMHEIGHT = 600;
 	private RoomType type;
 	private boolean isCompleted = false;
 	private int width = ROOMWIDTH;
 	private int height = ROOMHEIGHT;
-	private Character player;
+	private Player player;
 	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList<Object> objects = new ArrayList<Object>();
 	
 	
-	public Room(RoomType type, Character player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
+	public Room(RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
 		super();
 		this.type = type;
 		this.player = player;
 		this.monsters = monsters;
 		this.objects = objects;
+//		GRect rect = new GRect(0, 0, width, height);
+//		rect.setFilled(false);
+//		add(rect);
+		if (player != null) {
+			add(player);
+		}
+		for (Monster m:monsters) {
+			add(m);
+		}
+		for (Object o:objects) {
+			add(o);
+		}
 	}
 
-	public void addPlayer(Character player) {
+	public void setPlayer(Player player) {
+		if (this.player != null) {
+			remove(this.player);
+		}
 		this.player = player;
+		add(this.player);
+		for (Monster m:monsters) {
+			if (m instanceof MonsterChaser) {
+				((MonsterChaser) m).setPlayer(this.player);
+			}
+		}
 	}
 	
 	public void addBullet(Bullet b) {
@@ -37,6 +64,15 @@ public class Room {
 	
 	public void deleteBullet(AnimatedObject b) {
 		this.bullets.remove(b);
+	}
+	
+	public void animate() {
+		for (GObject o:this) {
+			if (o instanceof AnimatedObject) {
+				((AnimatedObject) o).animate();
+				System.out.println("animated object: " + o);
+			}
+		}
 	}
 
 	public void characterMovement(KeyEvent e) {

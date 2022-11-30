@@ -23,7 +23,7 @@ public abstract class GraphicsPane implements Interfaceable {
 	public abstract void hideContents();
 
 	@Override
-	public void animateMoves() {
+	public void animate() {
 		// Need to be overridden by the screen panes.
 	}
 	

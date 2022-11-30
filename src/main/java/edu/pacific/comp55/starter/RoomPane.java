@@ -3,6 +3,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import com.google.common.base.Objects;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
@@ -12,9 +14,12 @@ public class RoomPane extends GraphicsPane {
 										// all of the GraphicsProgram calls
 	public static final int BREAK_MS = 100;
 
-	private GImage img;
+	private Room room;
 	private GParagraph para;
 	
+	private MonsterChaser chaser;
+	private MonsterPatroller patroler;
+	private Bullet bullet;
 	private Player player;
 	
 	private ArrayList<AnimatedObject> animatedObjects;
@@ -24,34 +29,47 @@ public class RoomPane extends GraphicsPane {
 //		img = new GImage("robot head.jpg", 100, 100);
 //		para = new GParagraph("welcome\nto my\nsecret room!", 150, 300);
 //		para.setFont("Arial-24");
-		animatedObjects = new ArrayList<AnimatedObject>();
+		ArrayList<Monster> monsters = new ArrayList<Monster>();
+
+		chaser = new MonsterChaser(null, 100, 100, 60, 60);
+		patroler = new MonsterPatroller(100, 100, 60, 60);
+		bullet = new Bullet(100, 100, 10, DirectionType.RIGHT);
+		ArrayList<Point> path = new ArrayList<Point>();
+		path.add(new Point(100, 100));
+		path.add(new Point(50, 100));
+		path.add(new Point(50, 50));
+		path.add(new Point(150, 50));
+		path.add(new Point(400, 100));
+		path.add(new Point(200, 100));
+		path.add(new Point(300, 300));
+		path.add(new Point(350, 300));
+		path.add(new Point(600, 100));
+		patroler.setPath(path);
+		monsters.add(chaser);
+		monsters.add(patroler);
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		
+		room = new Room(RoomType.BOSS, null, monsters, objects);
 	}
 
 	@Override
 	public void showContents() {
 		System.out.println("showContent RoomPane");
-		if (player != null) {
-			program.add(player);
-		}
-//		program.add(img);
-//		program.add(para);
+		program.add(room);
 	}
 
 	@Override
 	public void hideContents() {
 		System.out.println("hideContent RoomPane");
-		if (player != null) {
-			program.remove(player);
-		}
-		//		program.remove(img);
-//		program.remove(para);
+		program.remove(room);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		para.setText("you need\nto click\non the eyes\nto go back");
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == img) {
+		if (obj == room) {
 			program.switchToMenu();
 		}
 	}
@@ -62,26 +80,17 @@ public class RoomPane extends GraphicsPane {
 
 	public void setPlayer(Player player) {
 		this.player = player;
-		if (!animatedObjects.contains(player)) {
-			animatedObjects.add(player);
-			program.add(player);
-		}
+		room.setPlayer(player);
 	}
 	
 	public void removePlayer() {
-		if (animatedObjects.contains(player)) {
-			animatedObjects.remove(player);
-			program.remove(player);
-		}
+//		room.removePlayer();
 		this.player = null;
 	}
 	
 	@Override
-	public void animateMoves() {
-		for(AnimatedObject object:animatedObjects) {
-			object.move();
-			checkCollisions(object);
-		}
+	public void animate() {
+		room.animate();
 	}
 	
 	private void checkCollisions(AnimatedObject object) {

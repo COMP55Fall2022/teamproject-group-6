@@ -10,7 +10,7 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 	public static final int BREAK_MS = 100;
 
 	private GraphicsPane curScreen;
-	
+		
 	public GraphicsApplication() {
 		super();
 	}
@@ -43,7 +43,7 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 	protected void animate() {
 		while (true) {
 			if (curScreen != null) {
-				curScreen.animateMoves();
+				curScreen.animate();
 			}
 			pause(BREAK_MS);
 		}

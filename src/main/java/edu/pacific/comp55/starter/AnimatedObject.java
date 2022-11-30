@@ -1,21 +1,14 @@
 package edu.pacific.comp55.starter;
 
-import acm.graphics.GCompound;
+import acm.graphics.GImage;
 
-public class AnimatedObject extends GCompound {
+public class AnimatedObject extends Object {
 
-	protected double x, y;
-	protected double width, height;
 	protected double xVelocity, yVelocity;
 	protected Point[] collisionDetectionPoints = new Point[8];
 
-	public AnimatedObject(double x, double y, double width, double height) {
-		super();
-		setLocation(x, y);
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+	public AnimatedObject(String image, double x, double y, double width, double height) {
+		super(image, x, y, width,  height);
 		xVelocity = 0;
 		yVelocity = 0;
 	}
@@ -39,26 +32,33 @@ public class AnimatedObject extends GCompound {
 			xVelocity = speed;
 			yVelocity = 0;
 			break;
+		case NONE:
+			xVelocity = 0;
+			yVelocity = 0;
+			break;
 		}
-		System.out.println("update speed and direction " + speed + ":" + direction + "->" + xVelocity + "," + yVelocity);
+//		System.out.println("update speed and direction " + speed + ":" + direction + "->" + xVelocity + "," + yVelocity);
 	}
 
-	public void move() {
+	public double getxVelocity() {
+		return xVelocity;
+	}
+
+	public void setxVelocity(double xVelocity) {
+		this.xVelocity = xVelocity;
+	}
+
+	public double getyVelocity() {
+		return yVelocity;
+	}
+
+	public void setyVelocity(double yVelocity) {
+		this.yVelocity = yVelocity;
+	}
+
+	public void animate() {
 		move(xVelocity, yVelocity);
-		System.out.println("movement has occured ur going this fast " + xVelocity + "," + yVelocity);
-//		if (direction == DirectionType.UP) {
-//			this.startPoint.setY(startPoint.getY() + speed);
-//		}
-//		else if (direction == DirectionType.DOWN) {
-//			this.startPoint.setY(startPoint.getY() - speed);
-//		}
-//		else if (direction == DirectionType.LEFT) {
-//			this.startPoint.setX(startPoint.getX() - speed);
-//		}
-//		else if (direction == DirectionType.RIGHT) {
-//			this.startPoint.setX(startPoint.getX() + speed);
-//		}
-//		this.updateCollisionDetectionPoints();
+//		System.out.println("movement has occured ur going this fast " + xVelocity + "," + yVelocity + " : " + getX() + "x" + getY());
 	}
 
 	public Point[] getCollisionDetectionPoints() {

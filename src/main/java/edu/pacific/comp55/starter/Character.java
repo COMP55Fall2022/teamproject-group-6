@@ -16,25 +16,12 @@ public class Character extends AnimatedObject {
 	protected int damage;
 	protected boolean dead;
 	
-	public Character(CharacterType charType, double x, double y, double width, double height) {
-		super(x, y, width, height);
+	public Character(CharacterType charType, String image, double x, double y, double width, double height) {
+		super(image, x, y, width, height);
 		this.charType = charType;
 		this.faceDirection = DirectionType.DOWN;
 		this.dead = false;
 	}
-//	public Character(CharacterType charType, DirectionType faceDirection, int startX, int startY, int width,
-//			int height, int health, int rateOfFire, int speed, int speedOfBullet, int damage) {
-//		super();
-//		this.charType = charType;
-//		this.faceDirection = faceDirection;
-//		this.health = health;
-//		this.rateOfFire = rateOfFire;
-////		this.speed = speed;
-//		this.speedOfBullet = speedOfBullet;
-//		this.damage = damage;
-//		this.dead = false;
-//		
-//	}
 
 	public CharacterType getType() {
 		return charType;
@@ -161,14 +148,14 @@ public class Character extends AnimatedObject {
 	@Override
 	public String toString() {
 		return "Character [charType=" + charType + ", faceDirection=" + faceDirection + ", startX=" + getX()
-				+ ", startY=" + getY() + ", width=" + width + ", height=" + height + ", health=" + health
+				+ ", startY=" + getY() + ", width=" + getWidth() + ", height=" + getHeight() + ", health=" + health
 				+ ", rateOfFire=" + rateOfFire + ", speed=(" + xVelocity + "/" + yVelocity + "), speedOfBullet=" + speedOfBullet + ", damage="
 				+ damage + "]";
 	}
 
 	//Tests
 	public static void main(String[] args) {
-		Character player = new Character(CharacterType.PLAYER, 0, 0, 1000, 1000);
+		Character player = new Character(CharacterType.PLAYER, "robot head", 0, 0, 1000, 1000);
 		player.isHit(25);
 		System.out.println(player);
 		/*Point[] points = player.getCollisionDetectionPoints();
@@ -182,7 +169,7 @@ public class Character extends AnimatedObject {
 		for (int i = 0; i < 8; ++i) {
 			System.out.println(points[i]);
 		}*/
-		AnimatedObject b1 = player.shoot(DirectionType.RIGHT);
+		Bullet b1 = player.shoot(DirectionType.RIGHT);
 		System.out.println(b1);
 		Point[] points = b1.getCollisionDetectionPoints();
 		for (int i = 0; i < 8; ++i) {

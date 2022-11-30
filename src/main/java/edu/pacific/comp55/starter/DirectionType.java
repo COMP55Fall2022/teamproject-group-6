@@ -1,14 +1,15 @@
 package edu.pacific.comp55.starter;
 
 public enum DirectionType {
-	UP, DOWN, LEFT, RIGHT;
+	NONE, UP, DOWN, LEFT, RIGHT;
 	
 	public String toString() {
 		switch(this) {
-			case UP: return "up";
-			case DOWN: return "down";
-			case LEFT: return "left";
-			case RIGHT: return "right";
+		case NONE: return "none";
+		case UP: return "up";
+		case DOWN: return "down";
+		case LEFT: return "left";
+		case RIGHT: return "right";
 		}
 		return "n/a";
 	}

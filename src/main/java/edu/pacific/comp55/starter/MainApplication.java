@@ -16,13 +16,16 @@ public class MainApplication extends GraphicsApplication {
 
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		rooms = new ArrayList<RoomPane>();
-		rooms.add(new RoomPane(this));
-		rooms.add(new RoomPane(this));
-		rooms.add(new RoomPane(this));
-		rooms.add(new RoomPane(this));
-		
 		player = new Player();
+		setupRooms();
+		
+	}
+	
+	public void setupRooms() {
+		rooms = new ArrayList<RoomPane>();
+		RoomPane r1 = new RoomPane(this);
+		
+		rooms.add(r1);
 	}
 
 	public void run() {

@@ -12,7 +12,7 @@ public class SomePane extends GraphicsPane {
 
 	public SomePane(MainApplication app) {
 		this.program = app;
-//		img = new GImage("robot head.jpg", 100, 100);
+		img = new GImage("robot head.jpg", 100, 100);
 		para = new GParagraph("welcome\nto my\nsecret room!", 150, 300);
 		para.setFont("Arial-24");
 	}
@@ -20,14 +20,14 @@ public class SomePane extends GraphicsPane {
 	@Override
 	public void showContents() {
 		System.out.println("showContent SomePane");
-//		program.add(img);
+		program.add(img);
 		program.add(para);
 	}
 
 	@Override
 	public void hideContents() {
 		System.out.println("hideContent SomePane");
-//		program.remove(img);
+		program.remove(img);
 		program.remove(para);
 	}
 
