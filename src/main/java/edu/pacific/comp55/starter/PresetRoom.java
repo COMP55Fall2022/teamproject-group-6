@@ -17,32 +17,14 @@ public class PresetRoom {
 			//get the player
 		}
 		this.type = type;
+		
+		if (type == RoomType.BOSS) {
+			//Room.getBoss = boss;
+		}
 	}
 	
 	public RoomType getType() {
 		return type;
 	}
 	
-	
-	
-	/*
-	
-	public void CombatRoom(RoomType Type) {
-		if(type == COMBAT) {
-			
-		}
-	}
-	
-	//add monsters
-	//add objects
-
-*/
-
-
-
-//	private void setType(RoomType type2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
+}	
