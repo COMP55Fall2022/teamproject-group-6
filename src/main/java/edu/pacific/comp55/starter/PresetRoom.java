@@ -16,11 +16,12 @@ public class PresetRoom {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	/*
 	public RoomType getType() {
 		return type;
 	}
+	
+	/*
+	
 
 	public void setType(RoomType type) {
 		this.type = type;
