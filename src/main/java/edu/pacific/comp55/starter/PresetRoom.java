@@ -14,6 +14,7 @@ public class PresetRoom {
 			//are private variables in Room class
 			//this.monsters.add(m);
 			//this.objects.add(o);
+			//get the player
 		}
 		this.type = type;
 	}
