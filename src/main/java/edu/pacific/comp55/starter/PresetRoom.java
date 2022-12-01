@@ -30,6 +30,8 @@ public class PresetRoom {
 	}
 */	
 	private ArrayList<Object> objects = new ArrayList<Object>();
+	private ArrayList<Character> characters = new ArrayList<Character>();
+	
 	
 	//array
 	//add mob
