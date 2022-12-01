@@ -1,7 +1,9 @@
 package edu.pacific.comp55.starter;
 
+import java.util.ArrayList;
+
 public class PresetRoom {
-	
+/*	
 	private RoomType type;
 
 	public PresetRoom(RoomType type) {
@@ -26,7 +28,8 @@ public class PresetRoom {
 	public RoomType getType() {
 		return type;
 	}
-	
+*/	
+	private ArrayList<Object> objects = new ArrayList<Object>();
 	
 	//array
 	//add mob
