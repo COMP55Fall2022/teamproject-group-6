@@ -34,6 +34,15 @@ public class PresetRoom {
 	private ArrayList<Door> doors = new ArrayList<Door>();
 	
 	
+	public void traverseCharacterArrayList(ArrayList<Character> list) {
+		for(Character c:list) {
+			if(c.isDead() == true) {
+				list.remove(c);
+			}
+		}
+	}
+	
+	
 	//array
 	//add mob
 	//give them points
