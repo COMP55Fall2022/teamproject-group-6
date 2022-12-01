@@ -31,6 +31,7 @@ public class PresetRoom {
 */	
 	private ArrayList<Object> objects = new ArrayList<Object>();
 	private ArrayList<Character> characters = new ArrayList<Character>();
+	private ArrayList<Door> doors = new ArrayList<Door>();
 	
 	
 	//array
