@@ -15,12 +15,22 @@ public class Character extends AnimatedObject {
 	protected int speedOfBullet;
 	protected int damage;
 	protected boolean dead;
+	protected Room room;
+	protected long lastFiredBulletTick;
 	
 	public Character(CharacterType charType, String image, double x, double y, double width, double height) {
 		super(image, x, y, width, height);
 		this.charType = charType;
 		this.faceDirection = DirectionType.DOWN;
 		this.dead = false;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public CharacterType getType() {
@@ -143,6 +153,13 @@ public class Character extends AnimatedObject {
 		return bullet;
 	}
 	
+	public void bang(DirectionType d) {
+		if (ticks - lastFiredBulletTick > rateOfFire) {
+			Bullet b = new Bullet(getX(), getY(), 30, d);
+			room.addBullet(b);
+			lastFiredBulletTick = ticks;
+		}
+	}
 	
 	
 	@Override

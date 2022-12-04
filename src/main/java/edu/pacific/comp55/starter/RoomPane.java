@@ -19,6 +19,7 @@ public class RoomPane extends GraphicsPane {
 	
 	private MonsterChaser chaser;
 	private MonsterPatroller patroler;
+	private MonsterSentry sentry;
 	private Bullet bullet;
 	private Player player;
 	
@@ -31,8 +32,9 @@ public class RoomPane extends GraphicsPane {
 //		para.setFont("Arial-24");
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
-		chaser = new MonsterChaser(null, 100, 100, 60, 60);
+		chaser = new MonsterChaser(100, 100, 60, 60);
 		patroler = new MonsterPatroller(100, 100, 60, 60);
+		sentry = new MonsterSentry(200, 200, 60, 60);
 		bullet = new Bullet(100, 100, 10, DirectionType.RIGHT);
 		ArrayList<Point> path = new ArrayList<Point>();
 		path.add(new Point(100, 100));
@@ -47,6 +49,7 @@ public class RoomPane extends GraphicsPane {
 		patroler.setPath(path);
 		monsters.add(chaser);
 		monsters.add(patroler);
+		monsters.add(sentry);
 		ArrayList<Object> objects = new ArrayList<Object>();
 
 		
@@ -107,8 +110,15 @@ public class RoomPane extends GraphicsPane {
 		}		
 	}
 	public void keyTyped(KeyEvent e) {
-		if (player != null) {
-			player.keyTyped(e);
+		switch (e.getKeyChar()) {
+		case 27:
+			program.switchToMenu();
+			break;
+		default: 
+			if (player != null) {
+				player.keyTyped(e);
+			}
+			break;
 		}
 	}
 }

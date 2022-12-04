@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import acm.graphics.GImage;
+import acm.graphics.GRectangle;
 
 public class Object extends GImage {
 	//private ObjectType type;
@@ -20,6 +21,9 @@ public class Object extends GImage {
 	public void addActionListener(Console console) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void handleCollision(Object o) {
 	}
 
 }

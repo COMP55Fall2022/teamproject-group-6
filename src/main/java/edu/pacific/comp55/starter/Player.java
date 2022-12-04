@@ -80,21 +80,27 @@ public class Player extends Character implements Serializable {
 		System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
 	}
 	public void keyTyped(KeyEvent e) {
-//		switch (e.getKeyChar()) {
-//		case 'w':
-//			updateSpeedAndDirection(20, DirectionType.UP);
-//			break;
-//		case 'a':
-//			updateSpeedAndDirection(20, DirectionType.LEFT);
-//			break;
-//		case 's':
-//			updateSpeedAndDirection(20, DirectionType.DOWN);
-//			break;
-//		case 'd':
-//			updateSpeedAndDirection(20, DirectionType.RIGHT);
-//			break;
-//		}
-//		System.out.println("key typed code: " + e.getKeyChar());	
+		switch (e.getKeyChar()) {
+		case 27:
+			System.out.println("key typed escape");
+			break;
+		case ' ':
+			bang(getFaceDirection());
+			break;
+		case 'w':
+			setFaceDirection(DirectionType.UP);
+			break;
+		case 'a':
+			setFaceDirection(DirectionType.LEFT);
+			break;
+		case 's':
+			setFaceDirection(DirectionType.DOWN);
+			break;
+		case 'd':
+			setFaceDirection(DirectionType.RIGHT);
+			break;
+		}
+		System.out.println("key typed code: " + e.getKeyChar());	
 	}
 	
 	

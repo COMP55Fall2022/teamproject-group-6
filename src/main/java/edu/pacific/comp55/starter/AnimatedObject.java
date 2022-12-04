@@ -6,6 +6,7 @@ public class AnimatedObject extends Object {
 
 	protected double xVelocity, yVelocity;
 	protected Point[] collisionDetectionPoints = new Point[8];
+	protected long ticks;
 
 	public AnimatedObject(String image, double x, double y, double width, double height) {
 		super(image, x, y, width,  height);
@@ -57,6 +58,7 @@ public class AnimatedObject extends Object {
 	}
 
 	public void animate() {
+		ticks++;
 		move(xVelocity, yVelocity);
 //		System.out.println("movement has occured ur going this fast " + xVelocity + "," + yVelocity + " : " + getX() + "x" + getY());
 	}

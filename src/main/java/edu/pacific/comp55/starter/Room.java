@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import acm.graphics.GCompound;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import acm.graphics.GRectangle;
 import acm.graphics.GRoundRect;
 
 import java.awt.event.MouseEvent;
@@ -35,9 +36,11 @@ public class Room extends GCompound {
 //		rect.setFilled(false);
 //		add(rect);
 		if (player != null) {
+			player.setRoom(this);
 			add(player);
 		}
 		for (Monster m:monsters) {
+			m.setRoom(this);
 			add(m);
 		}
 		for (Object o:objects) {
@@ -47,30 +50,42 @@ public class Room extends GCompound {
 
 	public void setPlayer(Player player) {
 		if (this.player != null) {
+			this.player.setRoom(null);
 			remove(this.player);
 		}
 		this.player = player;
+		this.player.setRoom(this);
 		add(this.player);
-		for (Monster m:monsters) {
-			if (m instanceof MonsterChaser) {
-				((MonsterChaser) m).setPlayer(this.player);
-			}
-		}
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 	
 	public void addBullet(Bullet b) {
-		this.bullets.add(b);
+		add(b);
 	}
 	
 	public void deleteBullet(AnimatedObject b) {
-		this.bullets.remove(b);
+		remove(b);
 	}
 	
 	public void animate() {
-		for (GObject o:this) {
-			if (o instanceof AnimatedObject) {
-				((AnimatedObject) o).animate();
-				System.out.println("animated object: " + o);
+		for (GObject ao:this) {
+			if (ao instanceof AnimatedObject) {
+				AnimatedObject animatedObject = (AnimatedObject)ao;
+				animatedObject.animate();
+				System.out.println("animated object: " + animatedObject);
+				for (GObject o:this) {
+					if (o instanceof Object && ao != o) {
+						Object other = (Object)o;
+						if (animatedObject.getBounds().intersects(other.getBounds())) {
+							// Collision
+							animatedObject.handleCollision(other);
+							other.handleCollision(animatedObject);
+						}
+					}
+				}
 			}
 		}
 	}

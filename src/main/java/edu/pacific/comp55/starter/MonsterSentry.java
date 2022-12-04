@@ -8,9 +8,9 @@ import acm.graphics.GRoundRect;
 
 public class MonsterSentry extends Monster {
 
-	public MonsterSentry(CharacterType charType, DirectionType faceDirection, double x, double y, double width, double height) {
+	
+	public MonsterSentry(double x, double y, double width, double height) {
 		super(CharacterType.MONSTER3, "shootingrobot.png", x, y, width, height);
-		setFaceDirection(faceDirection);
 		health = 50;
 		rateOfFire = 2;
 		speedOfBullet = 2;
@@ -20,6 +20,11 @@ public class MonsterSentry extends Monster {
 	
 	public void animate() {
 		super.animate();
+		if (room.getPlayer() != null) {
+			DirectionType d = getDirectionToward(room.getPlayer());
+			if (d != DirectionType.NONE) {
+				bang(d);
+			}	
+		}
 	}
-	
 }
