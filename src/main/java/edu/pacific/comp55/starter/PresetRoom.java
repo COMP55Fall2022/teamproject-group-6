@@ -33,6 +33,9 @@ public class PresetRoom {
 			
 		}
 		
+		else if (type == RoomType.BOSS) {
+			//Room.getBoss = boss;
+		}
 	}
 	
 	
