@@ -11,19 +11,22 @@ public class PresetRoom {
 		
 	}
 	
+	
+	
 	private void setType(RoomType type) {
-		if(type == RoomType.COMBAT || type == RoomType.ITEM || type == RoomType.PUZZLE || type == RoomType.EMPTY || type == RoomType.BOSS) {
+		//this.monsters.add(m);
+		//this.objects.add(o);
+		//get the player
+		
+		if(type == RoomType.COMBAT) {
 			//are private variables in Room class
 			//this.monsters.add(m);
 			//this.objects.add(o);
 			//get the player
 		}
-		this.type = type;
 		
-		if (type == RoomType.BOSS) {
-			//Room.getBoss = boss;
-		}
 	}
+	
 	
 	public RoomType getType() {
 		return type;
@@ -31,14 +34,14 @@ public class PresetRoom {
 	
 	
 	private ArrayList<Object> objects = new ArrayList<Object>();
-	private ArrayList<Character> characters = new ArrayList<Character>();
+	private ArrayList<Monster> monster = new ArrayList<Monster>();
 	private ArrayList<Door> doors = new ArrayList<Door>();
 	
 	
-	public void traverseCharacterArrayList(ArrayList<Character> list) {
-		for(Character c:list) {
-			if(c.isDead() == true) {
-				list.remove(c);
+	public void traverseMonsterArrayList(ArrayList<Monster> list) {
+		for(Monster m:list) {
+			if(m.isDead() == true) {
+				list.remove(m);
 			}
 		}
 	}
