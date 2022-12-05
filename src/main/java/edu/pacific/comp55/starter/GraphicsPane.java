@@ -25,6 +25,11 @@ public abstract class GraphicsPane implements Interfaceable {
 	public abstract void hideContents();
 
 	@Override
+	public void animate() {
+		// Need to be overridden by the screen panes.
+	}
+	
+	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}

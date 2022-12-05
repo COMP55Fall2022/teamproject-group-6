@@ -1,87 +1,37 @@
 package edu.pacific.comp55.starter;
 
-public class Bullet {
-	private Point startPoint;
-	private int width = 100;
-	private int height = 100;
-	private int speed;
+public class Bullet extends AnimatedObject {
 	private DirectionType direction;
-	private Point[] collisionDetectionPoints = new Point[8];
-	
-	public Bullet(int startX, int startY, int speed, DirectionType direction) {
-		super();
-		this.startPoint = new Point(startX, startY);
-		this.speed = speed;
+
+	public Bullet(double x, double y, double speed, DirectionType direction) {
+		super("bullet.png", x, y, 100, 100);
+		
 		this.direction = direction;
-		for (int i = 0; i < 8; ++i) {
-			collisionDetectionPoints[i] = new Point(0, 0);
-		}
-		this.updateCollisionDetectionPoints();
+		updateSpeedAndDirection(speed, direction);
+//		for (int i = 0; i < 8; ++i) {
+//			collisionDetectionPoints[i] = new Point(0, 0);
+//		}
+//		this.updateCollisionDetectionPoints();
 	}
-	
-	public int getStartX() {
-		return startPoint.getX();
-	}
-	public void setStartX(int startX) {
-		this.startPoint.setX(startX);
-	}
-	public int getStartY() {
-		return startPoint.getY();
-	}
-	public void setStartY(int startY) {
-		this.startPoint.setY(startY);
-	}
-	
-	public void updateCollisionDetectionPoints() {
-		collisionDetectionPoints[0] = this.startPoint;	// botLeft
-		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	//midLeft
-		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	//upLeft
-		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	//upMid
-		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);	//upRight
-		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); //midRight
-		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());	//botRight
-		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());	//botMid
-	}
-	
-	public void move() {
-		if (direction == DirectionType.UP) {
-			this.startPoint.setY(startPoint.getY() + speed);
-		}
-		else if (direction == DirectionType.DOWN) {
-			this.startPoint.setY(startPoint.getY() - speed);
-		}
-		else if (direction == DirectionType.LEFT) {
-			this.startPoint.setX(startPoint.getX() - speed);
-		}
-		else if (direction == DirectionType.RIGHT) {
-			this.startPoint.setX(startPoint.getX() + speed);
-		}
-		this.updateCollisionDetectionPoints();
-	}
-	public Point[] getCollisionDetectionPoints() {
-		return collisionDetectionPoints;
-	}
-	
-	
 	
 	@Override
 	public String toString() {
-		return "Bullet [startPoint=" + startPoint + ", speed=" + speed + ", direction=" + direction + "]";
+		return "Bullet [startPoint=" + getX() + ", speed=(" + xVelocity + "/" + yVelocity + "), direction=" + direction + "]";
 	}
 
 	//Tests
 	public static void main(String[] args) {
-		Bullet b1 = new Bullet(0, 0, 800, DirectionType.RIGHT);
-		System.out.println(b1);
-		Point[] points = b1.getCollisionDetectionPoints();
-		for (int i = 0; i < 8; ++i) {
-			System.out.println(points[i]);
-		}
-		b1.move();
-		System.out.println(b1);
-		for (int i = 0; i < 8; ++i) {
-			System.out.println(points[i]);
-		}
+//		Bullet b1 = new Bullet(0, 0, 800, DirectionType.RIGHT);
+//		System.out.println(b1);
+//		Point[] points = b1.getCollisionDetectionPoints();
+//		for (int i = 0; i < 8; ++i) {
+//			System.out.println(points[i]);
+//		}
+//		b1.animate();
+//		System.out.println(b1);
+//		for (int i = 0; i < 8; ++i) {
+//			System.out.println(points[i]);
+//		}
 		/*Bullet b2 = new Bullet(800, 0, 800, DirectionType.LEFT);
 		Bullet b3 = new Bullet(0, 0, 800, DirectionType.UP);
 		Bullet b4 = new Bullet(0, 800, 800, DirectionType.DOWN);

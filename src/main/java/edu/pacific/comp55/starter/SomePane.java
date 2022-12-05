@@ -19,12 +19,14 @@ public class SomePane extends GraphicsPane {
 
 	@Override
 	public void showContents() {
+		System.out.println("showContent SomePane");
 		program.add(img);
 		program.add(para);
 	}
 
 	@Override
 	public void hideContents() {
+		System.out.println("hideContent SomePane");
 		program.remove(img);
 		program.remove(para);
 	}

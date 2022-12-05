@@ -1,40 +1,36 @@
 package edu.pacific.comp55.starter;
 
-public class Character {
+import java.awt.Color;
+
+import acm.graphics.GCompound;
+import acm.graphics.GImage;
+import acm.graphics.GObject;
+import acm.graphics.GRoundRect;
+
+public class Character extends AnimatedObject {
 	private CharacterType charType;
-	private DirectionType faceDirection;
-	private Point startPoint;
-	private int width;
-	private int height;
-	private int health;
-	private int rateOfFire;
-	private int speed;
-	private int speedOfBullet;
-	private int damage;
-	private boolean dead;
-	private Point[] collisionDetectionPoints = new Point[8];
-	private Object player;
+	protected DirectionType faceDirection;
+	protected int health;
+	protected int rateOfFire;
+	protected int speedOfBullet;
+	protected int damage;
+	protected boolean dead;
+	protected Room room;
+	protected long lastFiredBulletTick;
 	
-	
-	public Character(CharacterType charType, DirectionType faceDirection, int startX, int startY, int width,
-			int height, int health, int rateOfFire, int speed, int speedOfBullet, int damage) {
-		super();
+	public Character(CharacterType charType, String image, double x, double y, double width, double height) {
+		super(image, x, y, width, height);
 		this.charType = charType;
-		this.faceDirection = faceDirection;
-		this.startPoint = new Point(startX, startY);
-		this.width = width;
-		this.height = height;
-		this.health = health;
-		this.rateOfFire = rateOfFire;
-		this.speed = speed;
-		this.speedOfBullet = speedOfBullet;
-		this.damage = damage;
+		this.faceDirection = DirectionType.DOWN;
 		this.dead = false;
-		for (int i = 0; i < 8; ++i) {
-			collisionDetectionPoints[i] = new Point(0, 0);
-		}
-		this.updateCollisionDetectionPoints();
-		
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public CharacterType getType() {
@@ -42,30 +38,6 @@ public class Character {
 	}
 	public void setType(CharacterType charType) {
 		this.charType = charType;
-	}
-	public int getStartX() {
-		return startPoint.getX();
-	}
-	public void setStartX(int startX) {
-		this.startPoint.setX(startX);
-	}
-	public int getStartY() {
-		return startPoint.getY();
-	}
-	public void setStartY(int startY) {
-		this.startPoint.setY(startY);
-	}
-	public int getWidth() {
-		return width;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
 	}
 	public int getHealth() {
 		return health;
@@ -79,12 +51,12 @@ public class Character {
 	public void setRateOfFire(int rateOfFire) {
 		this.rateOfFire = rateOfFire;
 	}
-	public int getSpeed() {
-		return speed;
-	}
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
+//	public int getSpeed() {
+//		return speed;
+//	}
+//	public void setSpeed(int speed) {
+//		this.speed = speed;
+//	}
 	public int getSpeedOfBullet() {
 		return speedOfBullet;
 	}
@@ -104,33 +76,30 @@ public class Character {
 		this.faceDirection = faceDirection;
 	}
 	
-	public boolean getDead() {
+	public boolean isDead() {
 		return dead;
 	}
 	public void setDead(boolean deadOrNot) {
 		this.dead = deadOrNot;
 	}
 	
-	// Meaning -1: move in negative direction, 1: positive direction, 0: not moving
-	public void move(int moveInX, int moveInY) {
-		switch(moveInX) {
-			case -1: this.setStartX(this.getStartX() - this.getSpeed());
-			case 0: this.setStartX(this.getStartX());	
-			case 1: this.setStartX(this.getStartX() + this.getSpeed());
-		}
-		switch(moveInY) {
-			case -1: this.setStartY(this.getStartY() - this.getSpeed());
-			case 0: this.setStartY(this.getStartY());
-			case 1: this.setStartY(this.getStartY() + this.getSpeed());
-		}
-		//perfect it if have time, works fine now
-		this.updateCollisionDetectionPoints();
-	}
+//	// Meaning -1: move in negative direction, 1: positive direction, 0: not moving
+//	public void move(int moveInX, int moveInY) {
+//		switch(moveInX) {
+//			case -1: this.setStartX(this.getStartX() - this.getSpeed());
+//			case 0: this.setStartX(this.getStartX());	
+//			case 1: this.setStartX(this.getStartX() + this.getSpeed());
+//		}
+//		switch(moveInY) {
+//			case -1: this.setStartY(this.getStartY() - this.getSpeed());
+//			case 0: this.setStartY(this.getStartY());
+//			case 1: this.setStartY(this.getStartY() + this.getSpeed());
+//		}
+//		//perfect it if have time, works fine now
+//		this.updateCollisionDetectionPoints();
+//	}
 	
-	public boolean isDead() {
-		return dead;
-	}
-	
+
 	public void isHit(int damage) {
 		this.health = this.health - damage;
 		if (this.health <= 0) {
@@ -139,16 +108,16 @@ public class Character {
 	}
 	
 	//Use 8 points to detect collision for all moving things
-	public void updateCollisionDetectionPoints() {
-		collisionDetectionPoints[0] = this.startPoint;	// botLeft
-		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	//midLeft
-		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	//upLeft
-		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	//upMid
-		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);	//upRight
-		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); //midRight
-		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());	//botRight
-		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());	//botMid
-	}
+//	public void updateCollisionDetectionPoints() {
+//		collisionDetectionPoints[0] = this.startPoint;	// botLeft
+//		collisionDetectionPoints[1].setXY(getStartX(), getStartY() + this.height / 2);	//midLeft
+//		collisionDetectionPoints[2].setXY(getStartX(), getStartY() + this.height);	//upLeft
+//		collisionDetectionPoints[3].setXY(getStartX() + this.width / 2, getStartY() + this.height);	//upMid
+//		collisionDetectionPoints[4].setXY(getStartX() + this.width, getStartY() + this.height);	//upRight
+//		collisionDetectionPoints[5].setXY(getStartX() + this.width, getStartY() + this.height / 2); //midRight
+//		collisionDetectionPoints[6].setXY(getStartX() + this.width, getStartY());	//botRight
+//		collisionDetectionPoints[7].setXY(getStartX() + this.width / 2, getStartY());	//botMid
+//	}
 	
 	public Point[] getCollisionDetectionPoints() {
 		return collisionDetectionPoints;
@@ -184,20 +153,26 @@ public class Character {
 		return bullet;
 	}
 	
+	public void bang(DirectionType d) {
+		if (ticks - lastFiredBulletTick > rateOfFire) {
+			Bullet b = new Bullet(getX(), getY(), 30, d);
+			room.addBullet(b);
+			lastFiredBulletTick = ticks;
+		}
+	}
 	
 	
 	@Override
 	public String toString() {
-		return "Character [charType=" + charType + ", faceDirection=" + faceDirection + ", startX=" + startPoint.getX()
-				+ ", startY=" + startPoint.getY() + ", width=" + width + ", height=" + height + ", health=" + health
-				+ ", rateOfFire=" + rateOfFire + ", speed=" + speed + ", speedOfBullet=" + speedOfBullet + ", damage="
+		return "Character [charType=" + charType + ", faceDirection=" + faceDirection + ", startX=" + getX()
+				+ ", startY=" + getY() + ", width=" + getWidth() + ", height=" + getHeight() + ", health=" + health
+				+ ", rateOfFire=" + rateOfFire + ", speed=(" + xVelocity + "/" + yVelocity + "), speedOfBullet=" + speedOfBullet + ", damage="
 				+ damage + "]";
 	}
 
 	//Tests
 	public static void main(String[] args) {
-		Character player = new Character(CharacterType.PLAYER, DirectionType.RIGHT, 0, 0, 1000,
-				1000, 100, 60, 500, 750, 25);
+		Character player = new Character(CharacterType.PLAYER, "robot head", 0, 0, 1000, 1000);
 		player.isHit(25);
 		System.out.println(player);
 		/*Point[] points = player.getCollisionDetectionPoints();

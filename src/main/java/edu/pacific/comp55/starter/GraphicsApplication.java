@@ -7,8 +7,10 @@ import java.awt.event.MouseEvent;
 import acm.program.GraphicsProgram;
 
 public abstract class GraphicsApplication extends GraphicsProgram {
+	public static final int BREAK_MS = 100;
+
 	private GraphicsPane curScreen;
-	
+		
 	public GraphicsApplication() {
 		super();
 	}
@@ -36,6 +38,15 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 		}
 		newScreen.showContents();
 		curScreen = newScreen;
+	}
+	
+	protected void animate() {
+		while (true) {
+			if (curScreen != null) {
+				curScreen.animate();
+			}
+			pause(BREAK_MS);
+		}
 	}
 	
 	/*

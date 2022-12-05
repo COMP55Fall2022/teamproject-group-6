@@ -1,16 +1,31 @@
 package edu.pacific.comp55.starter;
+
+import java.util.ArrayList;
+
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3" };
 
+	private ArrayList<RoomPane> rooms;
 	private SomePane somePane;
 	private MenuPane menu;
+	private Player player;
 	private int count;
 
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		player = new Player();
+		setupRooms();
+		
+	}
+	
+	public void setupRooms() {
+		rooms = new ArrayList<RoomPane>();
+		RoomPane r1 = new RoomPane(this);
+		
+		rooms.add(r1);
 	}
 
 	public void run() {
@@ -19,6 +34,8 @@ public class MainApplication extends GraphicsApplication {
 		menu = new MenuPane(this);
 		setupInteractions();
 		switchToMenu();
+		
+		animate();
 	}
 
 	public void switchToMenu() {
@@ -29,7 +46,8 @@ public class MainApplication extends GraphicsApplication {
 
 	public void switchToSome() {
 		playRandomSound();
-		switchToScreen(somePane);
+		switchToScreen(rooms.get(0));
+		rooms.get(0).setPlayer(player);
 	}
 
 	private void playRandomSound() {
