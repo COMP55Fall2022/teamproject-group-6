@@ -11,6 +11,7 @@ public class MainApplication extends GraphicsApplication {
 	private ArrayList<RoomPane> rooms;
 	private SomePane somePane;
 	private MenuPane menu;
+	private SettingPane setting;
 	private Player player;
 	private int count;
 
@@ -42,6 +43,10 @@ public class MainApplication extends GraphicsApplication {
 		playRandomSound();
 		count++;
 		switchToScreen(menu);
+	}
+	
+	public void switchToSetting() {
+		switchToScreen(setting);
 	}
 
 	public void switchToSome() {

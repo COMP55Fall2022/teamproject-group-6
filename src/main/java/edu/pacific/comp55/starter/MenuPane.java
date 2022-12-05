@@ -9,7 +9,7 @@ public class MenuPane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GButton rect1;
-	private GButton rect2;
+//	private GButton rect2;
 	private GButton rect3;
 	private GButton rect4;
 
@@ -18,9 +18,9 @@ public class MenuPane extends GraphicsPane {
 		program = app;
 		rect1 = new GButton("Start", 300, 100, 200, 100);
 		rect1.setFillColor(Color.RED);
-		rect2 = new GButton("Volume", 300, 200, 200, 100);
-		rect1.setFillColor(Color.RED);
-		rect3 = new GButton("Settings", 300, 300, 200, 100);
+//		rect2 = new GButton("Volume", 300, 200, 200, 100);
+//		rect1.setFillColor(Color.RED);
+		rect3 = new GButton("Settings", 300, 250, 200, 100);
 		rect1.setFillColor(Color.RED);
 		rect4 = new GButton("Quit", 300, 400, 200, 100);
 		rect1.setFillColor(Color.RED);
@@ -29,7 +29,7 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void showContents() {
 		program.add(rect1);
-		program.add(rect2);
+//		program.add(rect2);
 		program.add(rect3);
 		program.add(rect4);
 	}
@@ -37,7 +37,7 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void hideContents() {
 		program.remove(rect1);
-		program.remove(rect2);
+//		program.remove(rect2);
 		program.remove(rect3);
 		program.remove(rect4);
 	}
@@ -48,11 +48,11 @@ public class MenuPane extends GraphicsPane {
 		if (obj == rect1) {
 			program.switchToSome();
 		}
-		else if (obj == rect2) {
-			//TODO 
-		}
+//		else if (obj == rect2) {
+//			//TODO 
+//		}
 		else if (obj == rect3) {
-			//TODO
+			program.switchToSetting();
 		}
 		else if (obj == rect4) {
 			//TODO
