@@ -1,6 +1,7 @@
 package edu.pacific.comp55.starter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,6 +35,10 @@ public class DataStorage implements Serializable{
 		      File myObj = new File("save.txt");
 		      if (myObj.createNewFile()) {
 		    	  System.out.println("File created: " + myObj.getName());
+		    	  FileWriter myWriter = new FileWriter("save.txt");
+			      myWriter.write(maxHP + "\n" + damage + "\n" + shield + "\n" + coin + "\n" + timeOfComplete);
+			      myWriter.close();
+			      System.out.println("Successfully wrote to the file.");
 			  } else {
 				  System.out.println("File already exists.");
 			  }
@@ -68,13 +73,19 @@ public class DataStorage implements Serializable{
 	}
 	
 	public void writeSaveFile() {
-		
+			try {
+		      FileWriter myWriter = new FileWriter("save.txt");
+		      myWriter.write(maxHP + "\n" + damage + "\n" + shield + "\n" + coin + "\n" + timeOfComplete);
+		      myWriter.close();
+		      System.out.println("Successfully wrote to the file.");
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
 	}
 	
 	//Test
 	public static void main(String[] args) {
-		DataStorage d1 = new DataStorage();
-		d1.createSaveFile();
-		d1.readSaveFile();
+		
 	}
 }
