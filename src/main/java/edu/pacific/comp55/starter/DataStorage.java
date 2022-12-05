@@ -48,7 +48,7 @@ public class DataStorage implements Serializable{
 			  }
 	}
 	
-	public void readSaveFile() {
+	public int[] readSaveFile() {
 			try {
 		      File myObj = new File("save.txt");
 		      Scanner myReader = new Scanner(myObj);
@@ -70,6 +70,7 @@ public class DataStorage implements Serializable{
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
 		    }
+			return dataRecieved;
 	}
 	
 	public void writeSaveFile() {

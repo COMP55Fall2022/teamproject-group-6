@@ -14,6 +14,7 @@ public class MainApplication extends GraphicsApplication {
 	private SettingPane setting;
 	private Player player;
 	private int count;
+	private DataStorage data = new DataStorage();
 
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -59,6 +60,25 @@ public class MainApplication extends GraphicsApplication {
 	private void playRandomSound() {
 		AudioPlayer audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	public void save() {
+		data.maxHP = player.getHealth();
+		data.damage = player.getDamage();
+//		data.shield = player.shield();
+//		data.coin = player.getCoin();
+//		data.timeOfComplete = player.time();
+		data.writeSaveFile();
+	}
+	
+	public void load() {
+		int dataRecieved[] = new int[5];
+		dataRecieved = data.readSaveFile();
+		player.health = dataRecieved[0];
+		player.damage = dataRecieved[1];
+//		player.shield = dataRecieved[2];
+//		player.coin = dataRecieved[3];
+//		player.time = dataRecieved[4];
 	}
 	
 	public static void main(String[] args) {
