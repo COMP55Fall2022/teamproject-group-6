@@ -25,6 +25,11 @@ public class PresetRoom {
 			//get the player
 		}
 		
+		else if(type == RoomType.EMPTY) {
+			
+		}
+		
+		
 	}
 	
 	
