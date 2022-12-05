@@ -29,6 +29,9 @@ public class PresetRoom {
 			
 		}
 		
+		else if(type == RoomType.ITEM) {
+			
+		}
 		
 	}
 	
