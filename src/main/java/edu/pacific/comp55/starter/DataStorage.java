@@ -86,6 +86,15 @@ public class DataStorage implements Serializable{
 	
 	//Test
 	public static void main(String[] args) {
-		
+		DataStorage d1 = new DataStorage();
+		d1.createSaveFile();
+		d1.readSaveFile();
+		d1.maxHP = 150;
+		d1.damage = 50;
+		d1.shield = 25;
+		d1.coin = 9999;
+		d1.timeOfComplete = 60;
+		d1.writeSaveFile();
+		d1.readSaveFile();
 	}
 }
