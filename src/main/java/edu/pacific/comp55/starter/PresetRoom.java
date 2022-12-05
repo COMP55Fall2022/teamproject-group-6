@@ -11,22 +11,18 @@ public class PresetRoom {
 		
 	}
 	
-	
-	
 	private void setType(RoomType type) {
 		//this.monsters.add(m);
 		//this.objects.add(o);
 		//get the player
 		
-		if(type == RoomType.COMBAT) {
-			//are private variables in Room class
-			//this.monsters.add(m);
-			//this.objects.add(o);
-			//get the player
+		
+		if (type == RoomType.COMBAT) {
+			
 		}
 		
-		else if(type == RoomType.EMPTY) {
-			
+		else if (type == RoomType.EMPTY) {
+			return;
 		}
 		
 		else if(type == RoomType.ITEM) {
