@@ -7,8 +7,6 @@ import java.io.ObjectInputStream;
 
 import org.checkerframework.checker.units.qual.s;
 
-import main.Console;
-
 public class SavaLoad {
 
 }
