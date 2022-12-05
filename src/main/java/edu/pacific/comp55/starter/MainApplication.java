@@ -33,6 +33,7 @@ public class MainApplication extends GraphicsApplication {
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
+		setting = new SettingPane(this);
 		setupInteractions();
 		switchToMenu();
 		
