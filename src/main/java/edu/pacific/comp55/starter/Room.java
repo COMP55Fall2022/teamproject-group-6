@@ -89,6 +89,19 @@ public class Room extends GCompound {
 			}
 		}
 	}
+	
+	public void addMonsters(Monster m) {
+		this.monsters.add(m);
+	}
+	public void deleteMonsters(Monster m) {
+		this.monsters.remove(m);
+	}
+	public void addObjects(Object o) {
+		this.objects.add(o);
+	}
+	public void deleteObjects(Object o) {
+		this.objects.remove(o);
+	}
 
 	public void characterMovement(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_W && e.getKeyCode() == KeyEvent.VK_A) {
@@ -175,6 +188,12 @@ public class Room extends GCompound {
 					deleteBullet(b);
 				}
 			}
+		}
+	}
+	
+	public void checkCompleted() {
+		if (monsters.size() == 0) {
+			this.isCompleted = true; 
 		}
 	}
 

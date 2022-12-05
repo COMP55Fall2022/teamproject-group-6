@@ -11,20 +11,21 @@ private Object play;
 private Object settings;
 private Object exit;
 private Object mainMenu;
-
-
-//	MButton play = new MButton("play");
-//	MButton settings = new MButton("settings");
-//	MButton exit = new MButton("exit");
-//	MButton mainMenu = new MButton("mainMenu");
+private int selection = 0;
 	
-	
+
 	public void addButtons() {
 		play.addActionListener(this);
 		settings.addActionListener(this);
 		exit.addActionListener(this);
 		mainMenu.addActionListener(this);
 	}
-	
-
 }
+/*
+	public void whichButton() {
+		if(selection == 1) {
+			
+		}
+	}
+
+*/
