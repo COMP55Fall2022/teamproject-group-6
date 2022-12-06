@@ -17,6 +17,13 @@ public class Monster extends Character {
 		super.animate();
 	}
 	
+	@Override 
+	public void handleCollision(Object o) {
+		//check the type of your object
+		//take damage if needed
+		//set dead if needed
+	}
+	
 	public DirectionType getDirectionToward(Object o) {
 		// change direction to aim the given point
 

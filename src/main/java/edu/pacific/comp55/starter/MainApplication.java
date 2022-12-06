@@ -9,7 +9,6 @@ public class MainApplication extends GraphicsApplication {
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3" };
 
 	private ArrayList<RoomPane> rooms;
-	private SomePane somePane;
 	private MenuPane menu;
 	private SettingPane setting;
 	private Player player;
@@ -25,14 +24,13 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void setupRooms() {
 		rooms = new ArrayList<RoomPane>();
-		RoomPane r1 = new RoomPane(this);
+		RoomPane r1 = new RoomPane(this, player);
 		
 		rooms.add(r1);
 	}
 
 	public void run() {
 		System.out.println("Hello, world!");
-		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		setting = new SettingPane(this);
 		setupInteractions();
@@ -51,10 +49,10 @@ public class MainApplication extends GraphicsApplication {
 		switchToScreen(setting);
 	}
 
-	public void switchToSome() {
+	public void switchToRoom() {
 		playRandomSound();
 		switchToScreen(rooms.get(0));
-		rooms.get(0).setPlayer(player);
+		//rooms.get(0).setPlayer(player);
 	}
 
 	private void playRandomSound() {

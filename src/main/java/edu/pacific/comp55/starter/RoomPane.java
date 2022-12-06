@@ -25,8 +25,9 @@ public class RoomPane extends GraphicsPane {
 	
 	private ArrayList<AnimatedObject> animatedObjects;
 
-	public RoomPane(MainApplication app) {
+	public RoomPane(MainApplication app, Player player) {
 		this.program = app;
+		this.player = player;
 //		img = new GImage("robot head.jpg", 100, 100);
 //		para = new GParagraph("welcome\nto my\nsecret room!", 150, 300);
 //		para.setFont("Arial-24");
@@ -53,28 +54,27 @@ public class RoomPane extends GraphicsPane {
 		ArrayList<Object> objects = new ArrayList<Object>();
 
 		
-		room = new Room(RoomType.BOSS, null, monsters, objects);
+		room = new Room(program, RoomType.BOSS, player, monsters, objects);
 	}
 
 	@Override
 	public void showContents() {
 		System.out.println("showContent RoomPane");
-		program.add(room);
+		room.showContents();
 	}
 
 	@Override
 	public void hideContents() {
 		System.out.println("hideContent RoomPane");
-		program.remove(room);
+		room.hideContents();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		para.setText("you need\nto click\non the eyes\nto go back");
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == room) {
-			program.switchToMenu();
-		}
+		//if (obj == room) {
+			//program.switchToMenu();
+		//}
 	}
 
 	public Player getPlayer() {
@@ -110,6 +110,7 @@ public class RoomPane extends GraphicsPane {
 		}		
 	}
 	public void keyTyped(KeyEvent e) {
+		System.out.println("-----------------------");
 		switch (e.getKeyChar()) {
 		case 27:
 			program.switchToMenu();

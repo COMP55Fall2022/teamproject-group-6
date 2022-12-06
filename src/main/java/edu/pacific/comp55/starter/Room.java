@@ -13,7 +13,7 @@ import acm.graphics.GRoundRect;
 
 import java.awt.event.MouseEvent;
 
-public class Room extends GCompound {
+public class Room extends GraphicsPane {
 	private static final int ROOMWIDTH = 800;
 	private static final int ROOMHEIGHT = 600;
 	private RoomType type;
@@ -24,38 +24,32 @@ public class Room extends GCompound {
 	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList<Object> objects = new ArrayList<Object>();
+	private MainApplication screen;
 	
 	
-	public Room(RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
+	public Room(MainApplication screen, RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
 		super();
 		this.type = type;
 		this.player = player;
 		this.monsters = monsters;
 		this.objects = objects;
+		this.screen = screen;
 //		GRect rect = new GRect(0, 0, width, height);
 //		rect.setFilled(false);
 //		add(rect);
 		if (player != null) {
 			player.setRoom(this);
-			add(player);
-		}
-		for (Monster m:monsters) {
-			m.setRoom(this);
-			add(m);
-		}
-		for (Object o:objects) {
-			add(o);
 		}
 	}
 
 	public void setPlayer(Player player) {
 		if (this.player != null) {
 			this.player.setRoom(null);
-			remove(this.player);
+			screen.remove(this.player);
 		}
 		this.player = player;
 		this.player.setRoom(this);
-		add(this.player);
+		screen.add(this.player);
 	}
 	
 	public Player getPlayer() {
@@ -63,94 +57,81 @@ public class Room extends GCompound {
 	}
 	
 	public void addBullet(Bullet b) {
-		add(b);
+		this.bullets.add(b);
+		screen.add(b);
 	}
 	
 	public void deleteBullet(AnimatedObject b) {
-		remove(b);
+		this.bullets.remove(b);
+		screen.remove(b);
 	}
 	
 	public void animate() {
-		for (GObject ao:this) {
-			if (ao instanceof AnimatedObject) {
-				AnimatedObject animatedObject = (AnimatedObject)ao;
-				animatedObject.animate();
-				System.out.println("animated object: " + animatedObject);
-				for (GObject o:this) {
-					if (o instanceof Object && ao != o) {
-						Object other = (Object)o;
-						if (animatedObject.getBounds().intersects(other.getBounds())) {
-							// Collision
-							animatedObject.handleCollision(other);
-							other.handleCollision(animatedObject);
-						}
-					}
+		player.animate();
+		
+		for (Monster m : monsters) {
+			m.animate();
+			for(Bullet b: bullets) {
+				if(m.getBounds().intersects(b.getBounds())){
+					m.handleCollision(b);
+					b.handleCollision(m);
 				}
 			}
+			
+			if(m.getBounds().intersects(player.getBounds())){
+				m.handleCollision(player);
+				player.handleCollision(m);
+			}
 		}
+		
+		for (Bullet b : bullets) {
+			b.animate();
+			for(Monster m : monsters) {
+				if(m.getBounds().intersects(b.getBounds())){
+					m.handleCollision(b);
+					b.handleCollision(m);
+				}
+			}
+			
+			if(b.getBounds().intersects(player.getBounds())){
+				b.handleCollision(player);
+				player.handleCollision(b);
+			}
+		}
+		
+		traverseMonsterArrayList();
+		
 	}
 	
 	public void addMonsters(Monster m) {
 		this.monsters.add(m);
+		this.screen.add(m);
 	}
 	public void deleteMonsters(Monster m) {
 		this.monsters.remove(m);
+		this.screen.remove(m);
 	}
 	public void addObjects(Object o) {
 		this.objects.add(o);
+		this.screen.add(o);
 	}
 	public void deleteObjects(Object o) {
 		this.objects.remove(o);
-	}
-
-	public void characterMovement(KeyEvent e) {
-			if (e.getKeyCode() == KeyEvent.VK_W && e.getKeyCode() == KeyEvent.VK_A) {
-				player.move(-1, 1);
-				System.out.println("up left");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_A && e.getKeyCode() == KeyEvent.VK_S) {
-				player.move(-1, -1);
-				System.out.println("down left");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_S && e.getKeyCode() == KeyEvent.VK_D) {
-				player.move(1, -1);
-				System.out.println("down right");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_D && e.getKeyCode() == KeyEvent.VK_W) {
-				player.move(1, 1);
-				System.out.println("up right");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_W) {
-				player.move(0, 1);
-				System.out.println("up ");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_A) {
-				player.move(0, -1);
-				System.out.println(" left");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_S) {
-				player.move(-1, 0);
-				System.out.println("down");
-			}
-			else if (e.getKeyCode() == KeyEvent.VK_D) {
-				player.move(1, 0);
-				System.out.println("right");
-			}
-
+		this.screen.remove(o);
 	}
 	
 	public void characterShoot(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player.shoot(DirectionType.UP);
+			bullets.add(player.shoot(DirectionType.UP));
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.shoot(DirectionType.DOWN);
+			bullets.add(player.shoot(DirectionType.DOWN));
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.shoot(DirectionType.LEFT);
+			bullets.add(player.shoot(DirectionType.LEFT));
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
-			player.shoot(DirectionType.RIGHT);
+			bullets.add(player.shoot(DirectionType.RIGHT));
 		}
 	}
 
@@ -168,10 +149,11 @@ public class Room extends GCompound {
 		//TODO
 		//no more than 3 mouse clicks or key presses
 	}
-	public void traverseMonsterArrayList(ArrayList<Monster> list) {
-		for(Monster m:list) {
+	public void traverseMonsterArrayList() {
+		for(Monster m:monsters) {
 			if(m.isDead() == true) {
-				list.remove(m);
+				this.screen.remove(m);
+				monsters.remove(m);
 			}
 		}
 	}
@@ -200,5 +182,33 @@ public class Room extends GCompound {
 	private void getDoorNum() {
 		// TODO Auto-generated method stub
 		this.getDoorNum();
+	}
+	
+	@Override
+	public void showContents() {
+		if (player != null) {
+			screen.add(player);
+		}
+		for (Monster m:monsters) {
+			m.setRoom(this);
+			screen.add(m);
+		}
+		for (Object o:objects) {
+			screen.add(o);
+		}
+
+	}
+
+	@Override
+	public void hideContents() {
+		if (player != null) {
+			screen.remove(player);
+		}
+		for (Monster m:monsters) {
+			screen.remove(m);
+		}
+		for (Object o:objects) {
+			screen.remove(o);
+		}
 	}
 }

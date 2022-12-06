@@ -12,7 +12,7 @@ public class Character extends AnimatedObject {
 	protected DirectionType faceDirection;
 	protected int health;
 	protected int rateOfFire;
-	protected int speedOfBullet;
+	protected int speedOfBullet = 30;
 	protected int damage;
 	protected boolean dead;
 	protected Room room;
@@ -154,8 +154,10 @@ public class Character extends AnimatedObject {
 	}
 	
 	public void bang(DirectionType d) {
+		System.out.println(ticks + "----" + lastFiredBulletTick + "---"+ rateOfFire);
 		if (ticks - lastFiredBulletTick > rateOfFire) {
 			Bullet b = new Bullet(getX(), getY(), 30, d);
+			System.out.println("=============================added bullet");
 			room.addBullet(b);
 			lastFiredBulletTick = ticks;
 		}

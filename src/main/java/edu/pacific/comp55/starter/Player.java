@@ -47,15 +47,19 @@ public class Player extends Character implements Serializable {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			increaseVelocity(0, -10);
+			this.move(0, -10);
 			break;
 		case KeyEvent.VK_DOWN:
 			increaseVelocity(0, 10);
+			this.move(0, 10);
 			break;
 		case KeyEvent.VK_LEFT:
 			increaseVelocity(-10, 0);
+			this.move(-10, 0);
 			break;
 		case KeyEvent.VK_RIGHT:
 			increaseVelocity(10, 0);
+			this.move(10, 0);
 			break;
 		}
 		System.out.println("key pressed code: " + e.getKeyCode());
