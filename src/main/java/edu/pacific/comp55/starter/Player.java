@@ -8,7 +8,7 @@ import acm.graphics.GImage;
 import acm.graphics.GRoundRect;
 
 public class Player extends Character implements Serializable {
-	public static final int MAX_VELOCITY = 100;
+	public static final int MAX_VELOCITY = 20;
 //	int level;
 //	int maxLife;
 //	int strength;
@@ -47,19 +47,19 @@ public class Player extends Character implements Serializable {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			increaseVelocity(0, -10);
-			this.move(0, -10);
+			//this.move(0, -10);
 			break;
 		case KeyEvent.VK_DOWN:
 			increaseVelocity(0, 10);
-			this.move(0, 10);
+			//this.move(0, 10);
 			break;
 		case KeyEvent.VK_LEFT:
 			increaseVelocity(-10, 0);
-			this.move(-10, 0);
+			//this.move(-10, 0);
 			break;
 		case KeyEvent.VK_RIGHT:
 			increaseVelocity(10, 0);
-			this.move(10, 0);
+			//this.move(10, 0);
 			break;
 		}
 		System.out.println("key pressed code: " + e.getKeyCode());
@@ -93,15 +93,19 @@ public class Player extends Character implements Serializable {
 			break;
 		case 'w':
 			setFaceDirection(DirectionType.UP);
+			bang(getFaceDirection());
 			break;
 		case 'a':
 			setFaceDirection(DirectionType.LEFT);
+			bang(getFaceDirection());
 			break;
 		case 's':
 			setFaceDirection(DirectionType.DOWN);
+			bang(getFaceDirection());
 			break;
 		case 'd':
 			setFaceDirection(DirectionType.RIGHT);
+			bang(getFaceDirection());
 			break;
 		}
 		System.out.println("key typed code: " + e.getKeyChar());	

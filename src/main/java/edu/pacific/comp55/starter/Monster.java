@@ -10,6 +10,7 @@ public class Monster extends Character {
 
 	public Monster(CharacterType charType, String image, double x, double y, double width, double height) {
 		super(charType, image, x, y, width, height);
+		this.health = 100;
 		setFaceDirection(faceDirection);
 	}
 	
@@ -22,6 +23,12 @@ public class Monster extends Character {
 		//check the type of your object
 		//take damage if needed
 		//set dead if needed
+		if (o instanceof Monster) {
+			((Monster) o).isHit(25);
+		}
+		if (o instanceof Player) {
+			((Player) o).isHit(25);
+		}
 	}
 	
 	public DirectionType getDirectionToward(Object o) {

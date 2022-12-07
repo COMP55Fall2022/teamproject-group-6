@@ -211,4 +211,16 @@ public class Room extends GraphicsPane {
 			screen.remove(o);
 		}
 	}
+	
+	public void handleCollision(Object o) {
+		//check the type of your object
+		//take damage if needed
+		//set dead if needed
+		if (o instanceof Monster) {
+			((Monster) o).isHit(25);
+		}
+		if (o instanceof Player) {
+			((Player) o).isHit(25);
+		}
+	}
 }

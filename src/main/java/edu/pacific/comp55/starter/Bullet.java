@@ -4,7 +4,7 @@ public class Bullet extends AnimatedObject {
 	private DirectionType direction;
 
 	public Bullet(double x, double y, double speed, DirectionType direction) {
-		super("bullet.png", x, y, 100, 100);
+		super("bullet.png", x, y, 25, 25);
 		
 		this.direction = direction;
 		updateSpeedAndDirection(speed, direction);
