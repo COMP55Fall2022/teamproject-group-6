@@ -9,6 +9,7 @@ public class MainApplication extends GraphicsApplication {
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3" };
 
 	private ArrayList<RoomPane> rooms;
+	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
 	private Player player;
@@ -24,8 +25,21 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void setupRooms() {
 		rooms = new ArrayList<RoomPane>();
+
 		RoomPane r1 = new RoomPane(this, player);
+//		RoomPane r1 = new RoomPane(this, player, combat.get(0));
+//		RoomPane r2 = new RoomPane(this, player, combat.get(1));
+//		RoomPane r3 = new RoomPane(this, player, combat.get(2));
+//		RoomPane r4 = new RoomPane(this, player, combat.get(3));
+//		RoomPane r5 = new RoomPane(this, player, combat.get(4));
+//		RoomPane r6 = new RoomPane(this, player, combat.get(5));
+//>>>>>>> branch 'main' of https://github.com/COMP55Fall2022/teamproject-group-6.git
 		rooms.add(r1);
+//		rooms.add(r2);
+//		rooms.add(r3);
+//		rooms.add(r4);
+//		rooms.add(r5);
+//		rooms.add(r6);
 	}
 
 	public void run() {

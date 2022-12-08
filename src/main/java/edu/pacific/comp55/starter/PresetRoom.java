@@ -12,7 +12,7 @@ public class PresetRoom {
 	}
 	
 	private void setType(RoomType type) {
-		//this.monsters.add(m);
+		//get monster
 		//this.objects.add(o);
 		//get the player
 		
@@ -43,7 +43,21 @@ public class PresetRoom {
 	private ArrayList<Object> objects = new ArrayList<Object>();
 	private ArrayList<Monster> monster = new ArrayList<Monster>();
 	private ArrayList<Door> doors = new ArrayList<Door>();
+	private ArrayList<Room> rooms = new ArrayList<Room>();
 	
+	/*
+	newRoom CombatRoom1
+	room.setplayer
+	room.setmonster
+	
+	add to arraylist in constructor
+	in preset 
+	
+	constructor getter and setter for arraylist
+	
+*/	
+	//arrayList & getter & setter
+	//
 	
 	public void traverseMonsterArrayList(ArrayList<Monster> list) {
 		for(Monster m:list) {

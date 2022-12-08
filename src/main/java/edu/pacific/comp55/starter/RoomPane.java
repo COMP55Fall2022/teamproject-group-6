@@ -14,12 +14,18 @@ public class RoomPane extends GraphicsPane {
 										// all of the GraphicsProgram calls
 	public static final int BREAK_MS = 100;
 
-	private Room room;
+	private Room room; 
 	private GParagraph para;
 	
-	private MonsterChaser chaser;
-	private MonsterPatroller patroler;
-	private MonsterSentry sentry;
+	private MonsterChaser chaser1;
+	private MonsterPatroller patroler1;
+	private MonsterSentry sentry1;
+	private MonsterChaser chaser2;
+	private MonsterPatroller patroler2;
+	private MonsterSentry sentry2;
+	private MonsterChaser chaser3;
+	private MonsterPatroller patroler3;
+	private MonsterSentry sentry3;
 	private Bullet bullet;
 	private Player player;
 	
@@ -30,9 +36,9 @@ public class RoomPane extends GraphicsPane {
 		this.player = player;
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
-		chaser = new MonsterChaser(100, 100, 60, 60);
-		patroler = new MonsterPatroller(100, 100, 60, 60);
-		sentry = new MonsterSentry(200, 200, 60, 60);
+		chaser1 = new MonsterChaser(100, 100, 60, 60);
+		patroler1 = new MonsterPatroller(100, 100, 60, 60);
+		sentry1 = new MonsterSentry(200, 200, 60, 60);
 		bullet = new Bullet(100, 100, 10, DirectionType.RIGHT);
 		ArrayList<Point> path = new ArrayList<Point>();
 		path.add(new Point(100, 100));
@@ -44,10 +50,10 @@ public class RoomPane extends GraphicsPane {
 		path.add(new Point(300, 300));
 		path.add(new Point(350, 300));
 		path.add(new Point(600, 100));
-		patroler.setPath(path);
-		monsters.add(chaser);
-		monsters.add(patroler);
-		monsters.add(sentry);
+		patroler1.setPath(path);
+		monsters.add(chaser1);
+		monsters.add(patroler1);
+		monsters.add(sentry1);
 		ArrayList<Object> objects = new ArrayList<Object>();
 
 		
@@ -56,7 +62,11 @@ public class RoomPane extends GraphicsPane {
 		
 		
 	}
-
+	
+	public RoomPane(MainApplication app, Player Player, Room combat2) {
+		
+	}
+	
 	@Override
 	public void showContents() {
 		System.out.println("showContent RoomPane");
