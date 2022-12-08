@@ -43,6 +43,7 @@ public class RoomPane extends GraphicsPane {
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
 		chaser1 = new MonsterChaser(100, 100, 60, 60);
+		chaser2 = new MonsterChaser(250, 250, 75, 75);
 		patroler1 = new MonsterPatroller(100, 100, 60, 60);
 		sentry1 = new MonsterSentry(200, 200, 60, 60);
 		bullet = new Bullet(100, 100, 10, DirectionType.RIGHT);
@@ -60,6 +61,7 @@ public class RoomPane extends GraphicsPane {
 		monsters.add(chaser1);
 		monsters.add(patroler1);
 		monsters.add(sentry1);
+		monsters.add(chaser2);
 		ArrayList<Object> objects = new ArrayList<Object>();
 
 		
