@@ -23,12 +23,12 @@ public class Monster extends Character {
 		//check the type of your object
 		//take damage if needed
 		//set dead if needed
-		if (o instanceof Monster) {
-			((Monster) o).isHit(25);
-		}
-		if (o instanceof Player) {
-			((Player) o).isHit(25);
-		}
+//		if (o instanceof Monster) {
+//			((Monster) o).isHit(25);
+//		}
+//		if (o instanceof Player) {
+//			((Player) o).isHit(25);
+//		}
 	}
 	
 	public DirectionType getDirectionToward(Object o) {

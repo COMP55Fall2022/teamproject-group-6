@@ -25,7 +25,6 @@ public class MainApplication extends GraphicsApplication {
 	public void setupRooms() {
 		rooms = new ArrayList<RoomPane>();
 		RoomPane r1 = new RoomPane(this, player);
-		
 		rooms.add(r1);
 	}
 

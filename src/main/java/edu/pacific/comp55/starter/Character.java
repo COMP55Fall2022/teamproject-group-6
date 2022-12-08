@@ -126,9 +126,11 @@ public class Character extends AnimatedObject {
 	public Bullet shoot(DirectionType direction) {
 		this.faceDirection = direction;
 		Bullet bullet = null;
+		Point p = new Point(0,0);
 		if (direction == DirectionType.UP) {
-			bullet = new Bullet(collisionDetectionPoints[3].getX(), 
-								collisionDetectionPoints[3].getY(), 
+			p.setXY(this.getX() + this.getWidth() / 2, this.getY() + this.getHeight());
+			bullet = new Bullet(p.getX(), 
+								p.getY(), 
 								speedOfBullet, 
 								direction);
 		}
@@ -160,6 +162,19 @@ public class Character extends AnimatedObject {
 			System.out.println("=============================added bullet");
 			room.addBullet(b);
 			lastFiredBulletTick = ticks;
+		}
+	}
+	
+	@Override 
+	public void handleCollision(Object o) {
+		//check the type of your object
+		//take damage if needed
+		//set dead if needed
+		if (o instanceof Bullet) {
+			this.health = this.health - 25;
+			if (this.health <= 0) {
+				this.dead = true;
+			}
 		}
 	}
 	
