@@ -26,6 +26,9 @@ public class RoomPane extends GraphicsPane {
 	private MonsterChaser chaser3;
 	private MonsterPatroller patroler3;
 	private MonsterSentry sentry3;
+	private MonsterChaser chaser4;
+	private MonsterPatroller patroler4;
+	private MonsterSentry sentry4;
 	private Bullet bullet;
 	private Player player;
 	
