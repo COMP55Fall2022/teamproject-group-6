@@ -6,7 +6,9 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import acm.graphics.GCompound;
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
+import acm.graphics.GPoint;
 import acm.graphics.GRect;
 import acm.graphics.GRectangle;
 import acm.graphics.GRoundRect;
@@ -25,6 +27,8 @@ public class Room extends GraphicsPane {
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList<Object> objects = new ArrayList<Object>();
 	private MainApplication screen;
+	private GLabel HP;
+	
 	
 	
 	public Room(MainApplication screen, RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
@@ -39,6 +43,7 @@ public class Room extends GraphicsPane {
 //		add(rect);
 		if (player != null) {
 			player.setRoom(this);
+			HP = new GLabel("HP: " + player.getHealth(), 50, 50);
 		}
 	}
 
@@ -54,6 +59,10 @@ public class Room extends GraphicsPane {
 	
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public void deletePlayer() {
+		
 	}
 	
 	public void addBullet(Bullet b) {
@@ -98,9 +107,10 @@ public class Room extends GraphicsPane {
 				player.handleCollision(b);
 			}
 		}
+		HP.setLabel("HP: " + player.getHealth());
 		
 		traverseMonsterArrayList();
-		
+		traverseBulletsArrayList();
 	}
 	
 	public void addMonsters(Monster m) {
@@ -158,18 +168,19 @@ public class Room extends GraphicsPane {
 		}
 	}
 	
-	public void traverseBulletsArrayList(ArrayList<Bullet> list) {
-		for(AnimatedObject b:list) {
-			Point[] collisionDetectionPoints = new Point[8];
-			collisionDetectionPoints = b.getCollisionDetectionPoints();
-			for (Point p:collisionDetectionPoints) {
+	public void traverseBulletsArrayList() {
+		for(AnimatedObject b:bullets) {
+//			Point[] collisionDetectionPoints = new Point[8];
+//			collisionDetectionPoints = b.getCollisionDetectionPoints();
+//			for (Point p:collisionDetectionPoints) {
+			GPoint p = b.getLocation();
 				if (p.getX() <= 0 || p.getX() >= ROOMWIDTH) {
-					deleteBullet(b);
+					deleteObjects(b);
 				}
 				if (p.getY() <= 0 || p.getY() >= ROOMHEIGHT) {
-					deleteBullet(b);
+					deleteObjects(b);
 				}
-			}
+//			}
 		}
 	}
 	
@@ -188,6 +199,7 @@ public class Room extends GraphicsPane {
 	public void showContents() {
 		if (player != null) {
 			screen.add(player);
+			screen.add(HP);
 		}
 		for (Monster m:monsters) {
 			m.setRoom(this);

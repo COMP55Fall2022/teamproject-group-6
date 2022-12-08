@@ -37,9 +37,6 @@ public class RoomPane extends GraphicsPane {
 	public RoomPane(MainApplication app, Player player) {
 		this.program = app;
 		this.player = player;
-//		img = new GImage("robot head.jpg", 100, 100);
-//		para = new GParagraph("welcome\nto my\nsecret room!", 150, 300);
-//		para.setFont("Arial-24");
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
 		chaser1 = new MonsterChaser(100, 100, 60, 60);
@@ -66,6 +63,9 @@ public class RoomPane extends GraphicsPane {
 
 		
 		room = new Room(program, RoomType.BOSS, player, monsters, objects);
+		
+		
+		
 	}
 	
 	public RoomPane(MainApplication app, Player Player, Room combat2) {
