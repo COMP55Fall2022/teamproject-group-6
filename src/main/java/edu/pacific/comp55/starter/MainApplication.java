@@ -28,9 +28,11 @@ public class MainApplication extends GraphicsApplication {
 		RoomPane r1 = new RoomPane(this, player, combat.get(0));
 		RoomPane r2 = new RoomPane(this, player, combat.get(1));
 		RoomPane r3 = new RoomPane(this, player, combat.get(2));
+		RoomPane r4 = new RoomPane(this, player, combat.get(3));
 		rooms.add(r1);
 		rooms.add(r2);
 		rooms.add(r3);
+		rooms.add(r4);
 	}
 
 	public void run() {
