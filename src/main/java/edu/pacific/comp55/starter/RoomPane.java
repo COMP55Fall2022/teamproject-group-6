@@ -45,6 +45,7 @@ public class RoomPane extends GraphicsPane {
 		chaser2 = new MonsterChaser(250, 250, 75, 75);
 		chaser3 = new MonsterChaser(400, 100, 25, 75);
 		chaser4 = new MonsterChaser(500, 250, 100, 50);
+		chaser5 = new MonsterChaser(300, 300, 150, 100);
 		patroler1 = new MonsterPatroller(100, 100, 60, 60);
 		sentry1 = new MonsterSentry(200, 200, 60, 60);
 		ArrayList<Point> path = new ArrayList<Point>();
@@ -59,18 +60,16 @@ public class RoomPane extends GraphicsPane {
 		path.add(new Point(600, 100));
 		patroler1.setPath(path);
 		monsters.add(chaser1);
-		monsters.add(patroler1);
-		monsters.add(sentry1);
 		monsters.add(chaser2);
 		monsters.add(chaser3);
 		monsters.add(chaser4);
+		monsters.add(chaser5);
+		monsters.add(patroler1);
+		monsters.add(sentry1);
 		ArrayList<Object> objects = new ArrayList<Object>();
 
-		
 		room = new Room(program, RoomType.BOSS, player, monsters, objects);
-		
-		
-		
+			
 	}
 	
 	public RoomPane(MainApplication app, Player Player, Room combat2) {
