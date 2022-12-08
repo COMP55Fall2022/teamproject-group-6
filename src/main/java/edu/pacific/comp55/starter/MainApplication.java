@@ -9,6 +9,7 @@ public class MainApplication extends GraphicsApplication {
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3" };
 
 	private ArrayList<RoomPane> rooms;
+	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
 	private Player player;
@@ -24,9 +25,10 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void setupRooms() {
 		rooms = new ArrayList<RoomPane>();
-		RoomPane r1 = new RoomPane(this, player);
-		
+		RoomPane r1 = new RoomPane(this, player, combat.get(0));
+		RoomPane r2 = new RoomPane(this, player, combat.get(1));
 		rooms.add(r1);
+		rooms.add(r2);
 	}
 
 	public void run() {
