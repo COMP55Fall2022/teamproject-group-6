@@ -29,7 +29,6 @@ public class RoomPane extends GraphicsPane {
 	private MonsterChaser chaser4;
 	private MonsterPatroller patroler4;
 	private MonsterSentry sentry4;
-	private Bullet bullet;
 	private Player player;
 	
 	private ArrayList<AnimatedObject> animatedObjects;
@@ -43,7 +42,6 @@ public class RoomPane extends GraphicsPane {
 		chaser2 = new MonsterChaser(250, 250, 75, 75);
 		patroler1 = new MonsterPatroller(100, 100, 60, 60);
 		sentry1 = new MonsterSentry(200, 200, 60, 60);
-		bullet = new Bullet(100, 100, 10, DirectionType.RIGHT);
 		ArrayList<Point> path = new ArrayList<Point>();
 		path.add(new Point(100, 100));
 		path.add(new Point(50, 100));
