@@ -12,7 +12,7 @@ public class Character extends AnimatedObject {
 	protected DirectionType faceDirection;
 	protected int health;
 	protected int rateOfFire;
-	protected int speedOfBullet = 30;
+	protected int speedOfBullet = 100;
 	protected int damage;
 	protected boolean dead;
 	protected Room room;
@@ -126,30 +126,34 @@ public class Character extends AnimatedObject {
 	public Bullet shoot(DirectionType direction) {
 		this.faceDirection = direction;
 		Bullet bullet = null;
-		Point p = new Point(0,0);
+//		Point p = new Point(0,0);
 		if (direction == DirectionType.UP) {
-			p.setXY(this.getX() + this.getWidth() / 2, this.getY() + this.getHeight());
-			bullet = new Bullet(p.getX(), 
-								p.getY(), 
-								speedOfBullet, 
+			//p.setXY(this.getX() + this.getWidth() / 2, this.getY());
+			bullet = new Bullet(this.getX() + this.getWidth() / 2 - 12.5, 
+					this.getY(), 
+								30, 
 								direction);
 		}
 		else if (direction == DirectionType.DOWN) {
-			bullet = new Bullet(collisionDetectionPoints[7].getX(), 
-					collisionDetectionPoints[7].getY(), 
-					speedOfBullet, 
+			
+			//p.setXY(this.getLocation().getX() + this.getWidth() / 2, this.getLocation().getY() + this.getHeight());
+			bullet = new Bullet(this.getLocation().getX() + this.getWidth() / 2 - 12.5, 
+					this.getLocation().getY() + this.getHeight(), 
+					30, 
 					direction);
 		}
 		else if (direction == DirectionType.LEFT) {
-			bullet = new Bullet(collisionDetectionPoints[1].getX(), 
-					collisionDetectionPoints[1].getY(), 
-					speedOfBullet, 
+			//p.setXY(this.getX(), this.getY() + this.getHeight() / 2);
+			bullet = new Bullet(this.getX() - 12.5, 
+					this.getY() + this.getHeight() / 2,  
+					30, 
 					direction);
 		}
 		else if (direction == DirectionType.RIGHT) {
-			bullet = new Bullet(collisionDetectionPoints[5].getX(), 
-					collisionDetectionPoints[5].getY(), 
-					speedOfBullet, 
+			//p.setXY(this.getX() + this.getWidth(), this.getY() + this.getHeight() / 2);
+			bullet = new Bullet(this.getX() + this.getWidth(), 
+					this.getY() + this.getHeight() / 2, 
+					30, 
 					direction);
 		}
 		return bullet;
@@ -158,7 +162,7 @@ public class Character extends AnimatedObject {
 	public void bang(DirectionType d) {
 		System.out.println(ticks + "----" + lastFiredBulletTick + "---"+ rateOfFire);
 		if (ticks - lastFiredBulletTick > rateOfFire) {
-			Bullet b = new Bullet(getX(), getY(), 30, d);
+			Bullet b = shoot(d);
 			System.out.println("=============================added bullet");
 			room.addBullet(b);
 			lastFiredBulletTick = ticks;
