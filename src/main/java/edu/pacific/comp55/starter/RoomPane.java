@@ -29,6 +29,9 @@ public class RoomPane extends GraphicsPane {
 	private MonsterChaser chaser4;
 	private MonsterPatroller patroler4;
 	private MonsterSentry sentry4;
+	private MonsterChaser chaser5;
+	private MonsterPatroller patroler5;
+	private MonsterSentry sentry5;
 	private Player player;
 	
 	private ArrayList<AnimatedObject> animatedObjects;
