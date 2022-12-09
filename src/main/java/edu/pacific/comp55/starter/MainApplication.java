@@ -87,10 +87,9 @@ public class MainApplication extends GraphicsApplication {
 		box = new Object("robot head.jpg", 45, 510, 50, 50);
 		objects.add(box);
 
-		Room room1 = new Room(this, RoomType.BOSS, player, monsters, objects);
-		
+		Room room1 = new Room(this, RoomType.EMPTY, player, monsters, objects);
 		rooms.add(room1);
-
+		
 		monsters = new ArrayList<Monster>();
 		monsters.add(new MonsterChaser(500, 250, 50, 50));
 		monsters.add(new MonsterChaser(300, 300, 50, 50));
@@ -100,10 +99,10 @@ public class MainApplication extends GraphicsApplication {
 
 		MonsterPatroller patroler4 = new MonsterPatroller(500, 300, 62.5, 62.5);
 		MonsterPatroller patroler5 = new MonsterPatroller(350, 250, 62.5, 62.5);
-		patroler4.setPath(path);
-		patroler5.setPath(path);
-		monsters.add(patroler4);
-		monsters.add(patroler5);
+//		patroler4.setPath(path);
+//		patroler5.setPath(path);
+//		monsters.add(patroler4);
+//		monsters.add(patroler5);
 
 //		objects = new ArrayList<Object>();
 //		box = new Object("robot head.jpg", 30, 40, 50, 50);
@@ -138,9 +137,30 @@ public class MainApplication extends GraphicsApplication {
 		Room[] neighbors1 = {null, room2, null, null};
 		room1.setNeighbors(neighbors1);
 
-		Room[] neighbors2 = {null, null, null, room1};
+		Room[] neighbors2 = {room3, null, null, room1};
 		room2.setNeighbors(neighbors2);
-
+		
+		Room[] neightbors3 = {null, room5, room2, room4}; 
+		room3.setNeighbors(neighbors3);
+		
+		Room[] neightbors4 = {room6, room3, null, null}; 
+		room4.setNeighbors(neighbors4);
+		
+		Room[] neightbors5 = {null, room8, null, room3}; 
+		room5.setNeighbors(neighbors5);
+		
+		Room[] neightbors6 = {null, null, room4, null}; 
+		room6.setNeighbors(neighbors6);
+		
+		Room[] neightbors7 = {room8, room9, null, null}; 
+		room7.setNeighbors(neighbors7);
+		
+		Room[] neightbors8 = {null, null, room7, room5}; 
+		room8.setNeighbors(neighbors8);
+		
+		Room[] neightbors9 = {null, null, null, room7}; 
+		room9.setNeighbors(neighbors9);
+		
 	}
 
 	public void run() {
