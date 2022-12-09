@@ -51,11 +51,11 @@ public class RoomPane extends GraphicsPane {
 		patroler3 = new MonsterPatroller(175, 175, 62.5, 62.5);
 		patroler4 = new MonsterPatroller(400, 100, 62.5, 62.5);
 		patroler5 = new MonsterPatroller(250, 250, 62.5, 62.5);
-		sentry1 = new MonsterSentry(250, 250, 50, 50);
-		sentry2 = new MonsterSentry(525, 325, 50, 50);
+		sentry1 = new MonsterSentry(250, 300, 50, 50);
+		sentry2 = new MonsterSentry(500, 350, 50, 50);
 		sentry3 = new MonsterSentry(300, 400, 50, 50);
-		sentry4 = new MonsterSentry(400, 500, 50, 50);
-		sentry5 = new MonsterSentry(475, 175, 50, 50);
+		sentry4 = new MonsterSentry(400, 250, 50, 50);
+		sentry5 = new MonsterSentry(175, 425, 50, 50);
 		ArrayList<Point> path = new ArrayList<Point>();
 		path.add(new Point(100, 100));
 		path.add(new Point(50, 100));
