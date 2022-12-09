@@ -114,6 +114,27 @@ public class MainApplication extends GraphicsApplication {
 		Room room2 = new Room(this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room2);
 		
+		Room room3 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		rooms.add(room3);
+		
+		Room room4 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		rooms.add(room4);
+		
+		Room room5 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		rooms.add(room5);
+		
+		Room room6 = new Room(this, RoomType.EMPTY, player, monsters, objects);
+		rooms.add(room6);
+		
+		Room room7 = new Room(this, RoomType.EMPTY, player, monsters, objects);
+		rooms.add(room7);
+		
+		Room room8 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		rooms.add(room8);
+		
+		Room room9 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		rooms.add(room9);
+		
 		Room[] neighbors1 = {null, room2, null, null};
 		room1.setNeighbors(neighbors1);
 
