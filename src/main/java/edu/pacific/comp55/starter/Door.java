@@ -50,24 +50,14 @@ public class Door {
 		}
 	}	
 }
-/*		
+		
 	
 	
-/*	
-	boolean isActive = false;
-	if (isActive = false) {
-		return isActive;
-		else {
-			break;
-		}
-	}
-<<<<<<< HEAD
-}
-=======
-/*
+	
 
+	
+	
 
-*/
 	
 /*	
 newDoor;
