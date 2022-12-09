@@ -160,7 +160,7 @@ public class MainApplication extends GraphicsApplication {
 		
 		Room[] neightbors9 = {null, null, null, room7}; 
 		room9.setNeighbors(neighbors9);
-		
+	//test
 	}
 
 	public void run() {
