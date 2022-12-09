@@ -47,7 +47,7 @@ public class SettingPane extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == rect1) {
 			if (difficultyAppliedTime == 0) {
-				program.player.health = program.player.health * 1;
+				program.getPlayer().health = program.getPlayer().health * 1;
 				program.switchToMenu();
 				difficultyAppliedTime++;
 			}
@@ -55,14 +55,14 @@ public class SettingPane extends GraphicsPane {
 		}
 		else if (obj == rect2) {
 			if (difficultyAppliedTime == 0) {
-				program.player.health = (int) (program.player.health * 0.75);
+				program.getPlayer().health = (int) (program.getPlayer().health * 0.75);
 				program.switchToMenu();
 				difficultyAppliedTime++;
 			}
 		}
 		else if (obj == rect3) {
 			if (difficultyAppliedTime == 0) {
-				program.player.health = (int) (program.player.health * 0.5);
+				program.getPlayer().health = (int) (program.getPlayer().health * 0.5);
 				program.switchToMenu();
 				difficultyAppliedTime++;
 			}
