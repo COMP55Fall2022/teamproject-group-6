@@ -15,7 +15,6 @@ public class Character extends AnimatedObject {
 	protected int speedOfBullet = 100;
 	protected int damage;
 	protected boolean dead;
-	protected Room room;
 	protected long lastFiredBulletTick;
 	
 	public Character(CharacterType charType, String image, double x, double y, double width, double height) {
@@ -23,14 +22,6 @@ public class Character extends AnimatedObject {
 		this.charType = charType;
 		this.faceDirection = DirectionType.DOWN;
 		this.dead = false;
-	}
-
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
 	}
 
 	public CharacterType getType() {
@@ -105,6 +96,7 @@ public class Character extends AnimatedObject {
 		if (this.health <= 0) {
 			this.setDead(true);
 		}
+		
 	}
 	
 	//Use 8 points to detect collision for all moving things
@@ -129,31 +121,31 @@ public class Character extends AnimatedObject {
 //		Point p = new Point(0,0);
 		if (direction == DirectionType.UP) {
 			//p.setXY(this.getX() + this.getWidth() / 2, this.getY());
-			bullet = new Bullet(this.getX() + this.getWidth() / 2 - 12.5, 
-					this.getY(), 
-								30, 
+			bullet = new Bullet(this.getX() + this.getWidth() / 4, 
+					this.getY() - 1 - Bullet.HEIGHT, 
+								15, 
 								direction);
 		}
 		else if (direction == DirectionType.DOWN) {
 			
 			//p.setXY(this.getLocation().getX() + this.getWidth() / 2, this.getLocation().getY() + this.getHeight());
-			bullet = new Bullet(this.getLocation().getX() + this.getWidth() / 2 - 12.5, 
-					this.getLocation().getY() + this.getHeight(), 
-					30, 
+			bullet = new Bullet(this.getLocation().getX() + this.getWidth() / 4, 
+					this.getLocation().getY() + this.getHeight() + 1, 
+					15, 
 					direction);
 		}
 		else if (direction == DirectionType.LEFT) {
 			//p.setXY(this.getX(), this.getY() + this.getHeight() / 2);
-			bullet = new Bullet(this.getX() - 12.5, 
-					this.getY() + this.getHeight() / 2,  
-					30, 
+			bullet = new Bullet(this.getX() - 1 - Bullet.WIDTH, 
+					this.getY() + this.getHeight() / 4,  
+					15, 
 					direction);
 		}
 		else if (direction == DirectionType.RIGHT) {
 			//p.setXY(this.getX() + this.getWidth(), this.getY() + this.getHeight() / 2);
-			bullet = new Bullet(this.getX() + this.getWidth(), 
-					this.getY() + this.getHeight() / 2, 
-					30, 
+			bullet = new Bullet(this.getX()+ 1 + this.getWidth(), 
+					this.getY() + this.getHeight() / 4, 
+					15, 
 					direction);
 		}
 		return bullet;
@@ -171,16 +163,15 @@ public class Character extends AnimatedObject {
 	
 	@Override 
 	public void handleCollision(Object o) {
+		super.handleCollision(o);
 		//check the type of your object
 		//take damage if needed
 		//set dead if needed
 		if (o instanceof Bullet) {
-			this.health = this.health - 25;
-			if (this.health <= 0) {
-				this.dead = true;
-			}
+			isHit(25);
 		}
 	}
+
 	
 	
 	@Override

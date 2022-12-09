@@ -23,8 +23,12 @@ public class Object extends GImage {
 		
 	}
 	
+	
+	
 	public void handleCollision(Object o) {
-		
+
 	}
+	
+	
 
 }

@@ -1,17 +1,51 @@
 package edu.pacific.comp55.starter;
 
 public class Bullet extends AnimatedObject {
+	public static final int WIDTH = 25;
+	public static final int HEIGHT = 25;
 	private DirectionType direction;
+	private long timeOfExplosion;
+	private boolean exploded;
 
 	public Bullet(double x, double y, double speed, DirectionType direction) {
-		super("bullet.png", x, y, 25, 25);
+		super("bullet.png", x, y, WIDTH, HEIGHT);
 		
 		this.direction = direction;
 		updateSpeedAndDirection(speed, direction);
+		this.timeOfExplosion = 0;
+		this.exploded = false;
 //		for (int i = 0; i < 8; ++i) {
 //			collisionDetectionPoints[i] = new Point(0, 0);
 //		}
 //		this.updateCollisionDetectionPoints();
+	}
+	
+	
+	public void handleCollision(Object o) {
+		super.handleCollision(o);
+		if(!exploded && !(o instanceof Bullet)) {
+			exploded = true;
+			timeOfExplosion = super.ticks;
+			setImage("explosion.png");
+			setBounds(getX(), getY(), WIDTH, HEIGHT);
+			System.out.println("exploded, " + o);
+		}
+	}
+	
+	public void animate() {
+		if (!exploded) {
+			super.animate();
+			
+		}
+		else {
+			timeOfExplosion++;
+			if(timeOfExplosion > 10) {
+				setLocation(-1, -1);
+				setVisible(false);
+				System.out.println("delete me");
+			}
+				
+		}
 	}
 	
 	@Override

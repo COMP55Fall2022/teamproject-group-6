@@ -38,13 +38,19 @@ public class Room extends GraphicsPane {
 		this.monsters = monsters;
 		this.objects = objects;
 		this.screen = screen;
-//		GRect rect = new GRect(0, 0, width, height);
-//		rect.setFilled(false);
-//		add(rect);
+		Object left = new Object("bullet.png", 0, 0, 5, screen.getHeight());
+		addObjects(left);
+		Object right = new Object("bullet.png", screen.getWidth()-5, 0, 5, screen.getHeight());
+		addObjects(right);
+		Object top = new Object("bullet.png", 0, 0, screen.getWidth(), 5);
+		addObjects(top);
+		Object bottom = new Object("bullet.png", 0, screen.getHeight()-5, screen.getWidth(), 5);
+		addObjects(bottom);
 		if (player != null) {
 			player.setRoom(this);
 			HP = new GLabel("HP: " + player.getHealth(), 50, 50);
 		}
+		
 	}
 
 	public void setPlayer(Player player) {
@@ -66,6 +72,7 @@ public class Room extends GraphicsPane {
 	}
 	
 	public void addBullet(Bullet b) {
+		b.setRoom(this);
 		this.bullets.add(b);
 		screen.add(b);
 	}
@@ -76,41 +83,72 @@ public class Room extends GraphicsPane {
 	}
 	
 	public void animate() {
+		GPoint oldLocation = player.getLocation();
 		player.animate();
+		for(Object o: objects) {
+			if(player.getBounds().intersects(o.getBounds())){
+				player.setLocation(oldLocation);
+				player.handleCollision(o);
+			}
+		}
 		
 		for (Monster m : monsters) {
-			m.animate();
-			for(Bullet b: bullets) {
-				if(m.getBounds().intersects(b.getBounds())){
-					m.handleCollision(b);
-					b.handleCollision(m);
+			if(!m.isDead())	{
+				oldLocation = m.getLocation();
+				m.animate();
+				for(Object o: objects) {
+					if(m.getBounds().intersects(o.getBounds())){
+						m.setLocation(oldLocation);
+						m.handleCollision(o);
+					}
 				}
-			}
-			
-			if(m.getBounds().intersects(player.getBounds())){
-				m.handleCollision(player);
-				player.handleCollision(m);
+
+				for(Bullet b: bullets) {
+					if(b.isVisible() && m.getBounds().intersects(b.getBounds())){
+						m.setLocation(oldLocation);
+						m.handleCollision(b);
+						b.handleCollision(m);
+					}
+				}
+				
+				if(m.getBounds().intersects(player.getBounds())){
+					m.setLocation(oldLocation);
+					m.handleCollision(player);
+					player.handleCollision(m);
+				}
 			}
 		}
 		
 		for (Bullet b : bullets) {
-			b.animate();
-			for(Monster m : monsters) {
-				if(m.getBounds().intersects(b.getBounds())){
-					m.handleCollision(b);
-					b.handleCollision(m);
+			if(b.isVisible()) {
+				oldLocation = b.getLocation();
+				b.animate();
+				for(Object o: objects) {
+					if(b.getBounds().intersects(o.getBounds())){
+						b.setLocation(oldLocation);
+						b.handleCollision(o);
+					}
 				}
-			}
-			
-			if(b.getBounds().intersects(player.getBounds())){
-				b.handleCollision(player);
-				player.handleCollision(b);
+
+				for(Monster m : monsters) {
+					if(!m.isDead() && m.getBounds().intersects(b.getBounds())){
+						b.setLocation(oldLocation);
+						m.handleCollision(b);
+						b.handleCollision(m);
+					}
+				}
+				
+				if(b.getBounds().intersects(player.getBounds())){
+					b.setLocation(oldLocation);
+					b.handleCollision(player);
+					player.handleCollision(b);
+				}
 			}
 		}
 		HP.setLabel("HP: " + player.getHealth());
 		
-		traverseMonsterArrayList();
-		traverseBulletsArrayList();
+		//traverseMonsterArrayList();
+		//traverseBulletsArrayList();
 	}
 	
 	public void addMonsters(Monster m) {

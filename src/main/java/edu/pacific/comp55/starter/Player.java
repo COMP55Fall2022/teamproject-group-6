@@ -26,18 +26,26 @@ public class Player extends Character implements Serializable {
 //	boolean mapObjectOpened[][];
 	
 	public Player() {
-		this(0, 0, 50, 50);
+		this(200, 100, 50, 50);
 	}
 	
 	public Player(double x, double y, double width, double height) {
 		super(CharacterType.PLAYER, "player.png",  x, y, width, height);
 		setFaceDirection(DirectionType.UP);
-		health = 100;
+		health = 100000;
 		rateOfFire = 1;
 		speedOfBullet = 1;
 		damage = 25;
 	}
 
+	@Override
+	public void handleCollision(Object o) {
+		//check the type of your object
+		//take damage if needed
+		//set dead if needed
+		super.handleCollision(o);
+	}	
+	
 	public void increaseVelocity(double deltaxV, double deltayV) {
 		xVelocity = Math.max(Math.min(xVelocity + deltaxV, MAX_VELOCITY), -MAX_VELOCITY);
 		yVelocity = Math.max(Math.min(yVelocity + deltayV, MAX_VELOCITY), -MAX_VELOCITY);
