@@ -265,6 +265,9 @@ public class Room extends GraphicsPane {
 		for (Object o:objects) {
 			screen.add(o);
 		}
+//		for (Bullet b:bullets) {
+//			screen.add(b);
+//		}
 		
 
 	}
@@ -282,6 +285,9 @@ public class Room extends GraphicsPane {
 		}
 		for (Object o:objects) {
 			screen.remove(o);
+		}
+		for (Bullet b:bullets) {
+			screen.remove(b);
 		}
 	}
 	

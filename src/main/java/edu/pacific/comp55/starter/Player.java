@@ -50,12 +50,24 @@ public class Player extends Character implements Serializable {
 		if (o instanceof Bullet) {
 			isHit(25);
 		} else if (o instanceof Door) {
-			Room nextRoom = ((Door) o).getNextRoom();
+			Door door = ((Door) o);
+			Room nextRoom = door.getNextRoom();
 			System.out.println("door hit");
 			if(nextRoom != null && getRoom().isCompleted())	{
 				setRoom(nextRoom);
 				getRoom().getScreen().switchToRoom();
-				setLocation(100,100);
+				if(door.getY() == 0) {
+					setLocation(getX(), room.getScreen().getHeight() - door.getHeight() - getHeight() - 1 );
+				}
+				else if(door.getX() == 0) {
+					setLocation(room.getScreen().getWidth()-door.getWidth() - getWidth() - 1, getY());
+				}
+				else if(door.getX() == (room.getScreen().getWidth() - door.getWidth())) {
+					setLocation(door.getWidth() + 1, getY());
+				}
+				else {
+					setLocation(getX(), door.getHeight() + 1);
+				}
 			}
 		}
 
