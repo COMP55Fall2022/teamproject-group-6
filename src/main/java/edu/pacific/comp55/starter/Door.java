@@ -35,17 +35,17 @@ public class Door {
 	
 	private void getDoorNum(int doorNum) {
 		// TODO Auto-generated method stub
-		if(doorNum == 1) {
+		if(doorNum == 0) {
 			String doorLocation = "Left";	
 		}
-		else if(doorNum == 2) {
+		else if(doorNum == 1) {
 			String doorLocation = "Top";
 		}
-		else if(doorNum == 3) {
+		else if(doorNum == 2) {
 			String doorLocation = "Right";
 			
 		}
-		else if(doorNum == 4) {
+		else if(doorNum == 3) {
 			String doorLocation = "Bottom";
 		}
 	}	
