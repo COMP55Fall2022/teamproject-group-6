@@ -9,8 +9,8 @@ public class Door {
 	private int locationY;
 	private int startPoint;
 	public boolean isActive = false;
-	private int width = 100;
-	private int height = 150;
+	//private int width = 100;
+	//private int height = 150;
 	//redo height & width
 	
 
