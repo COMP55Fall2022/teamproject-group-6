@@ -12,7 +12,7 @@ public class MainApplication extends GraphicsApplication {
 	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
-	private Player player;
+	protected Player player;
 	private int count;
 	private DataStorage data = new DataStorage();
 
@@ -83,11 +83,11 @@ public class MainApplication extends GraphicsApplication {
 		monsters.add(patroler4);
 		monsters.add(patroler5);
 
-		objects = new ArrayList<Object>();
-		box = new Object("robot head.jpg", 30, 40, 50, 50);
-		objects.add(box);
-		box = new Object("robot head.jpg", 45, 100, 50, 50);
-		objects.add(box);
+//		objects = new ArrayList<Object>();
+//		box = new Object("robot head.jpg", 30, 40, 50, 50);
+//		objects.add(box);
+//		box = new Object("robot head.jpg", 45, 100, 50, 50);
+//		objects.add(box);
 		
 		Room room2 = new Room(this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room2);
@@ -101,7 +101,7 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void run() {
-		System.out.println("Hello, world!");
+		load();
 		menu = new MenuPane(this);
 		setting = new SettingPane(this);
 		setupInteractions();
@@ -131,11 +131,13 @@ public class MainApplication extends GraphicsApplication {
 	}
 	
 	public void save() {
-		data.maxHP = player.getHealth();
-		data.damage = player.getDamage();
+		data.maxHP = player.maxHP;
+		data.damage = player.damage;
 //		data.shield = player.shield();
-//		data.coin = player.getCoin();
-//		data.timeOfComplete = player.time();
+		data.coin = player.coin;
+		if (data.timeOfComplete > player.time) {
+			data.timeOfComplete = player.time;
+		}
 		data.writeSaveFile();
 	}
 	
@@ -145,8 +147,8 @@ public class MainApplication extends GraphicsApplication {
 		player.health = dataRecieved[0];
 		player.damage = dataRecieved[1];
 //		player.shield = dataRecieved[2];
-//		player.coin = dataRecieved[3];
-//		player.time = dataRecieved[4];
+		player.coin = dataRecieved[3];
+		player.time = dataRecieved[4];
 	}
 	
 	public static void main(String[] args) {
