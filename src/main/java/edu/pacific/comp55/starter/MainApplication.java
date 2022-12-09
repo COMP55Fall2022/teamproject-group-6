@@ -46,16 +46,27 @@ public class MainApplication extends GraphicsApplication {
 		path.add(new Point(300, 300));
 		path.add(new Point(350, 300));
 		path.add(new Point(600, 100));
-
+		
+		ArrayList<Point> path2 = new ArrayList<Point>();
+		path2.add(new Point (50, 150));
+		path2.add(new Point (100, 150));
+		path2.add(new Point (100, 50));
+		path2.add(new Point (200, 50));
+		path2.add(new Point (400, 200));
+		path2.add(new Point (600, 200));
+		path2.add(new Point (600, 400));
+		path2.add(new Point (300, 400));
+		path2.add(new Point (150, 200));
+		
   		MonsterPatroller patroler1 = new MonsterPatroller(150, 400, 62.5, 62.5);
 		MonsterPatroller patroler2 = new MonsterPatroller(275, 200, 62.5, 62.5);
 		MonsterPatroller patroler3 = new MonsterPatroller(425, 175, 62.5, 62.5);
 
 		patroler1.setPath(path);
-		patroler2.setPath(path);
-		patroler3.setPath(path);
-//		monsters.add(patroler1);
-//		monsters.add(patroler2);
+		patroler2.setPath(path2);
+//		patroler3.setPath(path3);
+		monsters.add(patroler1);
+		monsters.add(patroler2);
 //		monsters.add(patroler3);
 		
 		ArrayList<Object> objects = new ArrayList<Object>();
