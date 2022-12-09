@@ -9,7 +9,7 @@ public class Door {
 	private int locationY;
 	private int startPoint;
 	public boolean isActive = false;
-	//private int width = 0;
+	private int width = 100;
 	//private int height = 0;
 	//redo height & width
 	
@@ -52,11 +52,15 @@ public class Door {
 }
 		
 	
-	
-	
+	/*
+if (isActive = false) {
+	return isActive;
+	else {
+		break;
+	}
+}
 
-	
-	
+*/	
 
 	
 /*	
