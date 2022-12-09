@@ -67,10 +67,10 @@ public class RoomPane extends GraphicsPane {
 		path.add(new Point(350, 300));
 		path.add(new Point(600, 100));
 		patroler1.setPath(path);
-		patroler1.setPath(path);
-		patroler1.setPath(path);
-		patroler1.setPath(path);
-		patroler1.setPath(path);
+		patroler2.setPath(path);
+		patroler3.setPath(path);
+		patroler4.setPath(path);
+		patroler5.setPath(path);
 		monsters.add(chaser1);
 		monsters.add(chaser2);
 		monsters.add(chaser3);
