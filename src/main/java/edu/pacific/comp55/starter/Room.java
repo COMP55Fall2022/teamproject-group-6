@@ -20,7 +20,8 @@ public class Room extends GraphicsPane {
 	private static final int ROOMWIDTH = 800;
 	private static final int ROOMHEIGHT = 600;
 	private RoomType type;
-	private boolean isCompleted = false;
+	protected boolean isCompleted = false;
+	private int completedTime;
 	private int width = ROOMWIDTH;
 	private int height = ROOMHEIGHT;
 	private Player player;
@@ -49,7 +50,7 @@ public class Room extends GraphicsPane {
 		addObjects(top);
 		Object bottom = new Object("bullet.png", 0, screen.getHeight()-5, screen.getWidth(), 5);
 		addObjects(bottom);
-		
+		completedTime = 0;
 		if (player != null) {
 			player.setRoom(this);
 			HP = new GParagraph("HP: " + player.getHealth(), 50, 50);
@@ -168,7 +169,6 @@ public class Room extends GraphicsPane {
 				"Monsters Remaining: " + countMonstersAlive() + "\n" +
 				"Time: " + (player.ticks*screen.BREAK_MS) / 1000 + " seconds \n"
 		);
-		
 		//traverseMonsterArrayList();
 		//traverseBulletsArrayList();
 	}
@@ -248,11 +248,11 @@ public class Room extends GraphicsPane {
 	
 	public boolean isCompleted() {
 		if (countMonstersAlive() == 0) {
-			if (this.player.getHealth() + 25 <= this.player.maxHP) {
-				this.player.setHealth(player.getHealth() + 25);
-			}
+			this.player.maxHP = this.player.maxHP + totalMonster;
+			this.player.health = this.player.health + totalMonster;
 			this.player.coin = this.player.coin + totalMonster;
 			screen.save(this.player);
+			//completedTime++;
 		}
 		return countMonstersAlive() == 0;
 	}
@@ -267,7 +267,7 @@ public class Room extends GraphicsPane {
 		if (player != null) {
 			screen.add(player);
 		}
-
+		HP.sendToFront();
 		screen.add(HP);
 		
 		for (Monster m:monsters) {

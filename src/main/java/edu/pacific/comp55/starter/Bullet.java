@@ -5,7 +5,7 @@ public class Bullet extends AnimatedObject {
 	public static final int HEIGHT = 25;
 	private DirectionType direction;
 	private long timeOfExplosion;
-	private boolean exploded;
+	protected boolean exploded;
 	private boolean isPlayerBullet;
 
 	public Bullet(double x, double y, double speed, boolean isPlayerBullet, DirectionType direction) {

@@ -12,19 +12,26 @@ public class MainApplication extends GraphicsApplication {
 	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
-	protected Player player;
+	private Player player;
 	private int count;
 	private DataStorage data = new DataStorage();
 
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		player = new Player();
+		load();
 		setupRooms();
 		player.setRoom(rooms.get(0));
-
-		
 	}
 	
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
 	public void setupRooms() {
 		rooms = new ArrayList<Room>();
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
@@ -87,7 +94,9 @@ public class MainApplication extends GraphicsApplication {
 		box = new Object("robot head.jpg", 45, 510, 50, 50);
 		objects.add(box);
 
+		
 		Room room1 = new Room(this, RoomType.EMPTY, player, monsters, objects);
+
 		rooms.add(room1);
 		
 		monsters = new ArrayList<Monster>();
@@ -104,11 +113,11 @@ public class MainApplication extends GraphicsApplication {
 //		monsters.add(patroler4);
 //		monsters.add(patroler5);
 
-//		objects = new ArrayList<Object>();
-//		box = new Object("robot head.jpg", 30, 40, 50, 50);
-//		objects.add(box);
-//		box = new Object("robot head.jpg", 45, 100, 50, 50);
-//		objects.add(box);
+		objects = new ArrayList<Object>();
+		//box = new Object("robot head.jpg", 30, 40, 50, 50);
+		//objects.add(box);
+		box = new Object("robot head.jpg", 45, 100, 50, 50);
+		objects.add(box);
 		
 		Room room2 = new Room(this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room2);
@@ -148,23 +157,22 @@ public class MainApplication extends GraphicsApplication {
 		
 		Room[] neightbors5 = {null, room8, null, room3}; 
 		room5.setNeighbors(neightbors5);
-		
+
 		Room[] neightbors6 = {null, null, room4, null}; 
 		room6.setNeighbors(neightbors6);
-		
+
 		Room[] neightbors7 = {room8, room9, null, null}; 
 		room7.setNeighbors(neightbors7);
-		
+
 		Room[] neightbors8 = {null, null, room7, room5}; 
 		room8.setNeighbors(neightbors8);
-		
+
 		Room[] neightbors9 = {null, null, null, room7}; 
 		room9.setNeighbors(neightbors9);
-//	//test
 	}
 
 	public void run() {
-		load();
+		//load();
 		menu = new MenuPane(this);
 		setting = new SettingPane(this);
 		setupInteractions();
@@ -195,7 +203,7 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void save(Player player) {
 		data.maxHP = player.maxHP;
-		data.damage = player.damage;
+//		data.damage = player.damage;
 //		data.shield = player.shield();
 		data.coin = player.coin;
 		if (data.timeOfComplete > player.time) {
@@ -207,8 +215,9 @@ public class MainApplication extends GraphicsApplication {
 	public void load() {
 		int dataRecieved[] = new int[5];
 		dataRecieved = data.readSaveFile();
-		player.health = dataRecieved[0];
-		player.damage = dataRecieved[1];
+		player.maxHP = dataRecieved[0];
+		player.setHealth(dataRecieved[0]);
+//		player.damage = dataRecieved[1];
 //		player.shield = dataRecieved[2];
 		player.coin = dataRecieved[3];
 		player.time = dataRecieved[4];
