@@ -141,26 +141,26 @@ public class MainApplication extends GraphicsApplication {
 		room2.setNeighbors(neighbors2);
 		
 		Room[] neightbors3 = {null, room5, room2, room4}; 
-		room3.setNeighbors(neighbors3);
+		room3.setNeighbors(neightbors3);
 		
 		Room[] neightbors4 = {room6, room3, null, null}; 
-		room4.setNeighbors(neighbors4);
+		room4.setNeighbors(neightbors4);
 		
 		Room[] neightbors5 = {null, room8, null, room3}; 
-		room5.setNeighbors(neighbors5);
+		room5.setNeighbors(neightbors5);
 		
 		Room[] neightbors6 = {null, null, room4, null}; 
-		room6.setNeighbors(neighbors6);
+		room6.setNeighbors(neightbors6);
 		
 		Room[] neightbors7 = {room8, room9, null, null}; 
-		room7.setNeighbors(neighbors7);
+		room7.setNeighbors(neightbors7);
 		
 		Room[] neightbors8 = {null, null, room7, room5}; 
-		room8.setNeighbors(neighbors8);
+		room8.setNeighbors(neightbors8);
 		
 		Room[] neightbors9 = {null, null, null, room7}; 
-		room9.setNeighbors(neighbors9);
-	//test
+		room9.setNeighbors(neightbors9);
+//	//test
 	}
 
 	public void run() {
@@ -193,7 +193,7 @@ public class MainApplication extends GraphicsApplication {
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
 	}
 	
-	public void save() {
+	public void save(Player player) {
 		data.maxHP = player.maxHP;
 		data.damage = player.damage;
 //		data.shield = player.shield();

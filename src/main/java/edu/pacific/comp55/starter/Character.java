@@ -99,7 +99,7 @@ public class Character extends AnimatedObject {
 		this.health = this.health - damage;
 		if (this.health <= 0) {
 			this.setDead(true);
-			this.setLocation(1000, 1000);
+			this.setLocation(2000, 2000);
 		}
 		
 	}

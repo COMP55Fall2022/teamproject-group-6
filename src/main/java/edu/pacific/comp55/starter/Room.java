@@ -24,6 +24,7 @@ public class Room extends GraphicsPane {
 	private int width = ROOMWIDTH;
 	private int height = ROOMHEIGHT;
 	private Player player;
+	private int totalMonster = 0;
 	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList<Object> objects = new ArrayList<Object>();
@@ -72,6 +73,8 @@ public class Room extends GraphicsPane {
 			this.player.setRoom(null);
 			screen.remove(this.player);
 		}
+		
+		screen.save(player);
 		this.player = player;
 		this.player.setRoom(this);
 		screen.add(this.player);
@@ -102,6 +105,7 @@ public class Room extends GraphicsPane {
 	
 	public void animate() {
 		GPoint oldLocation = player.getLocation();
+		totalMonster = monsters.size();
 		player.animate();
 		for(Object o: objects) {
 			if(player.getBounds().intersects(o.getBounds())){
@@ -244,9 +248,11 @@ public class Room extends GraphicsPane {
 	
 	public boolean isCompleted() {
 		if (countMonstersAlive() == 0) {
-			if (player.health + 25 <= player.maxHP) {
-				player.health = player.health + 25;
+			if (this.player.getHealth() + 25 <= this.player.maxHP) {
+				this.player.setHealth(player.getHealth() + 25);
 			}
+			this.player.coin = this.player.coin + totalMonster;
+			screen.save(this.player);
 		}
 		return countMonstersAlive() == 0;
 	}
@@ -280,6 +286,7 @@ public class Room extends GraphicsPane {
 
 	@Override
 	public void hideContents() {
+		
 		if (player != null) {
 			screen.remove(player);
 		}
@@ -295,6 +302,7 @@ public class Room extends GraphicsPane {
 		for (Bullet b:bullets) {
 			screen.remove(b);
 		}
+		
 	}
 	
 	public void handleCollision(Object o) {

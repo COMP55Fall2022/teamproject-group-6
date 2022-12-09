@@ -36,7 +36,7 @@ public class DataStorage implements Serializable{
 		      if (myObj.createNewFile()) {
 		    	  System.out.println("File created: " + myObj.getName());
 		    	  FileWriter myWriter = new FileWriter("save.txt");
-			      myWriter.write(maxHP + "\n" + damage + "\n" + shield + "\n" + coin + "\n" + timeOfComplete);
+			      myWriter.write(100 + "\n" + 25 + "\n" + shield + "\n" + 0 + "\n" + 999999);
 			      myWriter.close();
 			      System.out.println("Successfully wrote to the file.");
 			  } else {
