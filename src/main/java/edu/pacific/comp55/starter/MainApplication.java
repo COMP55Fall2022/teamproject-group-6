@@ -8,7 +8,7 @@ public class MainApplication extends GraphicsApplication {
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3" };
 
-	private ArrayList<RoomPane> rooms;
+	private ArrayList<Room> rooms;
 	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
@@ -20,26 +20,84 @@ public class MainApplication extends GraphicsApplication {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		player = new Player();
 		setupRooms();
+		player.setRoom(rooms.get(0));
+
 		
 	}
 	
 	public void setupRooms() {
-		rooms = new ArrayList<RoomPane>();
+		rooms = new ArrayList<Room>();
+		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
-		RoomPane r1 = new RoomPane(this, player);
-//		RoomPane r1 = new RoomPane(this, player, combat.get(0));
-//		RoomPane r2 = new RoomPane(this, player, combat.get(1));
-//		RoomPane r3 = new RoomPane(this, player, combat.get(2));
-//		RoomPane r4 = new RoomPane(this, player, combat.get(3));
-//		RoomPane r5 = new RoomPane(this, player, combat.get(4));
-//		RoomPane r6 = new RoomPane(this, player, combat.get(5));
-//>>>>>>> branch 'main' of https://github.com/COMP55Fall2022/teamproject-group-6.git
-		rooms.add(r1);
-//		rooms.add(r2);
-//		rooms.add(r3);
-//		rooms.add(r4);
-//		rooms.add(r5);
-//		rooms.add(r6);
+		monsters.add(new MonsterChaser(100, 200, 50, 50));
+		monsters.add(new MonsterChaser(250, 425, 50, 50));
+		monsters.add(new MonsterChaser(400, 500, 50, 50));
+		monsters.add(new MonsterSentry(425, 150, 50, 50));
+		monsters.add(new MonsterSentry(500, 275, 50, 50));
+
+
+		ArrayList<Point> path = new ArrayList<Point>();
+		path.add(new Point(100, 100));
+		path.add(new Point(50, 100));
+		path.add(new Point(50, 50));
+		path.add(new Point(150, 50));
+		path.add(new Point(400, 100));
+		path.add(new Point(200, 100));
+		path.add(new Point(300, 300));
+		path.add(new Point(350, 300));
+		path.add(new Point(600, 100));
+
+  		MonsterPatroller patroler1 = new MonsterPatroller(150, 400, 62.5, 62.5);
+		MonsterPatroller patroler2 = new MonsterPatroller(275, 200, 62.5, 62.5);
+		MonsterPatroller patroler3 = new MonsterPatroller(425, 175, 62.5, 62.5);
+
+		patroler1.setPath(path);
+		patroler2.setPath(path);
+		patroler3.setPath(path);
+//		monsters.add(patroler1);
+//		monsters.add(patroler2);
+//		monsters.add(patroler3);
+		
+		ArrayList<Object> objects = new ArrayList<Object>();
+		
+		Object box = new Object("robot head.jpg", 300, 400, 50, 50);
+		objects.add(box);
+		box = new Object("robot head.jpg", 45, 510, 50, 50);
+		objects.add(box);
+
+		Room room1 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		
+		rooms.add(room1);
+
+		monsters = new ArrayList<Monster>();
+		monsters.add(new MonsterChaser(500, 250, 50, 50));
+		monsters.add(new MonsterChaser(300, 300, 50, 50));
+		monsters.add(new MonsterSentry(200, 375, 50, 50));
+		monsters.add(new MonsterSentry(275, 200, 50, 50));
+		monsters.add(new MonsterSentry(350, 325, 50, 50));
+
+		MonsterPatroller patroler4 = new MonsterPatroller(500, 300, 62.5, 62.5);
+		MonsterPatroller patroler5 = new MonsterPatroller(350, 250, 62.5, 62.5);
+		patroler4.setPath(path);
+		patroler5.setPath(path);
+		monsters.add(patroler4);
+		monsters.add(patroler5);
+
+		objects = new ArrayList<Object>();
+		box = new Object("robot head.jpg", 30, 40, 50, 50);
+		objects.add(box);
+		box = new Object("robot head.jpg", 45, 100, 50, 50);
+		objects.add(box);
+		
+		Room room2 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		rooms.add(room2);
+		
+		Room[] neighbors1 = {null, room2, null, null};
+		room1.setNeighbors(neighbors1);
+
+		Room[] neighbors2 = {null, null, null, room1};
+		room2.setNeighbors(neighbors2);
+
 	}
 
 	public void run() {
@@ -64,8 +122,7 @@ public class MainApplication extends GraphicsApplication {
 
 	public void switchToRoom() {
 		playRandomSound();
-		switchToScreen(rooms.get(0));
-		//rooms.get(0).setPlayer(player);
+		switchToScreen(player.getRoom());
 	}
 
 	private void playRandomSound() {

@@ -24,6 +24,12 @@ public class Monster extends Character {
 		//take damage if needed
 		//set dead if needed
 		super.handleCollision(o);
+		//check the type of your object
+		//take damage if needed
+		//set dead if needed
+		if (o instanceof Bullet && ((Bullet) o).isPlayerBullet()) {
+			isHit(25);
+		}
 	}
 	
 	public DirectionType getDirectionToward(Object o) {

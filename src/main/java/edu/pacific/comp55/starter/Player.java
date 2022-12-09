@@ -44,6 +44,21 @@ public class Player extends Character implements Serializable {
 		//take damage if needed
 		//set dead if needed
 		super.handleCollision(o);
+		//check the type of your object
+		//take damage if needed
+		//set dead if needed
+		if (o instanceof Bullet) {
+			isHit(25);
+		} else if (o instanceof Door) {
+			Room nextRoom = ((Door) o).getNextRoom();
+			System.out.println("door hit");
+			if(nextRoom != null && getRoom().isCompleted())	{
+				setRoom(nextRoom);
+				getRoom().getScreen().switchToRoom();
+				setLocation(100,100);
+			}
+		}
+
 	}	
 	
 	public void increaseVelocity(double deltaxV, double deltayV) {
@@ -70,8 +85,8 @@ public class Player extends Character implements Serializable {
 			//this.move(10, 0);
 			break;
 		}
-		System.out.println("key pressed code: " + e.getKeyCode());
-		System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
+		//System.out.println("key pressed code: " + e.getKeyCode());
+		//System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
 	}
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -88,13 +103,13 @@ public class Player extends Character implements Serializable {
 			setxVelocity(0);
 			break;
 		}
-		System.out.println("key released code: " + e.getKeyCode());
-		System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
+		//System.out.println("key released code: " + e.getKeyCode());
+		//System.out.println("update speed and direction ->" + xVelocity + "," + yVelocity);
 	}
 	public void keyTyped(KeyEvent e) {
 		switch (e.getKeyChar()) {
 		case 27:
-			System.out.println("key typed escape");
+			//System.out.println("key typed escape");
 			break;
 		case ' ':
 			bang(getFaceDirection());
@@ -116,6 +131,6 @@ public class Player extends Character implements Serializable {
 			bang(getFaceDirection());
 			break;
 		}
-		System.out.println("key typed code: " + e.getKeyChar());	
+		//System.out.println("key typed code: " + e.getKeyChar());	
 	}
 }

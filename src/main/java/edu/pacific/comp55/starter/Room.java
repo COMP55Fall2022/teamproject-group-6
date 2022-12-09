@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import acm.graphics.GCompound;
 import acm.graphics.GLabel;
@@ -27,7 +28,8 @@ public class Room extends GraphicsPane {
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList<Object> objects = new ArrayList<Object>();
 	private MainApplication screen;
-	private GLabel HP;
+	private GParagraph HP;
+	private Door leftDoor, rightDoor, topDoor, bottomDoor;
 	
 	
 	
@@ -46,11 +48,23 @@ public class Room extends GraphicsPane {
 		addObjects(top);
 		Object bottom = new Object("bullet.png", 0, screen.getHeight()-5, screen.getWidth(), 5);
 		addObjects(bottom);
+		
 		if (player != null) {
 			player.setRoom(this);
-			HP = new GLabel("HP: " + player.getHealth(), 50, 50);
+			HP = new GParagraph("HP: " + player.getHealth(), 50, 50);
 		}
 		
+	}
+
+	public void setNeighbors(Room[] neighbors) {
+		Door leftD = new Door(neighbors[3], 0, (screen.getHeight()-100)/2, 15, 100);
+		addObjects(leftD);
+		Door rightD = new Door(neighbors[1], screen.getWidth()-15, (screen.getHeight()-100)/2, 15, 100);
+		addObjects(rightD);
+		Door topD = new Door(neighbors[0], (screen.getWidth()-100)/2, 0, 100, 15);
+		addObjects(topD);
+		Door bottomD = new Door(neighbors[2], (screen.getWidth()-100)/2, screen.getHeight()-15, 100, 15);
+		addObjects(bottomD);
 	}
 
 	public void setPlayer(Player player) {
@@ -67,10 +81,14 @@ public class Room extends GraphicsPane {
 		return player;
 	}
 	
-	public void deletePlayer() {
-		
+	public MainApplication getScreen() {
+		return screen;
 	}
-	
+
+	public void setScreen(MainApplication screen) {
+		this.screen = screen;
+	}
+
 	public void addBullet(Bullet b) {
 		b.setRoom(this);
 		this.bullets.add(b);
@@ -105,14 +123,12 @@ public class Room extends GraphicsPane {
 
 				for(Bullet b: bullets) {
 					if(b.isVisible() && m.getBounds().intersects(b.getBounds())){
-						m.setLocation(oldLocation);
 						m.handleCollision(b);
 						b.handleCollision(m);
 					}
 				}
 				
 				if(m.getBounds().intersects(player.getBounds())){
-					m.setLocation(oldLocation);
 					m.handleCollision(player);
 					player.handleCollision(m);
 				}
@@ -125,27 +141,28 @@ public class Room extends GraphicsPane {
 				b.animate();
 				for(Object o: objects) {
 					if(b.getBounds().intersects(o.getBounds())){
-						b.setLocation(oldLocation);
 						b.handleCollision(o);
 					}
 				}
 
 				for(Monster m : monsters) {
 					if(!m.isDead() && m.getBounds().intersects(b.getBounds())){
-						b.setLocation(oldLocation);
 						m.handleCollision(b);
 						b.handleCollision(m);
 					}
 				}
 				
 				if(b.getBounds().intersects(player.getBounds())){
-					b.setLocation(oldLocation);
 					b.handleCollision(player);
 					player.handleCollision(b);
 				}
 			}
 		}
-		HP.setLabel("HP: " + player.getHealth());
+		HP.setText(
+				"HP: " + player.getHealth() + "\n" +
+				"Monsters Remaining: " + countMonstersAlive() + "\n" +
+				"Time: " + (player.ticks*screen.BREAK_MS) / 1000 + " seconds \n"
+		);
 		
 		//traverseMonsterArrayList();
 		//traverseBulletsArrayList();
@@ -197,13 +214,15 @@ public class Room extends GraphicsPane {
 		//TODO
 		//no more than 3 mouse clicks or key presses
 	}
-	public void traverseMonsterArrayList() {
+	
+	public int countMonstersAlive() {
+		int count = 0;
 		for(Monster m:monsters) {
-			if(m.isDead() == true) {
-				this.screen.remove(m);
-				monsters.remove(m);
+			if(!m.isDead()) {
+				count++;
 			}
 		}
+		return count;
 	}
 	
 	public void traverseBulletsArrayList() {
@@ -222,10 +241,8 @@ public class Room extends GraphicsPane {
 		}
 	}
 	
-	public void checkCompleted() {
-		if (monsters.size() == 0) {
-			this.isCompleted = true; 
-		}
+	public boolean isCompleted() {
+		return countMonstersAlive() == 0;
 	}
 
 	private void getDoorNum() {
@@ -237,8 +254,10 @@ public class Room extends GraphicsPane {
 	public void showContents() {
 		if (player != null) {
 			screen.add(player);
-			screen.add(HP);
 		}
+
+		screen.add(HP);
+		
 		for (Monster m:monsters) {
 			m.setRoom(this);
 			screen.add(m);
@@ -246,6 +265,7 @@ public class Room extends GraphicsPane {
 		for (Object o:objects) {
 			screen.add(o);
 		}
+		
 
 	}
 
@@ -254,6 +274,9 @@ public class Room extends GraphicsPane {
 		if (player != null) {
 			screen.remove(player);
 		}
+		
+		screen.remove(HP);
+		
 		for (Monster m:monsters) {
 			screen.remove(m);
 		}
@@ -271,6 +294,30 @@ public class Room extends GraphicsPane {
 		}
 		if (o instanceof Player) {
 			((Player) o).isHit(25);
+		}
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		if (player != null) {
+			player.keyPressed(e);
+		}
+	}
+	public void keyReleased(KeyEvent e) {
+		if (player != null) {
+			player.keyReleased(e);
+		}		
+	}
+	public void keyTyped(KeyEvent e) {
+		System.out.println("-----------------------");
+		switch (e.getKeyChar()) {
+		case 27:
+			screen.switchToMenu();
+			break;
+		default: 
+			if (player != null) {
+				player.keyTyped(e);
+			}
+			break;
 		}
 	}
 }

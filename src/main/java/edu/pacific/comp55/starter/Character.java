@@ -122,8 +122,8 @@ public class Character extends AnimatedObject {
 		if (direction == DirectionType.UP) {
 			//p.setXY(this.getX() + this.getWidth() / 2, this.getY());
 			bullet = new Bullet(this.getX() + this.getWidth() / 4, 
-					this.getY() - 1 - Bullet.HEIGHT, 
-								15, 
+					this.getY() - 1 - Bullet.HEIGHT,
+								15, this instanceof Player,
 								direction);
 		}
 		else if (direction == DirectionType.DOWN) {
@@ -131,21 +131,21 @@ public class Character extends AnimatedObject {
 			//p.setXY(this.getLocation().getX() + this.getWidth() / 2, this.getLocation().getY() + this.getHeight());
 			bullet = new Bullet(this.getLocation().getX() + this.getWidth() / 4, 
 					this.getLocation().getY() + this.getHeight() + 1, 
-					15, 
+					15, this instanceof Player,
 					direction);
 		}
 		else if (direction == DirectionType.LEFT) {
 			//p.setXY(this.getX(), this.getY() + this.getHeight() / 2);
 			bullet = new Bullet(this.getX() - 1 - Bullet.WIDTH, 
 					this.getY() + this.getHeight() / 4,  
-					15, 
+					15, this instanceof Player,
 					direction);
 		}
 		else if (direction == DirectionType.RIGHT) {
 			//p.setXY(this.getX() + this.getWidth(), this.getY() + this.getHeight() / 2);
 			bullet = new Bullet(this.getX()+ 1 + this.getWidth(), 
 					this.getY() + this.getHeight() / 4, 
-					15, 
+					15, this instanceof Player,
 					direction);
 		}
 		return bullet;
@@ -164,12 +164,6 @@ public class Character extends AnimatedObject {
 	@Override 
 	public void handleCollision(Object o) {
 		super.handleCollision(o);
-		//check the type of your object
-		//take damage if needed
-		//set dead if needed
-		if (o instanceof Bullet) {
-			isHit(25);
-		}
 	}
 
 	

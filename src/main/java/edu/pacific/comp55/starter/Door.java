@@ -2,53 +2,27 @@ package edu.pacific.comp55.starter;
 
 import java.util.ArrayList;
 
-public class Door {
-	
-	private int position;
-	private int locationX;
-	private int locationY;
-	private int startPoint;
-	public boolean isActive = false;
-	//private int width = 0;
-	//private int height = 0;
-	//redo height & width
+public class Door extends Object {
+	protected Room nextRoom;
 	
 
-	public int getStartPoint() {
-		return startPoint;
-	}
-	
-	
-	
-	public int getPosition() {
-		return position;
-	}
-	
 	//constructor
 	//inputs for location points x & y
 	//for door to show up at those locations???
-	public Door(int locationX, int locationY) {
-		this.locationX = locationX;
-		this.locationY = locationY;
+	public Door(Room room, double x, double y, double width, double height) {
+		super("bullet.png", x, y, width, height);
+		nextRoom = room;
+	}
+
+	public Room getNextRoom() {
+		return nextRoom;
+	}
+
+	public void setNextRoom(Room nextRoom) {
+		this.nextRoom = nextRoom;
 	}
 	
 	
-	private void getDoorNum(int doorNum) {
-		// TODO Auto-generated method stub
-		if(doorNum == 1) {
-			String doorLocation = "Left";	
-		}
-		else if(doorNum == 2) {
-			String doorLocation = "Top";
-		}
-		else if(doorNum == 2) {
-			String doorLocation = "Right";
-			
-		}
-		else if(doorNum == 2) {
-			String doorLocation = "Bottom";
-		}
-	}	
 }
 /*		
 	

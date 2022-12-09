@@ -6,20 +6,26 @@ public class Bullet extends AnimatedObject {
 	private DirectionType direction;
 	private long timeOfExplosion;
 	private boolean exploded;
+	private boolean isPlayerBullet;
 
-	public Bullet(double x, double y, double speed, DirectionType direction) {
+	public Bullet(double x, double y, double speed, boolean isPlayerBullet, DirectionType direction) {
 		super("bullet.png", x, y, WIDTH, HEIGHT);
 		
 		this.direction = direction;
 		updateSpeedAndDirection(speed, direction);
 		this.timeOfExplosion = 0;
 		this.exploded = false;
+		this.isPlayerBullet = isPlayerBullet;
+		
 //		for (int i = 0; i < 8; ++i) {
 //			collisionDetectionPoints[i] = new Point(0, 0);
 //		}
 //		this.updateCollisionDetectionPoints();
 	}
 	
+	public boolean isPlayerBullet() {
+		return isPlayerBullet;
+	}
 	
 	public void handleCollision(Object o) {
 		super.handleCollision(o);
@@ -28,7 +34,7 @@ public class Bullet extends AnimatedObject {
 			timeOfExplosion = super.ticks;
 			setImage("explosion.png");
 			setBounds(getX(), getY(), WIDTH, HEIGHT);
-			System.out.println("exploded, " + o);
+			//System.out.println("exploded, " + o);
 		}
 	}
 	
@@ -42,7 +48,7 @@ public class Bullet extends AnimatedObject {
 			if(timeOfExplosion > 10) {
 				setLocation(-1, -1);
 				setVisible(false);
-				System.out.println("delete me");
+				//System.out.println("delete me");
 			}
 				
 		}
