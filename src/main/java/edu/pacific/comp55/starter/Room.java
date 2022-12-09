@@ -43,6 +43,7 @@ public class Room extends GraphicsPane {
 		this.monsters = monsters;
 		this.objects = objects;
 		this.screen = screen;
+		totalMonster = monsters.size();
 		Object left = new Object("bullet.png", 0, 0, 5, screen.getHeight());
 		addObjects(left);
 		Object right = new Object("bullet.png", screen.getWidth()-5, 0, 5, screen.getHeight());
@@ -107,7 +108,7 @@ public class Room extends GraphicsPane {
 	
 	public void animate() {
 		GPoint oldLocation = player.getLocation();
-		totalMonster = monsters.size();
+		
 		player.animate();
 		for(Object o: objects) {
 			if(player.getBounds().intersects(o.getBounds())){

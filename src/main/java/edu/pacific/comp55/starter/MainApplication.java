@@ -12,7 +12,7 @@ public class MainApplication extends GraphicsApplication {
 	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
-	private Player player;
+	protected  Player player;
 	private int count;
 	private DataStorage data = new DataStorage();
 
