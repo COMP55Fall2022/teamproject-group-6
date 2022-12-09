@@ -41,7 +41,7 @@ public class Door {
 		else if(doorNum == 2) {
 			String doorLocation = "Top";
 		}
-		else if(doorNum == 2) {
+		else if(doorNum == 3) {
 			String doorLocation = "Right";
 			
 		}
