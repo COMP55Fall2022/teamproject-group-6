@@ -47,6 +47,10 @@ public class RoomPane extends GraphicsPane {
 		chaser4 = new MonsterChaser(500, 250, 100, 50);
 		chaser5 = new MonsterChaser(300, 300, 150, 100);
 		patroler1 = new MonsterPatroller(100, 100, 60, 60);
+		patroler2 = new MonsterPatroller(200, 200, 50, 50);
+		patroler3 = new MonsterPatroller(175, 175, 200, 50);
+		patroler4 = new MonsterPatroller(400, 100, 50, 100);
+		patroler5 = new MonsterPatroller(250, 250, 100, 50);
 		sentry1 = new MonsterSentry(200, 200, 60, 60);
 		ArrayList<Point> path = new ArrayList<Point>();
 		path.add(new Point(100, 100));
@@ -65,6 +69,10 @@ public class RoomPane extends GraphicsPane {
 		monsters.add(chaser4);
 		monsters.add(chaser5);
 		monsters.add(patroler1);
+		monsters.add(patroler2);
+		monsters.add(patroler3);
+		monsters.add(patroler4);
+		monsters.add(patroler5);
 		monsters.add(sentry1);
 		ArrayList<Object> objects = new ArrayList<Object>();
 
