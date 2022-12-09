@@ -42,21 +42,31 @@ public class Player extends Character implements Serializable {
 			Door door = ((Door) o);
 			Room nextRoom = door.getNextRoom();
 			System.out.println("door hit");
-			if(nextRoom != null && getRoom().isCompleted())	{
+			if(nextRoom != null) { 
+//					&& getRoom().isCompleted())	{
+				System.out.println("set room next door");
 				setRoom(nextRoom);
 				getRoom().getScreen().switchToRoom();
+				System.out.println("set next room location before: " + getLocation());
+				System.out.println("set next room location data: \n + " +
+						"pl:" + getLocation() + "\n" + 
+						"dl:" + door.getLocation() + "\n" + 
+				"rm: " + room.getScreen().getWidth() + "x" + room.getScreen().getHeight() + "\n" +
+				"dr: " + door.getWidth() + "x" + door.getHeight() + "\n" +	
+				"pl: " + getWidth() + "x" + getHeight() + "\n");
 				if(door.getY() == 0) {
-					setLocation(getX(), room.getScreen().getHeight() - door.getHeight() - getHeight() - 1 );
+					setLocation(getX(), room.getScreen().WINDOW_HEIGHT - door.getHeight() - getHeight() - 1 );
 				}
 				else if(door.getX() == 0) {
-					setLocation(room.getScreen().getWidth()-door.getWidth() - getWidth() - 1, getY());
+					setLocation(room.getScreen().WINDOW_WIDTH-door.getWidth() - getWidth() - 1, getY());
 				}
-				else if(door.getX() == (room.getScreen().getWidth() - door.getWidth())) {
+				else if(door.getX() == (room.getScreen().WINDOW_WIDTH - door.getWidth())) {
 					setLocation(door.getWidth() + 1, getY());
 				}
 				else {
 					setLocation(getX(), door.getHeight() + 1);
 				}
+				System.out.println("set next room location after: " + getLocation());
 			}
 		}
 

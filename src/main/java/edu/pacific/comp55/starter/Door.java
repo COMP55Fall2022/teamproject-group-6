@@ -12,6 +12,9 @@ public class Door extends Object {
 	public Door(Room room, double x, double y, double width, double height) {
 		super("bullet.png", x, y, width, height);
 		nextRoom = room;
+		if (nextRoom == null) {
+			setLocation(-100, -100);
+		}
 	}
 
 	public Room getNextRoom() {
@@ -20,6 +23,9 @@ public class Door extends Object {
 
 	public void setNextRoom(Room nextRoom) {
 		this.nextRoom = nextRoom;
+		if (nextRoom == null) {
+			setLocation(-100, -100);
+		}
 	}
 	
 	
