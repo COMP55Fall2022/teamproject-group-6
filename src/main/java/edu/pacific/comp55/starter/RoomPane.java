@@ -41,16 +41,16 @@ public class RoomPane extends GraphicsPane {
 		this.player = player;
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 
-		chaser1 = new MonsterChaser(100, 100, 75, 75);
-		chaser2 = new MonsterChaser(250, 250, 75, 75);
-		chaser3 = new MonsterChaser(400, 100, 75, 75);
+		chaser1 = new MonsterChaser(100, 200, 75, 75);
+		chaser2 = new MonsterChaser(250, 425, 75, 75);
+		chaser3 = new MonsterChaser(400, 500, 75, 75);
 		chaser4 = new MonsterChaser(500, 250, 75, 75);
 		chaser5 = new MonsterChaser(300, 300, 75, 75);
-		patroler1 = new MonsterPatroller(100, 100, 62.5, 62.5);
-		patroler2 = new MonsterPatroller(200, 200, 62.5, 62.5);
-		patroler3 = new MonsterPatroller(175, 175, 62.5, 62.5);
-		patroler4 = new MonsterPatroller(400, 100, 62.5, 62.5);
-		patroler5 = new MonsterPatroller(250, 250, 62.5, 62.5);
+		patroler1 = new MonsterPatroller(150, 400, 62.5, 62.5);
+		patroler2 = new MonsterPatroller(275, 200, 62.5, 62.5);
+		patroler3 = new MonsterPatroller(425, 175, 62.5, 62.5);
+		patroler4 = new MonsterPatroller(500, 300, 62.5, 62.5);
+		patroler5 = new MonsterPatroller(350, 250, 62.5, 62.5);
 		sentry1 = new MonsterSentry(200, 375, 50, 50);
 		sentry2 = new MonsterSentry(275, 200, 50, 50);
 		sentry3 = new MonsterSentry(350, 325, 50, 50);
@@ -66,6 +66,10 @@ public class RoomPane extends GraphicsPane {
 		path.add(new Point(300, 300));
 		path.add(new Point(350, 300));
 		path.add(new Point(600, 100));
+		patroler1.setPath(path);
+		patroler1.setPath(path);
+		patroler1.setPath(path);
+		patroler1.setPath(path);
 		patroler1.setPath(path);
 		monsters.add(chaser1);
 		monsters.add(chaser2);
