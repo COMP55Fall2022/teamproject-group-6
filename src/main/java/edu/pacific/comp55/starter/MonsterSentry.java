@@ -12,7 +12,7 @@ public class MonsterSentry extends Monster {
 	public MonsterSentry(double x, double y, double width, double height) {
 		super(CharacterType.MONSTER3, "shootingrobot.png", x, y, width, height);
 		health = 50;
-		rateOfFire = 2;
+		rateOfFire = 10;
 		speedOfBullet = 2;
 		damage = 25;
 	}

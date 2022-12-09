@@ -16,6 +16,7 @@ public class Character extends AnimatedObject {
 	protected int damage;
 	protected boolean dead;
 	protected long lastFiredBulletTick;
+	protected long lastCollisionTick;
 	
 	public Character(CharacterType charType, String image, double x, double y, double width, double height) {
 		super(image, x, y, width, height);
@@ -71,6 +72,9 @@ public class Character extends AnimatedObject {
 		return dead;
 	}
 	public void setDead(boolean deadOrNot) {
+		if (this.getType() != CharacterType.PLAYER) {
+			//TODO
+		}
 		this.dead = deadOrNot;
 	}
 	
@@ -95,6 +99,7 @@ public class Character extends AnimatedObject {
 		this.health = this.health - damage;
 		if (this.health <= 0) {
 			this.setDead(true);
+			this.setLocation(1000, 1000);
 		}
 		
 	}
