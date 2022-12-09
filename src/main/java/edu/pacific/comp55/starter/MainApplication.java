@@ -211,7 +211,7 @@ public class MainApplication extends GraphicsApplication {
 		}
 		data.writeSaveFile();
 	}
-	
+	//merge
 	public void load() {
 		int dataRecieved[] = new int[5];
 		dataRecieved = data.readSaveFile();
