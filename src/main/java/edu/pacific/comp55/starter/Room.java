@@ -32,11 +32,12 @@ public class Room extends GraphicsPane {
 	private MainApplication screen;
 	private GParagraph HP;
 	private Door leftDoor, rightDoor, topDoor, bottomDoor;
+	private int roomNumber;
 	
 	
-	
-	public Room(MainApplication screen, RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
+	public Room(int roomNumber, MainApplication screen, RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
 		super();
+		this.roomNumber = roomNumber;
 		this.type = type;
 		this.player = player;
 		this.monsters = monsters;
@@ -167,7 +168,8 @@ public class Room extends GraphicsPane {
 				"HP: " + player.getHealth() + "\n" +
 				"Coin: " + player.coin + "\n" +
 				"Monsters Remaining: " + countMonstersAlive() + "\n" +
-				"Time: " + (player.ticks*screen.BREAK_MS) / 1000 + " seconds \n"
+				"Time: " + (player.ticks*screen.BREAK_MS) / 1000 + " seconds \n" +
+				"Room Number: " + roomNumber + "\n"
 		);
 		//traverseMonsterArrayList();
 		//traverseBulletsArrayList();
@@ -237,10 +239,10 @@ public class Room extends GraphicsPane {
 //			for (Point p:collisionDetectionPoints) {
 			GPoint p = b.getLocation();
 				if (p.getX() <= 0 || p.getX() >= ROOMWIDTH) {
-					deleteObjects(b);
+//					deleteObjects(b);
 				}
 				if (p.getY() <= 0 || p.getY() >= ROOMHEIGHT) {
-					deleteObjects(b);
+//					deleteObjects(b);
 				}
 //			}
 		}
@@ -328,7 +330,7 @@ public class Room extends GraphicsPane {
 		}		
 	}
 	public void keyTyped(KeyEvent e) {
-		System.out.println("-----------------------");
+//		System.out.println("-----------------------");
 		switch (e.getKeyChar()) {
 		case 27:
 			screen.switchToMenu();

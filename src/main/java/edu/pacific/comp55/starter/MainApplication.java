@@ -95,7 +95,7 @@ public class MainApplication extends GraphicsApplication {
 		objects.add(box);
 
 		
-		Room room1 = new Room(this, RoomType.EMPTY, player, monsters, objects);
+		Room room1 = new Room(1, this, RoomType.EMPTY, player, monsters, objects);
 
 		rooms.add(room1);
 		
@@ -119,28 +119,28 @@ public class MainApplication extends GraphicsApplication {
 		box = new Object("robot head.jpg", 45, 100, 50, 50);
 		objects.add(box);
 		
-		Room room2 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		Room room2 = new Room(2, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room2);
 		
-		Room room3 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		Room room3 = new Room(3, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room3);
 		
-		Room room4 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		Room room4 = new Room(4, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room4);
 		
-		Room room5 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		Room room5 = new Room(5, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room5);
 		
-		Room room6 = new Room(this, RoomType.EMPTY, player, monsters, objects);
+		Room room6 = new Room(6, this, RoomType.EMPTY, player, monsters, objects);
 		rooms.add(room6);
 		
-		Room room7 = new Room(this, RoomType.EMPTY, player, monsters, objects);
+		Room room7 = new Room(7, this, RoomType.EMPTY, player, monsters, objects);
 		rooms.add(room7);
 		
-		Room room8 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		Room room8 = new Room(8, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room8);
 		
-		Room room9 = new Room(this, RoomType.BOSS, player, monsters, objects);
+		Room room9 = new Room(9, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room9);
 		
 		Room[] neighbors1 = {null, room2, null, null};

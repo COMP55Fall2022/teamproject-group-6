@@ -157,10 +157,10 @@ public class Character extends AnimatedObject {
 	}
 	
 	public void bang(DirectionType d) {
-		System.out.println(ticks + "----" + lastFiredBulletTick + "---"+ rateOfFire);
+//		System.out.println(ticks + "----" + lastFiredBulletTick + "---"+ rateOfFire);
 		if (ticks - lastFiredBulletTick > rateOfFire) {
 			Bullet b = shoot(d);
-			System.out.println("=============================added bullet");
+//			System.out.println("=============================added bullet");
 			room.addBullet(b);
 			lastFiredBulletTick = ticks;
 		}
