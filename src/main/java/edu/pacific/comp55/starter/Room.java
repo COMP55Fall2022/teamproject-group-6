@@ -160,6 +160,7 @@ public class Room extends GraphicsPane {
 		}
 		HP.setText(
 				"HP: " + player.getHealth() + "\n" +
+				"Coin: " + player.coin + "\n" +
 				"Monsters Remaining: " + countMonstersAlive() + "\n" +
 				"Time: " + (player.ticks*screen.BREAK_MS) / 1000 + " seconds \n"
 		);
@@ -242,6 +243,11 @@ public class Room extends GraphicsPane {
 	}
 	
 	public boolean isCompleted() {
+		if (countMonstersAlive() == 0) {
+			if (player.health + 25 <= player.maxHP) {
+				player.health = player.health + 25;
+			}
+		}
 		return countMonstersAlive() == 0;
 	}
 

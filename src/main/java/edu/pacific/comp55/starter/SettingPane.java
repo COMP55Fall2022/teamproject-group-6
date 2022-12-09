@@ -12,18 +12,18 @@ public class SettingPane extends GraphicsPane {
 	private GButton rect2;
 	private GButton rect3;
 	private GButton rect4;
+	int difficultyAppliedTime = 0;
 	
 	public SettingPane(MainApplication app) {
 		super();
 		program = app;
 		rect1 = new GButton("Easy", 300, 100, 200, 100);
-		rect1.setFillColor(Color.RED);
+
 		rect2 = new GButton("Normal", 300, 200, 200, 100);
-		rect1.setFillColor(Color.RED);
-		rect3 = new GButton("Hard", 300, 250, 200, 100);
-		rect1.setFillColor(Color.RED);
+		rect2.setFillColor(Color.YELLOW);
+		rect3 = new GButton("Hard", 300, 300, 200, 100);
+		rect3.setFillColor(Color.RED);
 		rect4 = new GButton("Back", 300, 400, 200, 100);
-		rect1.setFillColor(Color.RED);
 	}
 	
 	@Override
@@ -46,13 +46,26 @@ public class SettingPane extends GraphicsPane {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == rect1) {
-			//TODO
+			if (difficultyAppliedTime == 0) {
+				program.player.health = program.player.health * 1;
+				program.switchToMenu();
+				difficultyAppliedTime++;
+			}
+			
 		}
 		else if (obj == rect2) {
-			//TODO 
+			if (difficultyAppliedTime == 0) {
+				program.player.health = (int) (program.player.health * 0.75);
+				program.switchToMenu();
+				difficultyAppliedTime++;
+			}
 		}
 		else if (obj == rect3) {
-			//TODO
+			if (difficultyAppliedTime == 0) {
+				program.player.health = (int) (program.player.health * 0.5);
+				program.switchToMenu();
+				difficultyAppliedTime++;
+			}
 		}
 		else if (obj == rect4) {
 			program.switchToMenu();

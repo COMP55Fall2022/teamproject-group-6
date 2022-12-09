@@ -2,6 +2,8 @@ package edu.pacific.comp55.starter;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.util.Scanner;
 
 import acm.graphics.GObject;
 
@@ -9,6 +11,7 @@ public class MenuPane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GButton rect1;
+	private GButton rect2;
 	private GButton rect3;
 	private GButton rect4;
 
@@ -18,9 +21,7 @@ public class MenuPane extends GraphicsPane {
 		rect1 = new GButton("Start", 300, 100, 200, 100);
 		rect1.setFillColor(Color.RED);
 		rect3 = new GButton("Settings", 300, 250, 200, 100);
-		rect1.setFillColor(Color.RED);
 		rect4 = new GButton("Quit", 300, 400, 200, 100);
-		rect1.setFillColor(Color.RED);
 	}
 
 	@Override

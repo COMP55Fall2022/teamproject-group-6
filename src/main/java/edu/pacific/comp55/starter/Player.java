@@ -8,22 +8,11 @@ import acm.graphics.GImage;
 import acm.graphics.GRoundRect;
 
 public class Player extends Character implements Serializable {
-	public static final int MAX_VELOCITY = 20;
-//	int level;
-//	int maxLife;
-//	int strength;
-//	int exteraHealth;
-//	int shield;
-//	int coin;
+	public static final int MAX_VELOCITY = 15;
+	int maxHP;
+	int coin;
+	int time;
 	
-//	ArrayList<String> itemNames = new ArrayList<>();
-//	ArrayList<Integer> itemAmounts = new ArrayList<>();
-//	
-//	String mapObjectNames[][];
-//	int mapObjectWorldX[][];
-//	int mapObjectWorldY[][];
-//	String mapObjectLootName[][];
-//	boolean mapObjectOpened[][];
 	
 	public Player() {
 		this(200, 100, 50, 50);
@@ -32,11 +21,11 @@ public class Player extends Character implements Serializable {
 	public Player(double x, double y, double width, double height) {
 		super(CharacterType.PLAYER, "player.png",  x, y, width, height);
 		setFaceDirection(DirectionType.UP);
-		health = 100000;
+		health = maxHP;
 		rateOfFire = 1;
-		speedOfBullet = 1;
 		damage = 25;
 	}
+	
 
 	@Override
 	public void handleCollision(Object o) {
@@ -81,19 +70,19 @@ public class Player extends Character implements Serializable {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			increaseVelocity(0, -10);
+			increaseVelocity(0, -15);
 			//this.move(0, -10);
 			break;
 		case KeyEvent.VK_DOWN:
-			increaseVelocity(0, 10);
+			increaseVelocity(0, 15);
 			//this.move(0, 10);
 			break;
 		case KeyEvent.VK_LEFT:
-			increaseVelocity(-10, 0);
+			increaseVelocity(-15, 0);
 			//this.move(-10, 0);
 			break;
 		case KeyEvent.VK_RIGHT:
-			increaseVelocity(10, 0);
+			increaseVelocity(15, 0);
 			//this.move(10, 0);
 			break;
 		}

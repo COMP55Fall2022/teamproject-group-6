@@ -30,6 +30,12 @@ public class Monster extends Character {
 		if (o instanceof Bullet && ((Bullet) o).isPlayerBullet()) {
 			isHit(25);
 		}
+		if (o instanceof Player) {
+			if (ticks - lastCollisionTick > 30) {
+				((Player) o).isHit(25);
+				lastCollisionTick = ticks;
+			}
+		}
 	}
 	
 	public DirectionType getDirectionToward(Object o) {
