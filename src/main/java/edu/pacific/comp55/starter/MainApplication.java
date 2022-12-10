@@ -25,6 +25,7 @@ public class MainApplication extends GraphicsApplication {
 		setupRooms();
 		player.setRoom(rooms.get(0));
 	}
+	//comment to submit
 	
 	public Player getPlayer() {
 		return player;
