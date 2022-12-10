@@ -125,6 +125,10 @@ public class Character extends AnimatedObject {
 		Bullet bullet = null;
 //		Point p = new Point(0,0);
 		if (direction == DirectionType.UP) {
+//			if (this.getType() == CharacterType.PLAYER) {
+//				this.setImage("up.png");
+//				this.setSize(50, 50);
+//			}
 			//p.setXY(this.getX() + this.getWidth() / 2, this.getY());
 			bullet = new Bullet(this.getX() + this.getWidth() / 4, 
 					this.getY() - 1 - Bullet.HEIGHT,
@@ -132,7 +136,6 @@ public class Character extends AnimatedObject {
 								direction);
 		}
 		else if (direction == DirectionType.DOWN) {
-			
 			//p.setXY(this.getLocation().getX() + this.getWidth() / 2, this.getLocation().getY() + this.getHeight());
 			bullet = new Bullet(this.getLocation().getX() + this.getWidth() / 4, 
 					this.getLocation().getY() + this.getHeight() + 1, 

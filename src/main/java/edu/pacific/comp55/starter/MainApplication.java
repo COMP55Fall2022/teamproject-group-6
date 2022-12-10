@@ -2,6 +2,8 @@ package edu.pacific.comp55.starter;
 
 import java.util.ArrayList;
 
+import acm.graphics.GImage;
+
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
@@ -94,7 +96,8 @@ public class MainApplication extends GraphicsApplication {
 		box = new Object("robot head.jpg", 45, 510, 50, 50);
 		objects.add(box);
 
-		
+		GImage background = new GImage("room1.png", 0, 0); 
+		add(background);
 		Room room1 = new Room(1, this, RoomType.EMPTY, player, monsters, objects);
 
 		rooms.add(room1);
@@ -215,8 +218,8 @@ public class MainApplication extends GraphicsApplication {
 	public void load() {
 		int dataRecieved[] = new int[5];
 		dataRecieved = data.readSaveFile();
-		player.maxHP = dataRecieved[0];
-		player.setHealth(dataRecieved[0]);
+		player.maxHP = 200;
+		player.setHealth(200);
 //		player.damage = dataRecieved[1];
 //		player.shield = dataRecieved[2];
 		player.coin = dataRecieved[3];

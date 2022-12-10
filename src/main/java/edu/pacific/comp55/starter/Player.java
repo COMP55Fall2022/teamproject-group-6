@@ -36,7 +36,7 @@ public class Player extends Character implements Serializable {
 		//check the type of your object
 		//take damage if needed
 		//set dead if needed
-		if (o instanceof Bullet && ((Bullet) o).exploded != true) {
+		if (o instanceof Bullet) {
 			isHit(25);
 		} else if (o instanceof Door) {
 			Door door = ((Door) o);
