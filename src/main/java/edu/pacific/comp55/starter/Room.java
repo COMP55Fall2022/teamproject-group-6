@@ -33,6 +33,9 @@ public class Room extends GraphicsPane {
 	private GParagraph HP;
 	private Door leftDoor, rightDoor, topDoor, bottomDoor;
 	private int roomNumber;
+	private EndingPaneDied endingDied;
+	private EndingPaneCongrats endingCongrats;
+	private int checkComp = 0;
 	
 	
 	public Room(int roomNumber, MainApplication screen, RoomType type, Player player, ArrayList<Monster> monsters, ArrayList<Object> objects) {
@@ -57,7 +60,8 @@ public class Room extends GraphicsPane {
 			player.setRoom(this);
 			HP = new GParagraph("HP: " + player.getHealth(), 50, 50);
 		}
-		
+		endingDied = new EndingPaneDied(screen);
+		endingCongrats = new EndingPaneCongrats(screen);
 	}
 
 	public void setNeighbors(Room[] neighbors) {
@@ -108,8 +112,20 @@ public class Room extends GraphicsPane {
 	
 	public void animate() {
 		GPoint oldLocation = player.getLocation();
-		
-		player.animate();
+		if (checkComp == 0) {
+			this.player.maxHP = this.player.maxHP + totalMonster;
+			this.player.health = this.player.health + totalMonster;
+			this.player.coin = this.player.coin + totalMonster;
+			screen.save(this.player);
+			checkComp++;
+		}
+		isCompleted();
+		if (player.isDead() != true) {
+			player.animate();
+		}
+		else {
+			screen.switchToScreen(endingDied);
+		}
 		for(Object o: objects) {
 			if(player.getBounds().intersects(o.getBounds())){
 				player.setLocation(oldLocation);
@@ -251,11 +267,9 @@ public class Room extends GraphicsPane {
 	
 	public boolean isCompleted() {
 		if (countMonstersAlive() == 0) {
-			this.player.maxHP = this.player.maxHP + totalMonster;
-			this.player.health = this.player.health + totalMonster;
-			this.player.coin = this.player.coin + totalMonster;
-			screen.save(this.player);
-			//completedTime++;
+			if (roomNumber == 5) {
+				screen.switchToScreen(endingCongrats);
+			}
 		}
 		return countMonstersAlive() == 0;
 	}

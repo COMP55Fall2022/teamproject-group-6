@@ -14,6 +14,7 @@ public class MainApplication extends GraphicsApplication {
 	private ArrayList<Room> combat;
 	private MenuPane menu;
 	private SettingPane setting;
+//	private EndingPane ending;
 	protected  Player player;
 	private int count;
 	private DataStorage data = new DataStorage();
@@ -110,12 +111,7 @@ public class MainApplication extends GraphicsApplication {
 		monsters.add(new MonsterSentry(275, 200, 50, 50));
 		monsters.add(new MonsterSentry(350, 325, 50, 50));
 
-		MonsterPatroller patroler4 = new MonsterPatroller(500, 300, 62.5, 62.5);
-		MonsterPatroller patroler5 = new MonsterPatroller(350, 250, 62.5, 62.5);
-//		patroler4.setPath(path);
-//		patroler5.setPath(path);
-//		monsters.add(patroler4);
-//		monsters.add(patroler5);
+
 
 		objects = new ArrayList<Object>();
 		//box = new Object("robot head.jpg", 30, 40, 50, 50);
@@ -126,26 +122,44 @@ public class MainApplication extends GraphicsApplication {
 		Room room2 = new Room(2, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room2);
 		
+		monsters = new ArrayList<Monster>();
+		monsters.add(new MonsterChaser(500, 250, 50, 50));
+		monsters.add(new MonsterChaser(300, 300, 50, 50));
+		monsters.add(new MonsterSentry(200, 375, 50, 50));
+		monsters.add(new MonsterSentry(275, 200, 50, 50));
+		monsters.add(new MonsterSentry(350, 325, 50, 50));
+		objects = new ArrayList<Object>();
+		box = new Object("robot head.jpg", 45, 100, 50, 50);
+		objects.add(box);
+		
 		Room room3 = new Room(3, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room3);
+		
+		monsters = new ArrayList<Monster>();
+		monsters.add(new MonsterChaser(500, 250, 50, 50));
+		monsters.add(new MonsterChaser(300, 300, 50, 50));
+		monsters.add(new MonsterSentry(200, 375, 50, 50));
+		monsters.add(new MonsterSentry(275, 200, 50, 50));
+		monsters.add(new MonsterSentry(350, 325, 50, 50));
+		objects = new ArrayList<Object>();
+		box = new Object("robot head.jpg", 45, 100, 50, 50);
+		objects.add(box);
 		
 		Room room4 = new Room(4, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room4);
 		
+		monsters = new ArrayList<Monster>();
+		monsters.add(new MonsterChaser(500, 250, 50, 50));
+		monsters.add(new MonsterChaser(300, 300, 50, 50));
+		monsters.add(new MonsterSentry(200, 375, 50, 50));
+		monsters.add(new MonsterSentry(275, 200, 50, 50));
+		monsters.add(new MonsterSentry(350, 325, 50, 50));
+		objects = new ArrayList<Object>();
+		box = new Object("robot head.jpg", 45, 100, 50, 50);
+		objects.add(box);
+		
 		Room room5 = new Room(5, this, RoomType.BOSS, player, monsters, objects);
 		rooms.add(room5);
-		
-		Room room6 = new Room(6, this, RoomType.EMPTY, player, monsters, objects);
-		rooms.add(room6);
-		
-		Room room7 = new Room(7, this, RoomType.EMPTY, player, monsters, objects);
-		rooms.add(room7);
-		
-		Room room8 = new Room(8, this, RoomType.BOSS, player, monsters, objects);
-		rooms.add(room8);
-		
-		Room room9 = new Room(9, this, RoomType.BOSS, player, monsters, objects);
-		rooms.add(room9);
 		
 		Room[] neighbors1 = {null, room2, null, null};
 		room1.setNeighbors(neighbors1);
@@ -153,32 +167,21 @@ public class MainApplication extends GraphicsApplication {
 		Room[] neighbors2 = {room3, null, null, room1};
 		room2.setNeighbors(neighbors2);
 		
-		Room[] neightbors3 = {null, room5, room2, room4}; 
+		Room[] neightbors3 = {null, null, room2, room4}; 
 		room3.setNeighbors(neightbors3);
 		
-		Room[] neightbors4 = {room6, room3, null, null}; 
+		Room[] neightbors4 = {room5, room3, null, null}; 
 		room4.setNeighbors(neightbors4);
 		
-		Room[] neightbors5 = {null, room8, null, room3}; 
+		Room[] neightbors5 = {null, null, room4, null}; 
 		room5.setNeighbors(neightbors5);
-
-		Room[] neightbors6 = {null, null, room4, null}; 
-		room6.setNeighbors(neightbors6);
-
-		Room[] neightbors7 = {room8, room9, null, null}; 
-		room7.setNeighbors(neightbors7);
-
-		Room[] neightbors8 = {null, null, room7, room5}; 
-		room8.setNeighbors(neightbors8);
-
-		Room[] neightbors9 = {null, null, null, room7}; 
-		room9.setNeighbors(neightbors9);
 	}
 
 	public void run() {
 		//load();
 		menu = new MenuPane(this);
 		setting = new SettingPane(this);
+		//ending = new EndingPane(this);
 		setupInteractions();
 		switchToMenu();
 		
@@ -197,7 +200,9 @@ public class MainApplication extends GraphicsApplication {
 
 	public void switchToRoom() {
 		playRandomSound();
-		switchToScreen(player.getRoom());
+		if (player.isDead() != true) {
+			switchToScreen(player.getRoom());
+		}
 	}
 
 	private void playRandomSound() {
@@ -219,8 +224,8 @@ public class MainApplication extends GraphicsApplication {
 	public void load() {
 		int dataRecieved[] = new int[5];
 		dataRecieved = data.readSaveFile();
-		player.maxHP = 200;
-		player.setHealth(200);
+		player.maxHP = dataRecieved[0];
+		player.setHealth(player.maxHP);
 //		player.damage = dataRecieved[1];
 //		player.shield = dataRecieved[2];
 		player.coin = dataRecieved[3];
